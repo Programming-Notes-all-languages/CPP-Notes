@@ -51,21 +51,25 @@
       <details>
       <summary>Example Program</summary>
         <ul>
-          <code>
-            #include <<a>iostream</a>><br />
-            using namespace std;<br /><br />
-            int main()<br />
-            {<br />
-            &emsp;&emsp;cout << "Hello world!" << endl;<br />
-            &emsp;&emsp;//Everything here is ignored<br /><br />
-            &emsp;&emsp;return 0;<br />
-            }<br />
-          </code>  
+          <pre>
+            <code>
+              #include <<a>iostream</a>><br />
+              using namespace std;<br /><br />
+              int main()<br />
+              {<br />
+              cout << "Hello world!" << endl;<br />
+              //Everything here is ignored<br /><br />
+              return 0;<br />
+              }<br />
+            </code>
+          </pre>    
           <details>
           <summary>Output</summary>
-            <code>
-              Hello world!<br />
-            </code>
+            <pre>
+              <code>
+                Hello world!<br />
+              </code>
+            </pre>  
           </details>
         </ul>  
       </details>
