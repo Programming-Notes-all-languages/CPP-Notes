@@ -62,7 +62,7 @@
                   //Everything here is ignored<br />
                   <br />
                   <br />return 0;<br />
-              }<br />
+              }
             </code>
           </pre>    
           <details>
