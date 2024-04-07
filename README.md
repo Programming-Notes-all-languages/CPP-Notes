@@ -196,10 +196,10 @@
 ## Introduction to iostream
 <ul>
   <li>
-    <a><span style="color:maroon"><em>Input/output library</em></span>: is the part of C++'s iostream library and deals with basic user input and output. To use this library, it must be included at the top of the program. This is done by adding #include <a><</a><a>iostream</a><a>></a>
+    <a><em>Input/output library</em>: is the part of C++'s iostream library and deals with basic user input and output. To use this library, it must be included at the top of the program. This is done by adding #include <a><</a><a>iostream</a><a>></a>
   </li>
   <li>
-    <a><span style="color:maroon"><em>cout</em></span>: allows for text and information to be printed to the console after the buffer is flushed by using the <span style="color:maroon"><em>insertion operator</em></span>: <a><<</a></a>
+    <a><em>cout</em>: allows for text and information to be printed to the console after the buffer is flushed by using the <em>insertion operator</em>: <a><<</a></a>
   </li> 
   <details>
   <summary>Example Program</summary>    
@@ -231,10 +231,10 @@
     <a>endl versus \n:</a>
     <ul>
       <li>
-        <a>Output is typically not sent to the console immediately; instead, the requested output waits in a queue. This queue is a storage location of memory called a <span style="color:maroon"><em>buffer</em></span></a>
+        <a>Output is typically not sent to the console immediately; instead, the requested output waits in a queue. This queue is a storage location of memory called a <em>buffer</em></a>
       </li>
       <li>
-        <a>The buffer is <span style="color:maroon"><em>flushed</em></span> periodically, meaning all the information that has been stored in the buffer will be printed to the console</a>
+        <a>The buffer is <em>flushed</em> periodically, meaning all the information that has been stored in the buffer will be printed to the console</a>
       </li>
       <li>
         <a>endl has two jobs: endl moves the curser to the next line of code in the program and it flushes the buffer</a>
@@ -245,14 +245,14 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>cin</em></span>: reads input from the keyboard using the <span style="color:maroon"><em>extraction operator</em></span>: >>
+    <a><em>cin</em>: reads input from the keyboard using the <em>extraction operator</em>: >>
   </li>          
 </ul> 
 
 ## Whitespace and Basic Formatting
 <ul>
   <li>
-    <a><span style="color:maroon"><em>Whitespace</em></span> is a term that refers to characters that are used for formatting purposes; in C++, this refers primarily to spaces, tabs, and newlines</a>
+    <a><em>Whitespace</em> is a term that refers to characters that are used for formatting purposes; in C++, this refers primarily to spaces, tabs, and newlines</a>
   </li>  
   <li>
     <a>The C++ compiler generally ignores whitespaces; therefore, C++ is a whitespace-independent language</a>
@@ -270,7 +270,7 @@
 ## Introduction to Literals and Operators
 <ul>
   <li>
-    <a><span style="color:maroon"><em>Literals</em></span> are fixed values that have been inserted directly into the source code</a>
+    <a><em>Literals</em> are fixed values that have been inserted directly into the source code</a>
     <ul>
       <li>
         <a>Examples of literals are 1, 2.5, "garrett", and 'c'. These are literals because you cannot assign different values to those terms</a>
@@ -278,7 +278,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Operators</em></span> are symbols that perform operations on variables and values</a>
+    <a><em>Operators</em> are symbols that perform operations on variables and values</a>
     <ul>
       <li>
         <a>Operators can be chained together; the output of one operation can be used as the input for another operator</a>
@@ -290,19 +290,19 @@
 ## Atomic Data Types and Type Conversion
 <ul>
   <li>
-    <a><span style="color:maroon"><em>bool</em></span>: has two possible values: true or false</a>
+    <a><em>bool</em>: has two possible values: true or false</a>
   </li>
   <li>
-    <a><span style="color:maroon"><em>string</em></span>: used to store a list of characters</a>
+    <a><em>string</em>: used to store a list of characters</a>
   </li>
   <li>
     <a>Integer types:</a>
     <ul>
       <li>
-        <a><span style="color:maroon"><em>char</em></span>: typically used to represent a character</a>
+        <a><em>char</em>: typically used to represent a character</a>
       </li>
       <li>
-        <a><span style="color:maroon"><em>int</em></span>: used to represent an integer</a>
+        <a><em>int</em>: used to represent an integer</a>
       </li>  
     </ul>
   </li> 
@@ -310,10 +310,10 @@
     <a>Floating point types:</a>
     <ul>
       <li>
-        <a><span style="color:maroon"><em>float</em></span>: used to represent decimal numbers</a>
+        <a><em>float</em>: used to represent decimal numbers</a>
       </li>
       <li>
-        <a><span style="color:maroon"><em>double</em></span>: used to represent decimal numbers</a>
+        <a><em>double</em>: used to represent decimal numbers</a>
       </li>
     </ul>
   </li>   
@@ -379,10 +379,10 @@
 ## Constant Variables
 <ul>
   <li>
-    <a><span style="color:maroon"><em>Constant variable</em></span>: a variable whose value cannot change once it is declared and initialized</a>
+    <a><em>Constant variable</em>: a variable whose value cannot change once it is declared and initialized</a>
     <ul>
       <li>
-        <a>Muse use the keyword <span style="color:maroon"><em>const</em></span> or the define preprocessor</a>
+        <a>Muse use the keyword <em>const</em> or the define preprocessor</a>
       </li>
       <li>
         <a>Must declare and initialize the const variable on the same line</a>
@@ -453,7 +453,7 @@
 ## Arithmetic Operators
 <ul>
   <li>
-    <a><span style="color:maroon"><em>Addition operator</em></span>: adds the value on the left-hand side of the operator to the value on the right-hand side of the operator</a>
+    <a><em>Addition operator</em>: adds the value on the left-hand side of the operator to the value on the right-hand side of the operator</a>
     <ul>
       <li>
         <a>x + y //sums the values x and y</a>
@@ -461,7 +461,7 @@
     </ul>    
   </li>
   <li>
-    <a><span style="color:maroon"><em>Subtraction operator<em></span>: subtracts the value on the right-hand side of the operator from the value on the left-hand side of the operator</a> 
+    <a><em>Subtraction operator<em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side of the operator</a> 
     <ul>
       <li>
         <a>x - y; //subtracts the value y from the value x</a>
@@ -469,7 +469,7 @@
     </ul>    
   </li>
   <li>
-    <a><span style="color:maroon"><em>Multiplication operator</em></span>: multiplies the value on the right-hand side of the operator to the value on the left-hand side of the operator</a>
+    <a><em>Multiplication operator</em>: multiplies the value on the right-hand side of the operator to the value on the left-hand side of the operator</a>
     <ul>
       <li>
         <a>x * y; //multiplies the values x and y</a>
@@ -477,7 +477,7 @@
     </ul>    
   </li>
   <li>
-    <a><span style="color:maroon"><em>Division operator</em></span>: divides the value on the left-hand side of the operator by the value on the right-hand side of the operator</a>
+    <a><em>Division operator</em>: divides the value on the left-hand side of the operator by the value on the right-hand side of the operator</a>
     <ul>
       <li>
         <a>x / y; //divides the x value by the value y</a>
@@ -485,7 +485,7 @@
     </ul>    
   </li>
   <li>
-    <a><span style="color:maroon"><em>Modulus operator</em></span>: divides the value on the left-hand side of the operator by the value on the right-hand side of the operator and returns the remainder</a>
+    <a><em>Modulus operator</em>: divides the value on the left-hand side of the operator by the value on the right-hand side of the operator and returns the remainder</a>
     <ul>
       <li>
         <a>x % y; //finds the remainder of the value x divided by value y</a>
@@ -493,7 +493,7 @@
     </ul>     
   </li>
   <li>
-    <a><span style="color:maroon"><em>Pre-increment operator</em></span>: incrementing is done before the variable is used within the written line of code</a>
+    <a><em>Pre-increment operator</em>: incrementing is done before the variable is used within the written line of code</a>
     <ul>
       <li>
         <a>++x; //increases the value of the variable by one integer</a>
@@ -501,7 +501,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Post-increment operator</em></span>: incrementing is done after the variable is used within the written line of code</a>
+    <a><em>Post-increment operator</em>: incrementing is done after the variable is used within the written line of code</a>
     <ul>
       <li>
         <a>x++; /increases the value of the variable by one integer</a>
@@ -509,7 +509,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Pre-decrement operator</em></span>: decrementing is done before the variable is used within the written line of code</a>
+    <a><em>Pre-decrement operator</em>: decrementing is done before the variable is used within the written line of code</a>
     <ul>
       <li>
         <a>--x; //decreases the value of the variable by one integer</a>  
@@ -517,7 +517,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Post-decrement operator</em></span>: decrementing is done after the variable is used within the written line of code</a>  
+    <a><em>Post-decrement operator</em>: decrementing is done after the variable is used within the written line of code</a>  
     <ul>
       <li>
         <a>x--; //decreases the value of the variable by one integer</a> 
@@ -529,7 +529,7 @@
 ## Shorthand Assignment Operators
 <ul>
   <li>
-    <a><span style="color:maroon"><em>Addition assignment operator</em></span>: adds the value on the right-hand side of the operator to the value on the left-hand side</a>
+    <a><em>Addition assignment operator</em>: adds the value on the right-hand side of the operator to the value on the left-hand side</a>
     <ul>
       <li>
         <a>x += y; //means x equals the sum of x and y</a>
@@ -537,7 +537,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Subtraction assignment operator</em></span>: subtracts the value on the right-hand side of the operator from the value on the left-hand side</a>
+    <a><em>Subtraction assignment operator</em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side</a>
     <ul>
       <li>
         <a>x -= y; //means x equals the subtraction of y from x</a>
@@ -545,7 +545,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Multiplication assignment operator</em></span>: multiplies the value on the right-hand side of the operator to the value on the left-hand side</a>
+    <a><em>Multiplication assignment operator</em>: multiplies the value on the right-hand side of the operator to the value on the left-hand side</a>
     <ul>
       <li>
         <a>x *= y; //means x equals the product of x and y</a>
@@ -553,7 +553,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Division assignment operator</em></span>: divides the value on the right-hand side of the operator to the value on the left-hand side</a>
+    <a><em>Division assignment operator</em>: divides the value on the right-hand side of the operator to the value on the left-hand side</a>
     <ul>
       <li>
         <a>x /= y; //means x equals x divided by y</a>
@@ -561,7 +561,7 @@
     </ul>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Modulo assignment operator</em></span>: finds the remainder of the value on the left-hand side of the operator divided by the value on the right-hand side</a>
+    <a><em>Modulo assignment operator</em>: finds the remainder of the value on the left-hand side of the operator divided by the value on the right-hand side</a>
     <ul>
       <li>
         <a>x %= y; //means x equals the remainder of x divided by y</a>
