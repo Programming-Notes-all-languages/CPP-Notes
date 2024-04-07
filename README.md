@@ -40,13 +40,13 @@
 ## Comments
 <ul>
   <li>
-    <a><span style="color:maroon"><em>Comments</em></span> are notes created by the programmer that are included within the program. The compiler ignores these comments and are only there for the programmer's use</a>
+    <a><em>Comments</em> are notes created by the programmer that are included within the program. The compiler ignores these comments and are only there for the programmer's use</a>
   </li>
   <li>
     <a>In C++ there are two styles of comments:</a>
     <ul>
       <li>
-        <a><span style="color:maroon"><em>Single-line comments</em></span>: are denoted with the double forward slash characters, //, and tell the compiler to ignore all code from the two forward slashes to end of the line of code</a>
+        <a><em>Single-line comments</em></span>: are denoted with the double forward slash characters, //, and tell the compiler to ignore all code from the two forward slashes to end of the line of code</a>
       </li>
       <details>
       <summary>Example Program</summary>
@@ -76,7 +76,7 @@
         </ul>  
       </details>
       <li>
-        <a><span style="color:maroon"><em>Multi-line comments</em></span>: are denoted by the /* and */ set of character. Everything that is enclosed within the /* and */ set of characters is a comment and therefore ignored by the compiler</a>
+        <a><em>Multi-line comments</em>: are denoted by the /* and */ set of character. Everything that is enclosed within the /* and */ set of characters is a comment and therefore ignored by the compiler</a>
       </li>  
       <details>
       <summary>Example Program</summary>
@@ -119,13 +119,13 @@
 ## Variable Assignment and Initialization
 <ul>
   <li>
-    <a>A <span style="color:maroon"><em>variable</em></span> is a name given to an instance of a data type not defined by the user. The name of this instance is also called an <em>identifier</em>. Variables and identifiers are two words that mean the exact same thing</a>
+    <a>A <em>variable</em> is a name given to an instance of a data type not defined by the user. The name of this instance is also called an <em>identifier</em>. Variables and identifiers are two words that mean the exact same thing</a>
   </li>
   <li>
-    <a><span style="color:maroon"><em>Initialization</em></span> is the process in which a variable is assigned a memory address</a>
+    <a><em>Initialization</em> is the process in which a variable is assigned a memory address</a>
   </li>
   <li>
-    <a>After a variable has been defined, it can be assigned a value using the <span style="color:maroon"><em>assignment operator</em></span>. The assignment operator is the equals sign character, =. The process of a variable being initialized is called <span style="color:maroon"><em>assignment</em></span>. Assignment and initialization are two words that mean the same thing</a>
+    <a>After a variable has been defined, it can be assigned a value using the <em>assignment operator</em>. The assignment operator is the equals sign character, =. The process of a variable being initialized is called <em>assignment</em>. Assignment and initialization are two words that mean the same thing</a>
   </li>
   <ul>
     <li>
@@ -133,13 +133,13 @@
     </li>
   </ul>              
   <li>
-    <a>An <span style="color:maroon"><em>initializer</em></span> is the information, whether that be a literal or another variable, that is used to initialize a variable</a>
+    <a>An <em>initializer</em> is the information, whether that be a literal or another variable, that is used to initialize a variable</a>
   </li>
   <li>
     <a>Here are the multiple types of initialization:</a>
     <ul>
       <li>
-        <a><span style="color:maroon"><em>Default initialization</em></span>: when a identifier is not assigned an initializer by the user. In this scenario, the variable is assigned a garbage value given by the computer</a>
+        <a><em>Default initialization</em>: when a identifier is not assigned an initializer by the user. In this scenario, the variable is assigned a garbage value given by the computer</a>
         <ul>
           <li>
             <a>int a;</a>
@@ -147,7 +147,7 @@
         </ul>    
       </li>
       <li>
-        <a><span style="color:maroon"><em>Copy initialization</em></span>: when an initializer is provided after the identifier and assignment operator</a>
+        <a><em>Copy initialization</em>: when an initializer is provided after the identifier and assignment operator</a>
         <ul>
           <li>
             <a>int b = 5;</a>
@@ -155,7 +155,7 @@
         </ul>
       </li>  
       <li>
-        <a><span style="color:maroon"><em>Direct initialization</em></span>: when an initializer is provided within parentheses after the identifier</a>
+        <a><em>Direct initialization</em>: when an initializer is provided within parentheses after the identifier</a>
         <ul>
           <li>
             <a>int c(6);</a>
@@ -163,7 +163,7 @@
         </ul>
       </li>
       <li>
-        <a><span style="color:maroon"><em>Zero initialization</em></span>: a form of value initialization that initializes the variable to zero with an empty set of braces</a>
+        <a><em>Zero initialization</em>: a form of value initialization that initializes the variable to zero with an empty set of braces</a>
         <ul>
           <li>
             <a>int d{};</a>
@@ -171,7 +171,7 @@
         </ul>
       </li>
       <li>
-        <a><span style="color:maroon"><em>Copy initialization</em></span>: when an initializer is provided after the assignment operator within braces</a>
+        <a><em>Copy initialization</em>: when an initializer is provided after the assignment operator within braces</a>
         <ul>
           <li>
             <a>int e = {7}</a>
@@ -184,7 +184,7 @@
     <a>Multiple variables can be initialized on the same line where commas separate each variable's assignment</a>
   </li> 
   <li>
-    <a>A variable that has not been initialized is called an <span style="color:maroon"><em>uninitialized variable</em></span></a>  
+    <a>A variable that has not been initialized is called an <em>uninitialized variable</em></a>  
     <ul>
       <li>
         <a>Printing out an uninitialized variable to the console causes a random value to be stored into the variable's memory address</a>
@@ -461,7 +461,7 @@
     </ul>    
   </li>
   <li>
-    <a><em>Subtraction operator</em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side of the operator</a> 
+    <a><em>Subtraction operator<em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side of the operator</a> 
     <ul>
       <li>
         <a>x - y; //subtracts the value y from the value x</a>
