@@ -48,62 +48,19 @@
       <li>
         <a><em>Single-line comments</em>: are denoted with the double forward slash characters, //, and tell the compiler to ignore all code from the two forward slashes to end of the line of code</a>
       </li>
-      <details>
-      <summary>Example Program</summary>
-        <ul>
-          <pre>
-            <code>
-              #include <<a>iostream</a>>
-              using namespace std;<br />
-              <br />
-              int main()<br />
-              {<br />
-                  cout << "Hello world!" << endl;<br />
-                  //Everything here is ignored<br />
-                  <br />
-                  return 0;<br />
-              }<be />
-            </code>
-          </pre>    
-          <details>
-          <summary>Output</summary>
-            <pre>
-              <code>
-                Hello world!<br />
-              </code>
-            </pre>  
-          </details>
-        </ul>  
-      </details>
-      <li>
-        <a><em>Multi-line comments</em>: are denoted by the /* and */ set of character. Everything that is enclosed within the /* and */ set of characters is a comment and therefore ignored by the compiler</a>
-      </li>  
-      <details>
-      <summary>Example Program</summary>
-        <ul>
-          <pre>
-            <code>
-              /*This is a multi-line comment.<br />
-              This line will be ignored.<br />
-              So will this one.*/<br />
-            </code>
-          </pre>  
-          <details>
-          <summary>Output</summary>
-            <pre>
-              <code>
-                <br />
-              </code>
-            </pre>  
-          </details>
-        </ul>  
-      </details>
     </ul>
-  </li> 
-  <li>
-    <a>Multi-line comments can be comprised of multiple single-line comments; however, multi-line comments cannot be embedded with any multi-line comments</a>
-  </li>       
-  <li>
-    <a>Comments are useful to explain what certain lines and blocks of code do, especially when other programmers are reading the code</a>
-  </li>  
+  </li>
 </ul> 
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main()
+{
+cout << "Hello world!" << endl;
+//Everything here is ignored
+
+return 0;
+}
+```
