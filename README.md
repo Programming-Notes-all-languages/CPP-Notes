@@ -61,8 +61,8 @@
                   cout << "Hello world!" << endl;<br />
                   //Everything here is ignored<br />
                   <br />
-                  <br />return 0;<br />
-              }
+                  return 0;<br />
+              }<be />
             </code>
           </pre>    
           <details>
