@@ -83,9 +83,17 @@
         <ul>
           <pre>
             <code>
-              /*This is a multi-line comment.<br />
-              This line will be ignored.<br />
-              So will this one.*/<br />
+              #include <<a>iostream</a>>
+              using namespace std;<br />
+              <br />
+              int main()<br />
+              {<br />
+                  /*This is a multi-line comment.<br />
+                  This line will be ignored.<br />
+                  So will this one.*/<br />
+                  <br />
+                  return 0;<br />
+              }<be />
             </code>
           </pre>  
           <details>
