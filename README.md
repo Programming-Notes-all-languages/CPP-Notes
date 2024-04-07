@@ -53,12 +53,14 @@
         <ul>
           <pre>
             <code>
-              #include <<a>iostream</a>><br />
-              using namespace std;<br /><br />
+              #include <<a>iostream</a>>
+              using namespace std;<br />
+              <br />
               int main()<br />
               {<br />
                   cout << "Hello world!" << endl;<br />
                   //Everything here is ignored<br />
+                  <br />
                   <br />return 0;<br />
               }<br />
             </code>
