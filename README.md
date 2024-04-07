@@ -57,9 +57,9 @@
               using namespace std;<br /><br />
               int main()<br />
               {<br />
-              cout << "Hello world!" << endl;<br />
-              //Everything here is ignored<br /><br />
-              return 0;<br />
+                  cout << "Hello world!" << endl;<br />
+                  //Everything here is ignored<br />
+                  <br />return 0;<br />
               }<br />
             </code>
           </pre>    
