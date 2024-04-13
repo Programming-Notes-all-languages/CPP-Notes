@@ -462,7 +462,7 @@
     </ul>    
   </li>
   <li>
-    <a><em>Subtraction operator<em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side of the operator</a> 
+    <a><em>Subtraction operator</em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side of the operator</a> 
     <ul>
       <li>
         <a>x - y; //subtracts the value y from the value x</a>
