@@ -40,13 +40,13 @@
 ## Comments
 <ul>
   <li>
-    <a><em>Comments</em> are notes created by the programmer that are included within the program. The compiler ignores these comments and are only there for the programmer's use</a>
+    <a><em>Comments</em> are notes created by the programmer that are included within the program. The compiler ignores these comments as they are only there for the programmer's use</a>
   </li>
   <li>
     <a>In C++ there are two styles of comments:</a>
     <ul>
       <li>
-        <a><em>Single-line comments</em></span>: are denoted with the double forward slash characters, //, and tell the compiler to ignore all code from the two forward slashes to end of the line of code</a>
+        <a><em>Single-line comments</em></span>: are denoted with the double forward slash characters, //, and tell the compiler to ignore all code from the two forward slashes to the end of the line of code</a>
       </li>
       <details>
       <summary>Example Program</summary>
@@ -76,7 +76,7 @@
         </ul>  
       </details>
       <li>
-        <a><em>Multi-line comments</em>: are denoted by the /* and */ set of character. Everything that is enclosed within the /* and */ set of characters is a comment and therefore ignored by the compiler</a>
+        <a><em>Multi-line comments</em>: are denoted by the /* and */ set of characters. Everything that is enclosed within the /* and */ set of characters is a comment and therefore ignored by the compiler</a>
       </li>  
       <details>
       <summary>Example Program</summary>
@@ -187,7 +187,7 @@
     <a>A variable that has not been initialized is called an <em>uninitialized variable</em></a>  
     <ul>
       <li>
-        <a>Printing out an uninitialized variable to the console causes a random value to be stored into the variable's memory address</a>
+        <a>Printing out an uninitialized variable to the console causes a random value to be stored in the variable's memory address</a>
       </li>
     </ul>    
   </li>   
@@ -196,7 +196,7 @@
 ## Introduction to iostream
 <ul>
   <li>
-    <a><em>Input/output library</em>: is the part of C++'s iostream library and deals with basic user input and output. To use this library, it must be included at the top of the program. This is done by adding #include <a><</a><a>iostream</a><a>></a>
+    <a><em>Input/output library</em>: is part of C++'s iostream library and deals with basic user input and output. To use this library, it must be included at the top of the program. This is done by adding #include <a><</a><a>iostream</a><a>></a>
   </li>
   <li>
     <a><em>cout</em>: allows for text and information to be printed to the console after the buffer is flushed by using the <em>insertion operator</em>: <a><<</a></a>
@@ -321,7 +321,7 @@
     <a>SMALLEST --- char << int << float << double --- GREATEST</a> 
     <ul>
       <li>
-        <a>You can store a smaller data type into a largest data type. For example, you can store an int into a float or a double</a>
+        <a>One can store a smaller data type in a larger data type. For example, you can store an int in a float or a double</a>
       </li>
     </ul>     
   </li>  
@@ -329,13 +329,13 @@
     <a>Type conversion:</a>
     <ul>
       <li>
-        <a>Can use variable = dataType(variable); to change variable's type to dataType</a>
+        <a>Can use variable = dataType(variable); to change the variable's type to dataType</a>
       </li>
       <li>
         <a>Can also use variable = static_cast</a><a><</a><a>dataType</a><a>></a><a>; to change variable type to dataType</a>
       </li>
       <li>
-        <a>Converting any char into another type returns that value's ascii value</a>
+        <a>Converting any char into another type returns that value's ASCII value</a>
       </li>  
       <li>
         <a>Examples of type conversion:</a>
@@ -382,7 +382,7 @@
     <a><em>Constant variable</em>: a variable whose value cannot change once it is declared and initialized</a>
     <ul>
       <li>
-        <a>Muse use the keyword <em>const</em> or the define preprocessor</a>
+        <a>Must use the keyword <em>const</em> or the define preprocessor</a>
       </li>
       <li>
         <a>Must declare and initialize the const variable on the same line</a>
@@ -392,7 +392,7 @@
           <a>const double SIZE = 3.14; //legal</a>
         </li>
         <li>
-          <a>const double;<br />SIZE = 3.14; //illegal since variable declaration and initialization does not take place on the same line of code</a>  
+          <a>const double;<br />SIZE = 3.14; //illegal since variable declaration and initialization do not take place on the same line of code</a>  
         </li>
       </ul>
       <li>
@@ -580,7 +580,7 @@
     <a>There are a minimum of three files needed when implementing the header file: a main.cpp file, the header file, and the implementation file</a>
     <ul>
       <li>
-        <a>The header and main files must be cpp files wheres the header file must end in .h</a>
+        <a>The header and main files must be cpp files where the header file must end in .h</a>
       <li>
         <a>The name of the header file and the implementation file must be identical. If the name of the header file is Function.h, then the name of its implementation file must be Function.cpp</a>
       </li>
