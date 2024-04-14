@@ -229,7 +229,7 @@
           <br />
           int main()
           {
-          &emsp;&emsp;cout << "Hello World! << endl; //prints Hello World! to the console
+          &emsp;&emsp;cout << "Hello World!" << endl; //prints Hello World! to the console
           <br />
           &emsp;&emsp;return 0;
           }
