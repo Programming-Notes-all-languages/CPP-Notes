@@ -396,7 +396,7 @@
         </details>
       </li>  
       <li>
-        <a>Converting variables when identifiers of type char are involved uses the integer representations of literals' ASCII values. An ASCII table can be found </a><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/blob/main/README.md">here</a>
+        <a>Converting variables when identifiers of type char are involved uses the integer representations of literals' ASCII values. An ASCII table can be found </a><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/ASCII%20Table">here</a>
         <details>
       <summary>Example Program</summary>
         <ul>
