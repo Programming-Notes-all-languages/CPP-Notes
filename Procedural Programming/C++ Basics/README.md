@@ -54,22 +54,22 @@
           <pre>
             <code>
               #include <<a>iostream</a>>
-              using namespace std;<br />
+              using namespace std;
               <br />
-              int main()<br />
-              {<br />
-                  cout << "Hello world!" << endl;<br />
-                  //Everything here is ignored<br />
+              int main()
+              {
+                  cout << "Hello world!" << endl;
+                  //Everything here is ignored
                   <br />
-                  return 0;<br />
-              }<be />
+                  return 0;
+              }
             </code>
           </pre>    
           <details>
           <summary>Output</summary>
             <pre>
               <code>
-                Hello world!<br />
+                Hello world!
               </code>
             </pre>  
           </details>
@@ -84,16 +84,16 @@
           <pre>
             <code>
               #include <<a>iostream</a>>
-              using namespace std;<br />
+              using namespace std;
               <br />
-              int main()<br />
-              {<br />
-                  /*This is a multi-line comment.<br />
-                  This line will be ignored.<br />
-                  So will this one.*/<br />
+              int main()
+              {
+                  /*This is a multi-line comment.
+                  This line will be ignored.
+                  So will this one.*/
                   <br />
-                  return 0;<br />
-              }<be />
+                  return 0;
+              }
             </code>
           </pre>  
           <details>
@@ -193,6 +193,24 @@
   </li>   
 </ul>
 
+## Naming and Using Variables
+<ul>
+  <li>
+    <a>There are a few rules that need to be adhered to when initializing variables within C++:<a>
+    <ul>
+      <li>
+        <a>Variable names can only contain the following: letters, numbers, and underscores.  Variable names can start with letters and underscores, but not numbers</a>
+      </li>
+      <li>
+        <a>Python does not allow spaces within any portion of a variable's name</a>
+      </li>
+      <li>
+        <a>A good practice is to avoid using keywords and function names as variable names</a>
+      </li>
+    </ul>  
+  </li>
+</ul>   
+
 ## Introduction to iostream
 <ul>
   <li>
@@ -206,22 +224,22 @@
     <ul>
       <pre>
         <code>
-          #include <<a>iostream</a>><br />
-          using namespace std;<br />
+          #include <<a>iostream</a>>
+          using namespace std;
           <br />
-          int main()<br />
-          {<br />
-          &emsp;&emsp;cout << "Hello World! << endl; //prints Hello World! to the console<br />
+          int main()
+          {
+          &emsp;&emsp;cout << "Hello World! << endl; //prints Hello World! to the console
           <br />
-          &emsp;&emsp;return 0;<br />
-          }<br />
+          &emsp;&emsp;return 0;
+          }
         </code>
       </pre>  
       <details>
       <summary>Output</summary>
         <pre>
           <code>
-            Hello World!<br />
+            Hello World!
           </code>
         </pre>  
       </details>
@@ -237,7 +255,7 @@
         <a>The buffer is <em>flushed</em> periodically, meaning all the information that has been stored in the buffer will be printed to the console</a>
       </li>
       <li>
-        <a>endl has two jobs: endl moves the curser to the next line of code in the program and it flushes the buffer</a>
+        <a>endl has two jobs: endl moves the cursor to the next line of code in the program and it flushes the buffer</a>
       </li>
       <li>
         <a>The \n character is often preferred because it moves the cursor to the next line of the console, but does not request a flush. Since the program will be flushed less when the \n character is used instead of endl, compilation time will be shorter</a>
@@ -290,19 +308,24 @@
 ## Atomic Data Types and Type Conversion
 <ul>
   <li>
-    <a><em>bool</em>: has two possible values: true or false</a>
+    <a><em>bool</em>: has two possible values and stores one of the following: true or false</a>
   </li>
   <li>
-    <a><em>string</em>: used to store a list of characters</a>
+    <a><em>string</em>: used to store a list of characters or a single character</a>
+    <ul>
+      <li>
+        <a>The number of bytes that a string takes is dependent on the size of the variable of type string</a>
+      </li>
+    </ul>     
   </li>
   <li>
     <a>Integer types:</a>
     <ul>
       <li>
-        <a><em>char</em>: typically used to represent a character</a>
+        <a><em>char</em>: typically used to store a character</a>
       </li>
       <li>
-        <a><em>int</em>: used to represent an integer</a>
+        <a><em>int</em>: used to store an integer</a>
       </li>  
     </ul>
   </li> 
@@ -310,10 +333,10 @@
     <a>Floating point types:</a>
     <ul>
       <li>
-        <a><em>float</em>: used to represent decimal numbers</a>
+        <a><em>float</em>: used to store a decimal number</a>
       </li>
       <li>
-        <a><em>double</em>: used to represent decimal numbers</a>
+        <a><em>double</em>: used to store a decimal number</a>
       </li>
     </ul>
   </li>   
@@ -321,7 +344,7 @@
     <a>SMALLEST --- char << int << float << double --- GREATEST</a> 
     <ul>
       <li>
-        <a>One can store a smaller data type in a larger data type. For example, you can store an int in a float or a double</a>
+        <a>Smaller data types can be stored in a larger data type. For example, an int can be stored in a float or a double</a>
       </li>
     </ul>     
   </li>  
@@ -333,46 +356,79 @@
       </li>
       <li>
         <a>Can also use variable = static_cast</a><a><</a><a>dataType</a><a>></a><a>; to change variable type to dataType</a>
-      </li>
-      <li>
-        <a>Converting any char into another type returns that value's ASCII value</a>
-      </li>  
-      <li>
-        <a>Examples of type conversion:</a>
         <details>
         <summary>Example Program</summary>
           <ul>
             <pre>
               <code>
-                #include <iostream><br />
-                using namespace std;<br />
+                #include <iostream>
+                using namespace std;
                 <br />
-                int main()<br />
-                {<br />
-                &emsp;&emsp;double x = 1.1, y = 7.2;<br />
-                &emsp;&emsp;x = int(x);<br />
+                int main()
+                {
+                &emsp;&emsp;//variable declarations and initializations of type double  
+                &emsp;&emsp;double x = 1.1, y = 7.2;
                 <br />
-                &emsp;&emsp;cout << "The value of x is: " << x << '\n';<br />
-                &emsp;&emsp;y = static_cast<int>(y);<br />
-                &emsp;&emsp;cout << "The value of y is: " << y << '\n';<br />
+                &emsp;&emsp;//converting variable x of type double into a variable of type int
+                &emsp;&emsp;x = int(x);
                 <br />
-                &emsp;&emsp;return 0;<br />
-                }<br />
+                &emsp;&emsp;cout << "The value of x is: " << x << '\n';
+                <br />
+                &emsp;&emsp;//converting variable y of type double into a variable of type int
+                &emsp;&emsp;y = static_cast<int>(y);
+                <br />
+                &emsp;&emsp;cout << "The value of y is: " << y << '\n';
+                <br />
+                &emsp;&emsp;return 0;
+                }
               </code>
             </pre>  
             <details>
             <summary>Output</summary>
               <pre>
                 <code>
-                  The value of x is: 1<br />
-                  The value of y is: 7<br />
+                  The value of x is: 1
+                  The value of y is: 7
                 </code>
               </pre>  
             </details>
           </ul>  
         </details>
       </li>  
-    </ul>
+      <li>
+        <a>Converting variables when identifiers of type char are involved uses the integer representations of literals' ASCII values. An ASCII table can be found </a><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/blob/main/README.md">here</a>
+        <details>
+      <summary>Example Program</summary>
+        <ul>
+          <pre>
+            <code>
+              #include <iostream>
+              using namespace std;
+              <br />
+              int main()
+              {
+              &emsp;&emsp;//variable declarations and initializations of type double  
+              &emsp;&emsp;int grade = 99;
+              &emsp;&emsp;char value = static_cast<char>(grade);
+              <br />
+              &emsp;&emsp;cout << "ASCII value of the integer " << grade << ": " << value;
+              <br />
+              &emsp;&emsp;return 0;
+              }
+            </code>
+          </pre>  
+          <details>
+          <summary>Output</summary>
+            <pre>
+              <code>
+                ASCII value of the integer 99: c
+              </code>
+            </pre>  
+          </details>
+        </ul>  
+      </details>
+      </li> 
+    </ul>     
   </li>                 
 </ul>   
 
@@ -407,22 +463,24 @@
           <ul>
             <pre>
               <code>
-                #include <iostream><br />
-                using namespace std;<br />
+                #include <iostream>
+                using namespace std;
                 <br />
-                int main()<br />
-                {<br />
+                #define PI 3.14159
+                <br />
+                int main()
+                {
                 &emsp;&emsp;cout << "PI: " << PI << endl;
                 <br />
-                &emsp;&emsp;return 0;<br />
-                }<br />
+                &emsp;&emsp;return 0;
+                }
               </code>
             </pre>  
             <details>
             <summary>Output</summary>
               <pre>
                 <code>
-                  PI: 3.14159<br /> 
+                  PI: 3.14159
                 </code>
               </pre>  
             </details>
@@ -436,7 +494,7 @@
 ## Escape Sequences
 <ul>
   <li>
-    <a>The backslash / is the indicator of an escape sequence</a>
+    <a>The backslash, \, is the indicator of an escape sequence</a>
   </li>
   <li>
     <a>Some of the common escape sequences are listed below:</a>
@@ -465,7 +523,7 @@
     <a><em>Subtraction operator</em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side of the operator</a> 
     <ul>
       <li>
-        <a>x - y; //subtracts the value y from the value x</a>
+        <a>x - y //subtracts the value y from the value x</a>
       </li>
     </ul>    
   </li>
@@ -473,7 +531,7 @@
     <a><em>Multiplication operator</em>: multiplies the value on the right-hand side of the operator to the value on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x * y; //multiplies the values x and y</a>
+        <a>x * y //multiplies the values x and y</a>
       </li>
     </ul>    
   </li>
@@ -481,7 +539,7 @@
     <a><em>Division operator</em>: divides the value on the left-hand side of the operator by the value on the right-hand side of the operator</a>
     <ul>
       <li>
-        <a>x / y; //divides the x value by the value y</a>
+        <a>x / y //divides the x value by the value y</a>
       </li>
     </ul>    
   </li>
@@ -489,7 +547,7 @@
     <a><em>Modulus operator</em>: divides the value on the left-hand side of the operator by the value on the right-hand side of the operator and returns the remainder</a>
     <ul>
       <li>
-        <a>x % y; //finds the remainder of the value x divided by value y</a>
+        <a>x % y //finds the remainder of the value x divided by value y</a>
       </li>
     </ul>     
   </li>
@@ -530,45 +588,37 @@
 ## Shorthand Assignment Operators
 <ul>
   <li>
-    <a><em>Addition assignment operator</em>: adds the value on the right-hand side of the operator to the value on the left-hand side</a>
+    <a><em>Addition assignment operator</em>: adds the value on the right-hand side of the operator to the value on the left-hand side and stores the summation in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x += y; //means x equals the sum of x and y</a>
+        <a>x += y; //means x equals the sum of x and y --> x = x + y;</a>
       </li>
     </ul>
   </li>
   <li>
-    <a><em>Subtraction assignment operator</em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side</a>
+    <a><em>Subtraction assignment operator</em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side and stores the subtraction in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x -= y; //means x equals the subtraction of y from x</a>
+        <a>x -= y; //means x equals the subtraction of y from x --> x = x - y;</a>
       </li>
     </ul>
   </li>
   <li>
-    <a><em>Multiplication assignment operator</em>: multiplies the value on the right-hand side of the operator to the value on the left-hand side</a>
+    <a><em>Multiplication assignment operator</em>: multiplies the value on the right-hand side of the operator to the value on the left-hand side and stores the product in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x *= y; //means x equals the product of x and y</a>
+        <a>x *= y; //means x equals the product of x and y --> x = x * y;</a>
       </li>
     </ul>
   </li>
   <li>
-    <a><em>Division assignment operator</em>: divides the value on the right-hand side of the operator to the value on the left-hand side</a>
+    <a><em>Division assignment operator</em>: divides the value on the left-hand side of the operator to the value on the left-hand side of the operator and stores the division in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x /= y; //means x equals x divided by y</a>
+        <a>x /= y; //means x equals x divided by y --> x = x / y;</a>
       </li>
     </ul>
-  </li>
-  <li>
-    <a><em>Modulo assignment operator</em>: finds the remainder of the value on the left-hand side of the operator divided by the value on the right-hand side</a>
-    <ul>
-      <li>
-        <a>x %= y; //means x equals the remainder of x divided by y</a>
-      </li>
-    </ul>
-  </li>                   
+  </li>                  
 </ul>
 
 ## Header File
