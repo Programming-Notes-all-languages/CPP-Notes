@@ -407,7 +407,7 @@
               <br />
               int main()
               {
-              &emsp;&emsp;//variable declaration and initialization 
+              &emsp;&emsp;//variable declarations and initializations 
               &emsp;&emsp;int grade = 99;
               &emsp;&emsp;char value = static_cast<char>(grade);
               <br />
@@ -591,15 +591,21 @@
     <a><em>Addition assignment operator</em>: adds the value on the right-hand side of the operator to the value on the left-hand side and stores the summation in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x += y; //means x equals the sum of x and y --> x = x + y;</a>
+        <a>x += y; //means x equals the sum of x and y</a>
       </li>
+      <li>
+        <a>--> x = x + y;</a>
+      </li>  
     </ul>
   </li>
   <li>
     <a><em>Subtraction assignment operator</em>: subtracts the value on the right-hand side of the operator from the value on the left-hand side and stores the subtraction in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x -= y; //means x equals the subtraction of y from x --> x = x - y;</a>
+        <a>x -= y; //means x equals the subtraction of y from x</a>
+      </li>
+      <li>
+        <a>--> x = x - y;</a>
       </li>
     </ul>
   </li>
@@ -607,7 +613,10 @@
     <a><em>Multiplication assignment operator</em>: multiplies the value on the right-hand side of the operator to the value on the left-hand side and stores the product in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x *= y; //means x equals the product of x and y --> x = x * y;</a>
+        <a>x *= y; //means x equals the product of x and y</a>
+      </li>
+      <li>
+        <a>--> x = x * y;</a>
       </li>
     </ul>
   </li>
@@ -615,7 +624,10 @@
     <a><em>Division assignment operator</em>: divides the value on the left-hand side of the operator to the value on the left-hand side of the operator and stores the division in the variable on the left-hand side of the operator</a>
     <ul>
       <li>
-        <a>x /= y; //means x equals x divided by y --> x = x / y;</a>
+        <a>x /= y; //means x equals x divided by y</a>
+      </li>
+      <li>
+        <a>--> x = x / y;</a>
       </li>
     </ul>
   </li>                  
