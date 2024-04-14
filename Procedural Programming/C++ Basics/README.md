@@ -366,7 +366,7 @@
                 <br />
                 int main()
                 {
-                &emsp;&emsp;//variable declarations and initializations of type double  
+                &emsp;&emsp;//variable declarations and initializations  
                 &emsp;&emsp;double x = 1.1, y = 7.2;
                 <br />
                 &emsp;&emsp;//converting variable x of type double into a variable of type int
@@ -407,7 +407,7 @@
               <br />
               int main()
               {
-              &emsp;&emsp;//variable declarations and initializations of type double  
+              &emsp;&emsp;//variable declaration and initialization 
               &emsp;&emsp;int grade = 99;
               &emsp;&emsp;char value = static_cast<char>(grade);
               <br />
