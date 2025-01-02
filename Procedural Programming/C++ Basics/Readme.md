@@ -537,7 +537,7 @@ int main()
     //variable declaration and initialization
     float number = 4.4;
 
-    cout << setprecision(0) << "Number: " << number << endl;
+    cout << fixed << showpoint << setprecision(0) << "Number: " << number << endl;
     
     return 0;
 }
