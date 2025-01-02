@@ -36,7 +36,7 @@
   </li>
   <li>
     <a href='#arithmetic-operators'>Arithmetic Operators</a>
-  </li>     
+  </li>    
 </ol>
 </details>
 
@@ -513,6 +513,7 @@ int main()
   </details>
   </ul>  
   </details>
+  </ul>
   </li>
   </ul>   
   </li> 
