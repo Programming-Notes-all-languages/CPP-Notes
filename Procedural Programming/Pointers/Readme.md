@@ -93,7 +93,8 @@ void swap(int *x, int *y)
 
 ### The Address Operator
 <ul>
-  <li>To initialize a pointer, the following can be done:<code>
+  <li>To initialize a pointer, the following can be done:<br />
+  <code>
     int i, *ptr;<br />
     ptr = &i;</code>
   </li>
@@ -179,7 +180,7 @@ int main()                            //2
 
 ## Pointer Assignment
 <ul>
-  <li>An example of pointer assignment is the following:
+  <li>An example of pointer assignment is the following:<br />
   <code>int i, j, *p, *q;<br />
     //The statement p = &i; is a pointer assignment as p now points to the memory address that i is stored in<br />
     q = p;<br />
