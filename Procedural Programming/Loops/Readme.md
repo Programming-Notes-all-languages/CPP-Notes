@@ -289,7 +289,7 @@ i = 2, j = 3
 ### Omitting Expressions in a for Statement
 <ul>  
   <li>The for statements is very flexible as some for loops may not need all three expressions that are enclosed within the parentheses. If the first expression is omitted, no initialization is performed before the execution of the loop. If the third expression is omitted, then the loop's body is responsible for ensuring that the second expression evaluates to false at some point to exit the loop</li>  
-  <li>The second expression in the for loop can be omitted. Doing so defaults the second expression to evaluate to true. A for loop which also omits the first expression and the third expression creates an infinite loop <code>(for;;)</code</li>  
+  <li>The second expression in the for loop can be omitted. Doing so defaults the second expression to evaluate to true. A for loop which also omits the first expression and the third expression creates an infinite loop <code>(for;;)</code></li>  
 </ul>    
 
 ### The comma Operator
