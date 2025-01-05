@@ -101,6 +101,7 @@ Garrett is amazing!
     </details>
   </ul>  
   </details> 
+</ul>
 
 ## Accessing the Characters in a String
 <ul>
