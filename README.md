@@ -59,7 +59,7 @@
             <li><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/Program%20Organization">Program Organization</a></li>
             <li><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/Pointers">Pointers</a></li>
             <li><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/Pointers%20and%20Arrays">Pointers and Arrays</a></li>
-            <li><a href="[https://github.com/Programming-Notes-all-languages/C-Notes/tree/main/](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/)Strings">Strings</a></li>
+            <li><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/Strings">Strings</a></li>
             <li><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/Structures">Structures</a></li>
             <li><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/Files">Files</a></li>
             <li><a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Procedural%20Programming/Advanced%20Uses%20of%20Pointers">Advanced Uses of Pointers</a></li>
@@ -71,4 +71,4 @@
 <p>If you have any questions or feedback, feel free to reach out!</p>
 
 <p><strong>Name</strong>: Garrett Ellis</p>
-<p><strong>Project Link</strong>: <a href="https://github.com/Programming-Notes-all-languages/C-Notes/tree/main">C Notes Repository</a></p>
+<p><strong>Project Link</strong>: <a href="https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main">C++ Notes Repository</a></p>
