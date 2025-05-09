@@ -19,6 +19,9 @@
   <li>
     <a href='#encapsulation'>Encapsulation</a>
   </li> 
+  <li>
+    <a href='#destructors'>Destructors</a>
+  </li> 
 </ol>
 </details>
 
@@ -208,12 +211,45 @@ Car::Car(string x, string y, int z)
 }
 ```
 
+Here is a better way of initializing attributes of a class:
+
+```cpp
+class Car
+{
+    public:
+        string brand, model;
+        int year;
+        Car(string brandX, string modelY, int yearZ)
+            : brand(brandX), model(modelY), year(yearZ) {}
+};
+```
+
+### Default Constructor
+A default constructor is a constructor that can be called with no arguments. There can be multiple constructors in a single class as shown in the following:
+
+```cpp
+class Person
+{
+    private:
+        string name;
+        int age;
+    
+    public:
+        //default constructor
+        Person() : name("Unknown"), age(0) {}
+        //constructor with name only
+        Person(string nameX) : name(nameX), age(0) {}
+        //constructor with both name and age
+        Person(string nameX, int ageX) : name(nameX), age(ageX) {}
+}
+```
+
 ### Static Members
 Static variables within classes are variables that belong to the class--not the instances of the class. All objects of the class will share the same copy of this variable
 
 Static methods within classes also belong to the class and can be called without the need of using an object of the class. It cannot access members that are non-static
 
-## Access Specifier
+## Access Specifiers
 Access specifiers define how the members, including the methods and attributes, of a class are accessed
 
 In C++, there are three access specifiers:
@@ -261,3 +297,21 @@ class Employee
 ```
 
 It is good practice to declare as many attributes as private. Encapsulation ensures better control over data
+
+### Destructors
+A destructor in C++ is a special member function of a class that is automatically called when the class' objects go out of scope or are explicitly deleted
+
+The purpose of using a destructor is to free up heap memory
+
+```cpp
+class Demo {
+public:
+    Demo() {
+        cout << "Constructor called" << endl;
+    }
+
+    ~Demo() {
+        cout << "Destructor called" << endl;
+    }
+};
+```
