@@ -9,7 +9,13 @@
   </li>    
   <li>
     <a href='#nested-arrays-and-structures'>Nested Arrays and Structures</a>
-  </li>    
+  </li>  
+  <li>
+    <a href='#unions'>Unions</a>
+  </li>  
+  <li>
+    <a href='#enumerations'>Enumerations</a>
+  </li>  
 </ol>
 </details>
 
@@ -204,3 +210,44 @@ void search(struct part inv[], int np)
     </ul>  
   </details>
 </ul>    
+
+## Unions
+A union is a special data structure that allows different members to occupy the same memory address. This is different than a struct where each of the struct's member have their own memory address. Due to all members sharing the same slot in memory, only one of the union's members can hold a value at a time
+
+```cpp
+union Data {
+    int i;
+    float f;
+    char c;
+};
+
+int main() {
+    Data d;
+    d.i = 42;
+    cout << "d.i = " << d.i << endl;
+
+    d.f = 3.14;
+    cout << "d.f = " << d.f << endl;
+
+    d.c = 'A';
+    cout << "d.c = " << d.c << endl;
+
+    //now d.i and d.f have been overwritten by d.c
+    return 0;
+}
+```
+
+## Enumerations
+An <em>enumeration</em> is a data type that stores a set of integers whose's values are specified by the user
+
+```cpp
+enum Color {
+    RED,     // 0
+    GREEN,   // 1
+    BLUE     // 2
+};
+```
+
+By default, the first element in an enum is synonymous with the integer zero, where the elements following increase by one integer. However, an enum's values can be any integer and does not have to follow an order. The user can decide which integer to assign to an enum
+
+The purpose for using enumeration is to improve the readability of one's code by avoiding the use of magic numbers
