@@ -25,7 +25,7 @@
 ## File Operations
 ### Opening a File
 <ul>
-  <li>Opening a file is done by creating a file stream object and by using the .open() method<li>
+  <li>Opening a file is done by creating a file stream object and by using the .open() method</li>
   <li>Here is an example of how to open a file using the ifstream (stream for reading information from a file):
   
 ```cpp
