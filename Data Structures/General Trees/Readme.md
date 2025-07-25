@@ -9,7 +9,7 @@
   </li> 
 </ol>
 </details>
-
+garrett
 ## General Trees
 The <em>tree data structure</em> is used to represent data in the form of parent and child relationship
 
