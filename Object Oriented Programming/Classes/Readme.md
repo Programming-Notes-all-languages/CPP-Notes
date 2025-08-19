@@ -25,8 +25,6 @@
 </ol>
 </details>
 
-
-
 ## Object Oriented Programming
 Procedural programming is about writing functions that perform operations on given data which is different than object-oriented programming. Object-oriented programming is all about creating objects that contain data and functions
 

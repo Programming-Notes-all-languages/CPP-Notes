@@ -166,6 +166,30 @@ Enter a number: <u>3456345</u>
   <li>In C++, arguments are <em>passed by value</em> which means that when a function is called, copies of the arguments' values are passed to the function and any changes made to the arguments' values within the function are not reflected within the function in which the function is called</li>
 </ul>    
 
+### Function Overloading
+<ul>
+  <li><em>Overloading</em> means defining two or more functions or operators that have the same name, but whose effect depends on the types of their actual arguments</li>
+  <li><em>Function overloading</em> occurs when two or more functions are defined with the same name but with different argument lists</li>
+  <li>Here is an example of function overloading within a program:</li>
+<details>
+    <summary>Example program</summary>
+
+```cpp
+void print();
+void print(const int);
+```
+<ul>   
+  <details>
+    <summary>Output</summary>
+
+```cpp
+//Both functions have the same name, but the compiler considers the type of the actual argument and invokes the appropriate functions, that is, the one with the signature closest to the actual argument
+```
+  </details>
+  </ul>  
+</details> 
+</ul> 
+
 ### Array Arguments
 <ul>
   <li>Often, arrays are used as arguments when a function is called. Arrays are also often parameters within a function</li>
