@@ -33,8 +33,7 @@ returnType functionName (parameters)
     statements;
 }
 ```
-</li>
-    </ul>    
+</li>   
   </li>
   <li>Here are a few rules governing the return type of a function:
     <ul>
