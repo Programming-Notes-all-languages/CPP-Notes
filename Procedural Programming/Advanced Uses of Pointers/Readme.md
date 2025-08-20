@@ -17,6 +17,9 @@
     <a href='#linked-lists'>Linked Lists</a>
   </li>  
   <li>
+    <a href='#doubly-linked-lists'>Doubly Linked Lists</a>
+  </li>  
+  <li>
     <a href='#function-pointers'>Function Pointers</a>
   </li>  
 </ol>
@@ -805,6 +808,176 @@ struct node *insert_into_ordered_list(node *list, node *new_node)
   </details> 
 </ul>    
 
+## Doubly Linked list
+<ul>
+  <li>A doubly linked list is similar to a singly linked list, with the difference being a doubly linked list has nodes that link to both the prior and next node in the chain</li>
+
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Write a function that inserts a new head to a doubly linked list
+
+#include <iostream>
+using namespace std;
+
+//Node declaration for linked list
+struct Node
+{
+    int data;
+    Node *next, *previous;
+};
+
+//function declaration for pushFront which inserts a new head to the doubly linked list
+Node *pushFront(Node *);
+
+int main()
+{
+    //creating the head
+    Node *head = new Node();
+    head->data = 1;
+    head->previous = nullptr;
+    
+    //creating the node after the head
+    Node *second = new Node();
+    second->data = 2;
+    head->next = second;
+    second->previous = head;
+    second->next = nullptr;
+
+    //calling pushFront to create a new head to the list
+    head = pushFront(head);
+
+    //for loop which iterates through the list and prints each node's data
+    for (Node *p = head; p != nullptr; p = p->next)
+        cout << p->data << endl;
+
+    return 0;
+}
+
+//function definition for pushFront
+Node *pushFront(Node *head)
+{
+    //creating a new head to the linked list
+    Node *newHead = new Node();
+    newHead->data = 0;
+    newHead->next = head;
+    newHead->previous = nullptr;
+
+    //conditional statement which checks if the linked list is not empty; if the linked list has at least one node, add the new head to the existing linked list
+    if (head != nullptr)
+        head->previous = newHead;
+
+    return newHead;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+
+```cpp
+0
+1
+2
+```
+  </details>
+    </ul>  
+  </details> 
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Write a function that inserts a new node to a doubly linked list after a given target integer
+
+#include <iostream>
+using namespace std;
+
+//node declaration for linked list
+struct Node
+{
+    int data;
+    Node *next, *previous;
+};
+
+//function declaration for insertAfterAll which inserts a new node with a specified data value after an existing node with a different data value
+Node *insertAfterAll(Node *, const int *, const int *);
+
+int main()
+{
+    //variable declarations
+    int target = 1, value = 3;
+
+    //creating the head
+    Node *head = new Node();
+    head->data = 1;
+    head->previous = nullptr;
+    
+    //creating the node after the head
+    Node *second = new Node();
+    second->data = 2;
+    head->next = second;
+    second->previous = head;
+    second->next = nullptr;
+
+    //calling pushFront to create a new head to the list
+    head = insertAfterAll(head, &target, &value);
+
+    //for loop which iterates through the list and prints each node's data
+    for (Node *p = head; p != nullptr; p = p->next)
+        cout << p->data << endl;
+
+    return 0;
+}
+
+//function definition for insertAfterAll
+Node *insertAfterAll(Node *head, const int *target, const int *value)
+{
+    //for loop which iterates through the linked list
+    for (Node *p = head; p != nullptr; p = p->next)
+    {
+        //conditional statement which checks if the current node's data matches the target's value
+        if (p->data == *target)
+        {
+            //
+            Node *newNode = new Node();
+            newNode->data = *value;
+            newNode->previous = p;
+            newNode->next = p->next;
+            p->next = newNode;
+
+            //conditional statement which checks if the next item after the new node in the list is not nullptr; if so, make the next node's previous point to the new node
+            if (newNode->next != nullptr)
+                newNode->next->previous = newNode;
+
+            //set p to point to the new node to skip over this node in the loop
+            p = newNode;
+        }
+    }
+
+    return head;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+
+```cpp
+1
+3
+2
+```
+  </details>
+    </ul>  
+  </details> 
+</ul>  
+
+## Circularly Linked Lists and List Reversal
+### Circularly Linked LIsts
+<ul>
+  <li>A <em>circularly linked list</em> has the same kind of nodes as a singly linked list. That is, each node in a circularly linked list has a next pointer and an element value; however, rather than having a head or tail, the nodes of a circularly linked list are linked in a cycle</li>
+  <li>If traversing the nodes of a circularly linked list from any node by the following <code>next</code> pointers, eventually all nodes will have been visited and will be cycled back to the starting node</li>
+</ul>
+
 ## Function Pointers
 <ul>
   <li>Function pointers are common in C++ as functions can be passed as arguments. When passing a function pointer as an argument, the function pointer must be declared</li>
@@ -1020,92 +1193,3 @@ int applyOperation(int (*operation)(int, int), int a, int b) {return operation(a
     </ul>  
   </details>
 </ul>    
-
-### The qsort Function
-<ul>
-  <li>
-    <a>The qsort function belongs to the <code>stdlib.h</code> header</a>
-  </li>
-  <li>
-    <a>The qsort function purpose is that it is capable of sorting an array</a>
-  </li>
-  <li>
-    <a>Here is the qsort function syntax:</a>
-
-```c
-int compare(const void *x_void, const void *y_void)
-{
-    //converting the type of pointer from void pointer to int pointer
-    int x = *(int *)x_void;
-    int y = *(int *)y_void;
-
-    //let's say x = 2 and y = 5. Since x - y is less than 0, that tells qsort that x should go before y in the array. That means that the array is being sorted in ascending order
-    return x - y;
-}
-
-void qsort(void *array, int arrayLength, int sizeof(int), int compare /*function name can be anything but must be of type int*/);
-
-//we need to provide qsort a special function
-//
-//int comparator(const void *x, const void *y);
-//
-//return value of the function will affect the sorting order
-//
-// < 0 if x should go before y
-// 0 if x is equivalent to y
-// > 0 if x should go after y
-//
-```
-  </li>
-  <details>
-    <summary>Example Program</summary>
-
-```c 
-#include <iostream>
-#include <stdlib.h>
-using namespace std;
-
-int compare(const void *, const void *);
-
-int main()
-{
-    int a[] = {8, 7, 9, 10, 111, 345, 3, 2, 1, 1};
-    int length = 10;
-
-    qsort(a, length, sizeof(int), compare);
-
-    for (int *ptr = a, i = 0; ptr < a + length; i++, ptr++)
-        cout << "a[" << i << "] = " << *ptr << endl;
-
-    return 0;    
-}
-
-int compare(const void *x_void, const void *y_void)
-{
-    int x = *(int *)x_void;
-    int y = *(int *)y_void;
-
-    return x - y;
-}
-```
-<ul>
-  <details>
-    <summary>Output</summary>
-      <pre>
-        <code>
-a[0] = 1                                                                                                                       
-a[1] = 1
-a[2] = 2
-a[3] = 3
-a[4] = 7
-a[5] = 8
-a[6] = 9
-a[7] = 10
-a[8] = 111
-a[9] = 345
-        </code>
-        </pre>  
-      </details>
-    </ul>  
-  </details> 
-</ul>      

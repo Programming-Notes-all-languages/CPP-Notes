@@ -170,23 +170,13 @@ Enter a number: <u>3456345</u>
   <li><em>Overloading</em> means defining two or more functions or operators that have the same name, but whose effect depends on the types of their actual arguments</li>
   <li><em>Function overloading</em> occurs when two or more functions are defined with the same name but with different argument lists</li>
   <li>Here is an example of function overloading within a program:</li>
-<details>
-    <summary>Example program</summary>
 
 ```cpp
 void print();
 void print(const int);
-```
-<ul>   
-  <details>
-    <summary>Output</summary>
 
-```cpp
 //Both functions have the same name, but the compiler considers the type of the actual argument and invokes the appropriate functions, that is, the one with the signature closest to the actual argument
 ```
-  </details>
-  </ul>  
-</details> 
 </ul> 
 
 ### Array Arguments
