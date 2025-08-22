@@ -5,7 +5,7 @@
     <a href='#function-templates'>Function Templates</a>
   </li> 
   <li>
-    <a href='#'></a>
+    <a href='#class-templates'>Class Templates</a>
   </li> 
 </ol>
 </details>
