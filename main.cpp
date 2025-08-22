@@ -45,7 +45,7 @@ class Rectangle : public Shape
 int main()
 {
     //declaration of array of type Shape * containing four shapes
-    Shape *shapes[4];
+    Shapeh *shapes[4];
 
     //instantiating the shapes to be circles and rectangles
     shapes[0] = new Circle(2.5);
