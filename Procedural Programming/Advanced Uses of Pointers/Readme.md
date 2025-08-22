@@ -852,6 +852,15 @@ int main()
     for (Node *p = head; p != nullptr; p = p->next)
         cout << p->data << endl;
 
+    //freeing memory
+    Node *ptr = head
+    while (ptr != nullptr)
+    {
+        Node *temp = ptr;
+        ptr = ptr->next;
+        delete temp;
+    }
+
     return 0;
 }
 
@@ -925,6 +934,15 @@ int main()
     //for loop which iterates through the list and prints each node's data
     for (Node *p = head; p != nullptr; p = p->next)
         cout << p->data << endl;
+    
+    //freeing memory
+    Node *ptr = head
+    while (ptr != nullptr)
+    {
+        Node *temp = ptr;
+        ptr = ptr->next;
+        delete temp;
+    }
 
     return 0;
 }
@@ -976,7 +994,183 @@ Node *insertAfterAll(Node *head, const int *target, const int *value)
 <ul>
   <li>A <em>circularly linked list</em> has the same kind of nodes as a singly linked list. That is, each node in a circularly linked list has a next pointer and an element value; however, rather than having a head or tail, the nodes of a circularly linked list are linked in a cycle</li>
   <li>If traversing the nodes of a circularly linked list from any node by the following <code>next</code> pointers, eventually all nodes will have been visited and will be cycled back to the starting node</li>
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Create a circularly linked list with the first node containing the integer 10. Then, insert a new node with the integer 20 at the end. Print the list twice around the output, so the output should be: 10 20 10 20
+
+#include <iostream>
+using namespace std;
+
+//Node declaration for circularly linked list
+struct Node
+{
+    int data;
+    Node *next, *previous;
+};
+
+int main()
+{
+    //variable declaration and initialization for iteration counter
+    int i = 0;
+
+    //creation of circularly linked list's head
+    Node *head = new Node();
+    head->data = 10;
+
+    //creation of second node in list
+    Node *second = new Node();
+    second->data = 20;
+    head->next = second;
+    head->previous = second;
+    second->next = head;
+    second->previous = head;
+
+    //for loop which iterates through the circularly linked list
+    for (Node *ptr = head;; ptr = ptr->next)
+    {
+        cout << ptr->data << " ";
+
+        //increasing counter by one if one complete iteration through the circularly linked list has occurred
+        if (ptr == second)
+            i++;
+        
+        //breaking from the loop if the linked list has been iterated through two complete times
+        if (i > 1)
+            break;
+    }
+
+    //freeing memory
+    Node *ptr = head->next;
+    while (ptr != head)
+    {
+        Node *temp = ptr;
+        ptr = ptr->next;
+        delete temp;
+    }
+
+    delete head;
+
+    return 0;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+
+```cpp
+10 20 10 20 
+```
+  </details>
+    </ul>  
+  </details> 
 </ul>
+
+### List Reversal
+<details>
+    <summary>Example Program</summary>
+
+```cpp
+//Create a circular doubly linked list and reverse the contents within the list
+
+#include <iostream>
+using namespace std;
+
+//Node declaration for circularly linked list
+struct Node
+{
+    int data;
+    Node *next, *previous;
+};
+
+int main()
+{
+    //variable declaration and initialization for node counter
+    int count = 1, iterations = 0;
+
+    //creation of circularly linked list's head
+    Node *head = new Node();
+    head->data = 10;
+
+    //creation of second node in list
+    Node *second = new Node();
+    second->data = 20;
+    head->next = second;
+    second->previous = head;
+
+    //creation of third node in list
+    Node *third = new Node();
+    third->data = 30;
+    second->next = third;
+    third->previous = second;
+
+    //creation of fourth node in list
+    Node *fourth = new Node();
+    fourth->data = 40;
+    third->next = fourth;
+    fourth->previous = third;
+    fourth->next = head;
+    head->previous = fourth;
+
+    //pointer which will point to the end of the linked list
+    Node *tail;
+
+    //for loop which counts the number of nodes in the list
+    for (Node *ptr = head;; ptr = ptr->next)
+    {
+        //selection statement which checks if we have yet to reach the last value in the list; if not, increment the counter and skip to the beginning of the loop
+        if (ptr->next != head)
+        {
+            count++;
+            continue;
+        }
+
+        //tail points to the last node of the list
+        tail = ptr;
+        break;
+    }
+
+    //for loop which iterates through the circularly linked list to reverse its contents
+    for (Node *ptrHead = head, *ptrTail = tail;; ptrHead = ptrHead->next, ptrTail = ptrTail->previous)
+    {
+        //swapping the data within the lists
+        int temp = ptrTail->data;
+        ptrTail->data = ptrHead->data;
+        ptrHead->data = temp;
+
+        //counting number of loop iterations
+        iterations++;
+
+        //selection statement which terminates the reversal before ptrHead and ptrTail undo the data's reverse
+        if (iterations >= count / 2)
+            break;
+    }
+
+    //freeing memory
+    Node *ptr = head->next;
+    while (ptr != head)
+    {
+        Node *temp = ptr;
+        ptr = ptr->next;
+        delete temp;
+    }
+
+    delete head;
+
+    return 0;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+
+```cpp
+40 30 20 10 
+```
+  </details>
+    </ul>  
+  </details> 
 
 ## Function Pointers
 <ul>

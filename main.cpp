@@ -1,67 +1,65 @@
 #include <iostream>
 using namespace std;
 
-//Node declaration for linked list
-struct Node
+//class definition for Shape abstract, base class
+class Shape
 {
-    int data;
-    Node *next, *previous;
+    public:
+        //pure virtual function allowing derived classes to calculate the shapes' areas
+        virtual double area() const = 0;
+        //pure virtual function allowing derived classes to display the shapes' information
+        virtual void display() const = 0;
+        virtual ~Shape() {}
 };
 
-//function declaration for insertAfterAll which inserts a new node with a specified data value after an existing node with a different data value
-Node *insertAfterAll(Node *, const int *, const int *);
+//class definition for Circle derived class
+class Circle : public Shape
+{
+    //private member attribute for the circle's radius
+    double radius;
+    
+    public:
+        //constructor instantiating a Circle instance
+        Circle(double Radius) : radius(Radius) {}
+        //member function which calculates the circle's area
+        double area() const override { return radius * radius * 3.1415; }
+        //member function which displays the shape's name and area
+        void display() const override { cout << "Circle, Area: " << area() << endl; }
+};
+
+//class definition for Rectangle derived class
+class Rectangle : public Shape
+{
+    //private member attributes for the rectangle's width and height
+    double width, height;
+
+    public:
+        //constructor instantiating a Rectangle instance
+        Rectangle(double Width, double Height) : width(Width), height(Height) {}
+        //member function which calculates the rectangle's area
+        double area() const override { return width * height; }
+        //member function which displays the shape's area and name
+        void display() const override { cout << "Rectangle, Area: " << area() << endl;}
+};
 
 int main()
 {
-    //variable declarations
-    int target = 1, value = 3;
+    //declaration of array of type Shape * containing four shapes
+    Shape *shapes[4];
 
-    //creating the head
-    Node *head = new Node();
-    head->data = 1;
-    head->previous = nullptr;
-    
-    //creating the node after the head
-    Node *second = new Node();
-    second->data = 2;
-    head->next = second;
-    second->previous = head;
-    second->next = nullptr;
+    //instantiating the shapes to be circles and rectangles
+    shapes[0] = new Circle(2.5);
+    shapes[1] = new Circle(2.3);
+    shapes[2] = new Rectangle(2, 3);
+    shapes[3] = new Rectangle(4, 9);
 
-    //calling pushFront to create a new head to the list
-    head = insertAfterAll(head, &target, &value);
-
-    //for loop which iterates through the list and prints each node's data
-    for (Node *p = head; p != nullptr; p = p->next)
-        cout << p->data << endl;
-
-    return 0;
-}
-
-//function definition for insertAfterAll
-Node *insertAfterAll(Node *head, const int *target, const int *value)
-{
-    //for loop which iterates through the linked list
-    for (Node *p = head; p != nullptr; p = p->next)
+    //for loop which iterates over the array of shapes
+    for (int i = 0; i < 4; i++)
     {
-        //conditional statement which checks if the current node's data matches the target's value
-        if (p->data == *target)
-        {
-            //
-            Node *newNode = new Node();
-            newNode->data = *value;
-            newNode->previous = p;
-            newNode->next = p->next;
-            p->next = newNode;
-
-            //conditional statement which checks if the next item after the new node in the list is not nullptr; if so, make the next node's previous point to the new node
-            if (newNode->next != nullptr)
-                newNode->next->previous = newNode;
-
-            //set p to point to the new node to skip over this node in the loop
-            p = newNode;
-        }
+        //display the shape's information, then freeing it from memory
+        shapes[i]->display();
+        delete shapes[i];
     }
 
-    return head;
+    return 0;
 }
