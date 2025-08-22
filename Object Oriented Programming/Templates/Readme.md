@@ -60,3 +60,43 @@ class ClassName
         ClassName(T variable) : data(variable) {}
 }
 ```
+
+<details>
+    <summary>Example program</summary>
+
+```cpp
+//Write a template class Person<T1, T2> that holds two values of possibly different types and implement a constructor that instantiates the object
+
+#include <iostream>
+using namespace std;
+
+template <typename T1, typename T2>
+class Person
+{
+    T1 name;
+    T2 age;
+    
+    public:
+        Person(T1 Name, T2 Age) : name(Name), age(Age) {}
+        void display() { cout << name << ", " << age << endl; }
+};
+
+int main()
+{
+    Person<string, string> *garrett = new Person<string, string>("Garrett Ellis", "22");
+    
+    garrett->display();
+    
+    delete garrett;
+    
+    return 0;
+}
+```
+
+<ul>  
+  <details>
+    <summary>Output</summary>
+Garrett Ellis, 22
+</details>
+  </ul>  
+</details>  
