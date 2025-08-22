@@ -34,6 +34,39 @@ Here are some of the advantages of object-oriented programming over procedural p
   <li>Helps facilitate the "Do not Repeat Yourself" rule by making code more manageable</li>
 </ul>
 
+### Solid Principle
+<em>SOLID</em> is an acronym for the first five object-oriented design principles
+<ul>
+  <li>Single Responsibility Principle
+    <ul>
+      <li>A class should have only a single responsibility</li>
+      <li>In other words, a class should only have one purpose and should not do more than just that purpose, so when a change in this purpose is needed, there is exactly one class to modify</li>
+    </ul>
+  </li>
+  <li>Open/Closed Principle
+    <ul>
+      <li>Software entities should be open for extension, but closed for modification, meaning new features can be added without changing the existing code</li>
+      <li>Open for extension ensures than that class  behavior can be extended; however, closed for modification entails that the source code of such a class is set in stone and the no one is allowed to make changes to the code</li>
+    </ul>
+  </li>
+  <li>Liskov Substitution Principle
+    <ul>
+      <li>Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program</li>
+      <li>Derived classes must be substitutable for their base classes</li>
+    </ul>
+  </li>
+  <li>Interface Segregation Principle
+    <ul>
+      <li>Many client-specific interfaces are better than one general-purpose interface</li>
+    </ul>
+  </li>
+  <li>Dependency Inversion Principle
+    <ul>
+      <li>A higher level-module should not depend on a lower-level module, but they both should depend on abstractions. It also states that abstractions should not depend on details, but details should depend on abstractions</li>
+    </ul>
+  </li>
+</ul>
+
 ### Classes and Objects
 Classes and objects are the two main parts of object-oriented programming
 
