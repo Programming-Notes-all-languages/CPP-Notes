@@ -10,6 +10,9 @@
   <li>
     <a href='#variable-length-arrays'>Variable-Length Arrays</a>
   </li> 
+  <li>
+    <a href='#dynamic-arrays'>Dynamic Arrays</a>
+  </li> 
 </ol>
 </details>
 
@@ -248,3 +251,22 @@ Repeated digit
   </ul>  
 </details>  
 </ul>   
+
+## Dynamic Arrays
+<ul>
+  <li>A <em>dynamic array</em> is an array whose size is determined at runtime. In C++, <em>static arrays</em> have a size that is fixed at compile time, opposed to dynamic arrays whose size is allocated on the heap using <code>new</code> and <code>delete</code></li>
+  <li>Here is the syntax for creating a dynamically allocated array:
+
+```cpp
+int *arrayName = new int[sizeVariable];
+```
+  </li>
+  <li>To then clean up the memory created by the array once it is no longer needed, the memory can then be deleted. This is best and must be done manually to prevent memory leaks</li>
+  <li>Here is the syntax for freeing memory from a dynamically allocated array:
+
+```cpp
+delete [] arrayName;
+```
+
+  </li>
+</ul>
