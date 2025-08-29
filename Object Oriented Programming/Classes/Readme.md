@@ -277,6 +277,26 @@ class Person
 }
 ```
 
+### Copy Constructor
+A copy constructor is another type of constructor that creates a new object as a copy of an existing one. It takes in a reference to the same class as a parameter
+
+```cpp
+class Person
+{
+    private:
+        string name;
+        int age;
+    
+    public:
+        //copy constructor
+        Person(const Person &person)
+        {
+            name = person.name;
+            age = person.age;
+        }
+}
+```
+
 ### Static Members
 Static variables within classes are variables that belong to the class--not the instances of the class. All objects of the class will share the same copy of this variable
 
