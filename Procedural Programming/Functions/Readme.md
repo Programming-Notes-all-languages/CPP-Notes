@@ -179,6 +179,13 @@ void print(const int);
 ```
 </ul> 
 
+### Pass by Reference
+<ul>
+  <li>Pass by reference is a way to pass arguments to a function such that the function works directly on the caller's variable (no copy)</li>
+  <li>Pass by reference is achieved using references <code>&</code> in the parameter list</li>
+  <li>Use of pass by reference is common as it is efficient. It avoids making copies of large objects; allows for modification of the function's parameters. And it is cleaner than C style <code>*</code> and <code>&</code> like with pointers</li>
+</ul>
+
 ### Array Arguments
 <ul>
   <li>Often, arrays are used as arguments when a function is called. Arrays are also often parameters within a function</li>
