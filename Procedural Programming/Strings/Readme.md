@@ -59,6 +59,33 @@ char variableName[length + 1] = "Garrett Ellis";
   <li>The size of the char array can be omitted, just like with any other arrays that are initialized. The array's size will be one greater than the number of elements within the char array because the last element of a character array must be a null character</li>    
 </ul>   
 
+<details>
+    <summary>Example program</summary>
+
+What are the contents of string <code>s1</code> after executing the following statements?
+
+<div align="center">
+
+```cpp
+string s1 = "hello"
+string s2 = "students"
+s1 += s1 + s2[0] + s1
+```
+</div>
+
+<ul>  
+  <details>
+    <summary>Output</summary>
+
+```cpp
+//s1 = s1 + s1 + s2[0] + s1
+//s1 = "hello" + "hello" + "s" + "hello"
+//s1 = "hellohelloshello"
+```
+</details>
+  </ul>  
+</details>  
+
 ### Character Arrays versus Character Pointers
 <ul>
   <li>There are a few key differences between character arrays and character pointers:

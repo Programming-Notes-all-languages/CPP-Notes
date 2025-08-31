@@ -100,3 +100,72 @@ Garrett Ellis, 22
 </details>
   </ul>  
 </details>  
+
+<details>
+    <summary>Example program</summary>
+
+```cpp
+//Write a class called Point with two private attributes. This class is to have multiple constructors and a print method to print the points information. Use a template class to allow functionality for all variable types
+
+#include <iostream>
+using namespace std;
+
+//template class Point declaration
+template <typename T>
+class Point
+{
+    //private member attributes
+    T x, y;
+
+    public:
+        //constructors for class
+        Point() : x(0), y(0) {}
+        Point(T X) : x(X), y(X) {}
+        Point(T X, T Y) : x(X), y(Y) {}
+        Point(const Point &);
+
+        //print method for printing the object's information
+        void print() const;
+};
+
+template <typename T>
+Point<T>::Point(const Point &p)
+{
+    this->x = p.x;
+    this->y = p.y;
+}
+
+template <typename T>
+void Point<T>::print() const
+{
+    cout << "(" << x << ", " << y << ")" << endl;
+}
+
+
+int main()
+{
+    Point<int> *arr[3];
+
+    arr[0] = new Point<int>(1, 2);
+    arr[1] = new Point<int>(5);
+    arr[2] = new Point<int>();
+
+    for (int i = 0; i < 3; i++)
+        arr[i]->print();
+    
+    for (int i = 0; i < 3; i++)
+        delete arr[i];
+
+    return 0;
+}
+```
+<ul>  
+  <details>
+    <summary>Output</summary>
+
+(1, 2)
+(5, 5)
+(0, 0)
+</details>
+  </ul>  
+</details>  
