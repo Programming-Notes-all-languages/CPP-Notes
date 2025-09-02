@@ -816,68 +816,197 @@ struct node *insert_into_ordered_list(node *list, node *new_node)
     <summary>Example Program</summary>
 
 ```cpp
-//Write a function that inserts a new head to a doubly linked list
+//Write a function that inserts a new node to a doubly linked list after a given target integer
 
 #include <iostream>
 using namespace std;
 
-//Node declaration for linked list
+//struct definition for doubly linked list
 struct Node
 {
-    int data;
+    double value;
     Node *next, *previous;
 };
 
-//function declaration for pushFront which inserts a new head to the doubly linked list
-Node *pushFront(Node *);
+//function for inserting new node before target node
+void insertBefore(Node *&, const double &, const double &);
+
+//function for printing the linked list
+void printList(Node *&);
+
+//function for freeing the entire list from memory
+void deleteList(Node *&);
 
 int main()
 {
-    //creating the head
-    Node *head = new Node();
-    head->data = 1;
-    head->previous = nullptr;
-    
-    //creating the node after the head
-    Node *second = new Node();
-    second->data = 2;
+    Node *head = new Node{1, nullptr, nullptr};
+    Node *second = new Node{2, nullptr, head};
+    Node *third = new Node{2, nullptr, second};
+    Node *fourth = new Node{3, nullptr, third};
     head->next = second;
-    second->previous = head;
-    second->next = nullptr;
+    second->next = third;
+    third->next = fourth;
 
-    //calling pushFront to create a new head to the list
-    head = pushFront(head);
+    insertBefore(head, 2, 2.5);
 
-    //for loop which iterates through the list and prints each node's data
-    for (Node *p = head; p != nullptr; p = p->next)
-        cout << p->data << endl;
-
-    //freeing memory
-    Node *ptr = head
-    while (ptr != nullptr)
-    {
-        Node *temp = ptr;
-        ptr = ptr->next;
-        delete temp;
-    }
+    printList(head);
+    deleteList(head);
 
     return 0;
 }
 
-//function definition for pushFront
-Node *pushFront(Node *head)
+void insertBefore(Node *&head, const double &initial, const double &value)
 {
-    //creating a new head to the linked list
-    Node *newHead = new Node();
-    newHead->data = 0;
-    newHead->next = head;
-    newHead->previous = nullptr;
+    Node *ptr = head;
 
-    //conditional statement which checks if the linked list is not empty; if the linked list has at least one node, add the new head to the existing linked list
+    //for loop iterating through the list
+    for (; ptr != nullptr; ptr = ptr->next)
+    {
+        //conditional statement saying if the target value is found, create a new node
+        if (ptr->value == initial)
+        {
+            //new node creation where next points to ptr and previous points to ptr-previous
+            Node *newNode = new Node{value, ptr, ptr->previous};
+
+            //conditional statement checking if ptr is not the first item in the list; if this is true, set ptr->previous->next to point to the newNode rather than ptr
+            if (ptr->previous != nullptr)
+                ptr->previous->next = newNode;
+            //otherwise, set the head to point to the new node
+            else
+                head = newNode;
+            
+            //set the previous attribute of ptr to point to newNode as ptr is now after newNode
+            ptr->previous = newNode;
+        }
+    }
+}
+
+void printList(Node *&head)
+{
+    for (Node *ptr = head; ptr != nullptr; ptr = ptr->next)
+        cout << ptr->value << endl;
+}
+
+void deleteList(Node *&head)
+{
+    Node *current = head;
+
+    while (current != nullptr)
+    {
+        Node *next = current->next;
+        delete current;
+        current = next;
+    }
+
+    head = nullptr;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+
+```cpp
+1
+2.5
+2
+2.5
+2
+3
+```
+  </details>
+    </ul>  
+  </details> 
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Write functions that will insert a new head, insert a new tail, print, and delete memory from a doubly linked list
+
+#include <iostream>
+using namespace std;
+
+//struct definition for doubly linked list
+struct Node
+{
+    int value;
+    Node *next;
+    Node *previous;
+};
+
+//function for inserting new head to list
+void insertFront(Node *&, const int &);
+
+//function for inserting new tail to list
+void insertEnd(Node *&, const int &);
+
+//function for printing the linked list
+void printList(Node *&);
+
+//function for freeing the entire list from memory
+void deleteList(Node *&);
+
+int main()
+{
+    //creating first node in list
+    Node *head = new Node{1, nullptr, nullptr};
+
+    //creating second node in list
+    Node *second = new Node{2, nullptr, head}; 
+    head->next = second;
+
+    //inserting new head
+    insertFront(head, 0);
+    //inserting new tail
+    insertEnd(head, 3);
+    //printing list
+    printList(head);
+    //freeing list's memory
+    deleteList(head);
+
+    return 0;
+}
+ 
+void insertFront(Node *&head, const int &value)
+{
+    Node *newNode = new Node{value, head, nullptr};
+    
     if (head != nullptr)
-        head->previous = newHead;
+        head->previous = newNode;
 
-    return newHead;
+    head = newNode;
+}
+
+void insertEnd(Node *&head, const int &value)
+{
+    Node *ptr= head;
+
+    for (; ptr->next != nullptr; ptr = ptr->next);
+
+    Node *newNode = new Node;
+    newNode->value = value;
+    newNode->previous = ptr;
+    newNode->next = nullptr;
+    ptr->next = newNode;
+}
+
+void printList(Node *&head)
+{
+    for (Node *ptr = head; ptr != nullptr; ptr = ptr->next)
+        cout << ptr->value << endl;
+}
+
+void deleteList(Node *&head)
+{
+    Node *current = head;
+
+    while (current != nullptr)
+    {
+        Node *next = current->next;
+        delete current;
+        current = next;
+    }
+
+    head = nullptr;
 }
 ```
 <ul>
@@ -887,6 +1016,7 @@ Node *pushFront(Node *head)
 ```cpp
 0
 1
+3
 2
 ```
   </details>
@@ -896,83 +1026,59 @@ Node *pushFront(Node *head)
     <summary>Example Program</summary>
 
 ```cpp
-//Write a function that inserts a new node to a doubly linked list after a given target integer
+//Write a function that counts the number of nodes in a linked list recursively
 
 #include <iostream>
 using namespace std;
 
-//node declaration for linked list
+//struct definition for doubly linked list
 struct Node
 {
-    int data;
+    double value;
     Node *next, *previous;
 };
 
-//function declaration for insertAfterAll which inserts a new node with a specified data value after an existing node with a different data value
-Node *insertAfterAll(Node *, const int *, const int *);
+int count(Node *);
+
+//function for freeing the entire list from memory
+void deleteList(Node *&);
 
 int main()
 {
-    //variable declarations
-    int target = 1, value = 3;
-
-    //creating the head
-    Node *head = new Node();
-    head->data = 1;
-    head->previous = nullptr;
-    
-    //creating the node after the head
-    Node *second = new Node();
-    second->data = 2;
+    Node *head = new Node{1, nullptr, nullptr};
+    Node *second = new Node{2, nullptr, head};
+    Node *third = new Node{2, nullptr, second};
+    Node *fourth = new Node{3, nullptr, third};
     head->next = second;
-    second->previous = head;
-    second->next = nullptr;
+    second->next = third;
+    third->next = fourth;
 
-    //calling pushFront to create a new head to the list
-    head = insertAfterAll(head, &target, &value);
-
-    //for loop which iterates through the list and prints each node's data
-    for (Node *p = head; p != nullptr; p = p->next)
-        cout << p->data << endl;
-    
-    //freeing memory
-    Node *ptr = head
-    while (ptr != nullptr)
-    {
-        Node *temp = ptr;
-        ptr = ptr->next;
-        delete temp;
-    }
+    cout << "Nodes: " << count(head);
+    deleteList(head);
 
     return 0;
 }
 
-//function definition for insertAfterAll
-Node *insertAfterAll(Node *head, const int *target, const int *value)
+int count(Node *head)
 {
-    //for loop which iterates through the linked list
-    for (Node *p = head; p != nullptr; p = p->next)
+    if (head == nullptr)
+        return 0;
+    
+    return 1 + count(head->next);
+}
+
+void deleteList(Node *&head)
+{
+    Node *current = head;
+
+    while (current != nullptr)
     {
-        //conditional statement which checks if the current node's data matches the target's value
-        if (p->data == *target)
-        {
-            //
-            Node *newNode = new Node();
-            newNode->data = *value;
-            newNode->previous = p;
-            newNode->next = p->next;
-            p->next = newNode;
-
-            //conditional statement which checks if the next item after the new node in the list is not nullptr; if so, make the next node's previous point to the new node
-            if (newNode->next != nullptr)
-                newNode->next->previous = newNode;
-
-            //set p to point to the new node to skip over this node in the loop
-            p = newNode;
-        }
+        Node *next = current->next;
+        delete current;
+        current = next;
     }
 
-    return head;
+    head = nullptr;
 }
 ```
 <ul>
@@ -980,9 +1086,7 @@ Node *insertAfterAll(Node *head, const int *target, const int *value)
     <summary>Output</summary>
 
 ```cpp
-1
-3
-2
+Nodes: 4
 ```
   </details>
     </ul>  
@@ -1061,6 +1165,76 @@ int main()
 
 ```cpp
 10 20 10 20 
+```
+  </details>
+    </ul>  
+  </details> 
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Check if a doubly circularly linked list is a palindrome
+
+#include <iostream>
+using namespace std;
+
+//struct definition for doubly linked list
+struct Node
+{
+    double value;
+    Node *next, *previous;
+};
+
+bool check(const Node *, const Node *);
+void deleteList(Node *&);
+
+int main()
+{
+    Node *head = new Node{1, nullptr, nullptr};
+    Node *second = new Node{2, nullptr, head};
+    Node *third = new Node{3, nullptr, second};
+    Node *fourth = new Node{0, nullptr, third};
+    head->next = second;
+    second->next = third;
+    third->next = fourth;
+    head->previous = fourth;
+    fourth->next = head;
+
+    cout << check(head, fourth);
+    deleteList(head);
+
+    return 0;
+}
+
+bool check(const Node *head, const Node *tail)
+{
+    for (const Node *ptrHead = head, *ptrTail = tail; ptrHead != ptrTail && ptrTail->previous != ptrHead; ptrHead = ptrHead->next, ptrTail = ptrTail->previous)
+        if (ptrHead->value != ptrTail->value)
+            return false;
+
+    return true;
+}
+
+void deleteList(Node *&head)
+{
+    Node *current = head;
+
+    do
+    {
+        Node *next = current->next;
+        delete current;
+        current = next;
+    } while (current != head);
+
+    head = nullptr;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+
+```cpp
+0
 ```
   </details>
     </ul>  

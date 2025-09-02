@@ -91,6 +91,35 @@ In reverse order: 10 9 8 7 6 5 4 3 2 1
   <li>If the length of an array is omitted in the array's declaration, yet there is an initializer with x elements, then the array's size is x elements and each element is initialized with its designated initializer</li>  
 </ul>    
 
+<details>
+    <summary>Example program</summary>
+
+Consider the following attempt to allocate the 10-element array of pointers to doubles and initialize each element to 0.0. Rewrite the following incorrect code to correct code:
+
+```cpp
+double *dp[10];
+for (int i = 0; i < 10; i++) dp[i] = 0.0;
+```
+
+<ul>  
+  <details>
+    <summary>Output</summary>
+
+```cpp
+double *dp[10];
+for (int i = 0; i < 10; i++)
+{
+    dp[i] = new double;
+    *dp[i] = 0.0;
+}
+
+for (int i = 0; i < 10; i++)
+    delete dp[i];
+``` 
+</details>
+  </ul>  
+</details>  
+
 ### Designated Initializers
 <ul>
   <li>If only certain elements of an array should be initialized, then <em>designated initializers</em> can be used. Here is an example of initializing certain elements of an array: <code>int array[15] = {[2] = 29, [9] = 6, [14] = 48};</code></li>

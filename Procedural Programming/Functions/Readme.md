@@ -186,6 +186,28 @@ void print(const int);
   <li>Use of pass by reference is common as it is efficient. It avoids making copies of large objects; allows for modification of the function's parameters. And it is cleaner than C style <code>*</code> and <code>&</code> like with pointers</li>
 </ul>
 
+<details>
+    <summary>Example program</summary>
+
+What is different about the behavior of the following two functions <code>f</code> and <code>g</code> that increment a variable and print its value?
+
+```cpp
+void f(int x)
+{cout << ++x;}
+
+void g(int &x)
+{cout << ++x;}
+```
+
+<ul>  
+  <details>
+    <summary>Output</summary>
+
+Let's say that the following function calls are made: <code>f(x);</code> and <code>g(x);</code> and assume that <code>x</code> in each of the function's calls is equal to 5. Each function will print 6 to the screen; however, since only a copy of <code>x</code> is passed to <code>f</code>, the value of <code>x</code> after the function's call is unchanged. For function <code>g</code>, the value of <code>x</code> after the function's execution is 6 since the exact address of <code>x</code> is passed as the function's parameter
+</details>
+  </ul>  
+</details>  
+
 ### Array Arguments
 <ul>
   <li>Often, arrays are used as arguments when a function is called. Arrays are also often parameters within a function</li>

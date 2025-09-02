@@ -320,3 +320,87 @@ Rectangle, Area: 36
     </details>
   </ul>  
 </details>  
+
+<details>
+    <summary>Example program</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+//class definition for Shape
+class Shape {
+public:
+    virtual double area() const = 0;
+    virtual ~Shape() {}
+};
+
+//derived class definition for Rectangle
+class Rectangle : public Shape {
+    int w, h;
+public:
+    Rectangle(int, int);
+    double area() const override;
+};
+
+//derived class definition for Circle
+class Circle : public Shape {
+    int r;
+public:
+    Circle(int);
+    double area() const override;
+};
+
+//Rectangle constructor definition
+Rectangle::Rectangle(int width, int height)
+{
+    this->w = width;
+    this->h = height;
+}
+
+//Circle constructor definition
+Circle::Circle(int radius)
+{
+    this->r = radius;
+}
+
+//method definition for area to override Shape's area method
+double Rectangle::area() const
+{
+    return this->w * this->h;
+}
+
+//method definition for area to override Shape's area method
+double Circle::area() const
+{
+    return this->r * this->r * 3.14159265;
+}
+
+int main()
+{
+    //creating an array of Shape * pointers and using polymorphism to have one element of the array be a Rectangle * and the other a Circle *
+    Shape *shapes[2];
+    shapes[0] = new Rectangle(2, 5);
+    shapes[1] = new Circle(4);
+
+    //for loop iterating over the array and printing each shape's information, while also cleaning up the memory
+    for (int i = 0; i < 2; i++)
+    {
+        cout << "Area: " << shapes[i]->area() << endl;
+        delete shapes[i];
+    }
+
+    return 0;
+}
+```
+
+<ul>  
+  <details>
+    <summary>Output</summary>
+      <pre>
+Area: 10
+Area: 50.2655
+      </pre>  
+    </details>
+  </ul>  
+</details>  
