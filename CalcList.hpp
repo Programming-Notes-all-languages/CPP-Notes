@@ -36,7 +36,7 @@ class CalcList : public CalcListInterface
     double runningTotal;
 
     public:
-        CalcList() : head(nullptr), tail(nullptr) {}
+        CalcList() : head(nullptr), tail(nullptr), runningTotal(0) {}
         void setTotal(const double val) { this->runningTotal = val; }
         double total() const override { return this->runningTotal; }
         void newOperation(const FUNCTIONS func, const double operand) override
@@ -62,10 +62,11 @@ class CalcList : public CalcListInterface
                 case MULTIPLICATION: this->setTotal(this->total() * newNode->getValue()); break;
                     
                 case DIVISION:
-                    if (newNode->getValue() != 0)
-                        this->setTotal(this->total() / newNode->getValue());
-                    else
-                        cout << "Cannot Divide By Zero" << endl;
+                    try
+                    {
+                        this->total() / newNode->getValue();
+                    }
+                    throw invalid_argument("Cannot Divide By Zero");
             }
 
             newNode->setStepTotal(this->total());
@@ -76,24 +77,26 @@ class CalcList : public CalcListInterface
             if (tail == nullptr)
                 return;
             
-            switch (tail->getOperation())
-            {
-                case ADDITION: this->setTotal(this->total() - tail->getValue()); break;
-                    
-                case SUBTRACTION: this->setTotal(this->total() + tail->getValue()); break;
-                    
-                case MULTIPLICATION: this->setTotal(this->total() / tail->getValue()); break;
-                    
-                case DIVISION: this->setTotal(this->total() * tail->getValue()); break;
-            }
-            
             Node *ptr = tail;
-            tail = tail->getPrevious();
-            tail->setNext(nullptr);
+
+            if (tail->getPrevious() != nullptr)
+            {
+                this->setTotal(tail->getPrevious()->getStepTotal());
+                tail = tail->getPrevious();
+            }
+
+            else
+                this->setTotal(0);
+
+            if (tail != nullptr)
+                tail->setNext(nullptr);
+            else
+                head = nullptr;
+
             delete ptr;
         }
 
-        string toString(unsigned short precision) const
+        string toString(unsigned short precision) const override
         {
             int numNodes = 0;
             ostringstream temp;
@@ -122,7 +125,20 @@ class CalcList : public CalcListInterface
 
             return temp.str();
         }
-        ~CalcList() {}
+
+        ~CalcList() override
+        {
+            Node *ptr = head;
+
+            while (ptr != nullptr)
+            {
+                Node *next = ptr->getNext();
+                delete ptr;
+                ptr = next;
+            }
+
+            head = tail = nullptr;
+        }
 };
 
 #endif
