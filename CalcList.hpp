@@ -3,64 +3,124 @@
 
 #include "CalcListInterface.hpp"
 #include <iostream>
+#include <iomanip>
+#include <string>
+#include <sstream>
 using namespace std;
 
 class CalcList : public CalcListInterface
 {
-    CalcList *next;
-    CalcList *previous;
-    double value;
-    FUNCTIONS operation;
+    class Node
+    {
+        Node *next;
+        Node *previous;
+        double value, stepTotal;
+        FUNCTIONS operation;
+
+        public:
+            Node (const FUNCTIONS op, const double val) : next(nullptr), previous(nullptr), value(val), operation(op) {}
+            void setNext(Node *nxt) { this->next = nxt; }
+            Node *getNext() const { return this->next; }
+            void setPrevious(Node *prev) { this->previous = prev; }
+            Node *getPrevious() const { return this->previous; }
+            void setValue(const double total) { this->value = total; }
+            double getValue() const { return this->value; }
+            void setStepTotal(const double val) { this->stepTotal = val; }
+            double getStepTotal() const { return this->stepTotal; }
+            void setOperation(const FUNCTIONS value) { this->operation = value; }
+            FUNCTIONS getOperation () const { return this->operation; }
+        };
+
+    Node *head;
+    Node *tail;
+    double runningTotal;
 
     public:
-        CalcList(const FUNCTIONS op, const double val) : next(nullptr), operation(op), value(val)
-        {
-            if (this->getPrevious() == nullptr)
-                this->setPrevious(nullptr);
-            else
-                this->setPrevious(this->getPrevious());
-        }
-        void setNext() { this->next = nullptr; }
-        CalcList *getNext() const { return this->next; }
-        void setPrevious(CalcList *prev) { this->previous = prev; }
-        CalcList *getPrevious() const { return this->previous; }
-        void setTotal(const double total) { this->value = total; }
-        double total() const override { return this->value; }
-        void setOperation(const FUNCTIONS value) { this->operation = value; }
-        FUNCTIONS getOperation () const { return this->operation; }
+        CalcList() : head(nullptr), tail(nullptr) {}
+        void setTotal(const double val) { this->runningTotal = val; }
+        double total() const override { return this->runningTotal; }
         void newOperation(const FUNCTIONS func, const double operand) override
         {
-            if (this->getPrevious() != nullptr)
-                switch (this->getOperation())
-                {
-                    case 0:
-                        this->setTotal(this->getPrevious()->total() + operand);
-                    
-                    case 1:
-                        this->setTotal(this->getPrevious()->total() - operand);
-                    
-                    case 2:
-                        this->setTotal(this->getPrevious()->total() * operand);
-                    
-                    case 3:
-                        if (operand != 0)
-                            this->setTotal(this->getPrevious()->total() / operand);
-                        else
-                            cout << "Cannot Divide By Zero" << endl;
-                }
-            
+            Node *newNode = new Node(func, operand);
+
+            if (head != nullptr)
+            {
+                newNode->setPrevious(tail);
+                tail->setNext(newNode);
+                tail = newNode;
+            }
+
             else
-                this->setTotal(0);
+                head = tail = newNode;
+
+            switch (newNode->getOperation())
+            {
+                case ADDITION: this->setTotal(this->total() + newNode->getValue()); break;
+                    
+                case SUBTRACTION: this->setTotal(this->total() - newNode->getValue()); break;
+                    
+                case MULTIPLICATION: this->setTotal(this->total() * newNode->getValue()); break;
+                    
+                case DIVISION:
+                    if (newNode->getValue() != 0)
+                        this->setTotal(this->total() / newNode->getValue());
+                    else
+                        cout << "Cannot Divide By Zero" << endl;
+            }
+
+            newNode->setStepTotal(this->total());
         }
+
         void removeLastOperation() override
         {
-            CalcList *ptr = this;
-            ptr->getPrevious()->getPrevious()->setNext();
-            delete ptr->getPrevious();
+            if (tail == nullptr)
+                return;
+            
+            switch (tail->getOperation())
+            {
+                case ADDITION: this->setTotal(this->total() - tail->getValue()); break;
+                    
+                case SUBTRACTION: this->setTotal(this->total() + tail->getValue()); break;
+                    
+                case MULTIPLICATION: this->setTotal(this->total() / tail->getValue()); break;
+                    
+                case DIVISION: this->setTotal(this->total() * tail->getValue()); break;
+            }
+            
+            Node *ptr = tail;
+            tail = tail->getPrevious();
+            tail->setNext(nullptr);
+            delete ptr;
         }
+
         string toString(unsigned short precision) const
         {
+            int numNodes = 0;
+            ostringstream temp;
 
+            temp << fixed << setprecision(precision);
+
+            for (Node *ptr = tail; ptr != nullptr; numNodes++, ptr = ptr->getPrevious());
+
+            for (Node *ptr = tail; ptr != nullptr; numNodes--, ptr = ptr->getPrevious())
+            {
+                if (ptr->getPrevious() != nullptr)
+                    temp << numNodes << ": " << ptr->getPrevious()->getStepTotal();
+                else
+                    temp << numNodes << ": " << 0;
+                
+                switch (ptr->getOperation())
+                {
+                    case ADDITION: temp << "+"; break;
+                    case SUBTRACTION: temp << "-"; break;
+                    case MULTIPLICATION: temp << "*"; break;
+                    case DIVISION: temp << "/"; break;
+                }
+
+                temp << ptr->getValue() << "=" << ptr->getStepTotal() << "\n";
+            }
+
+            return temp.str();
         }
         ~CalcList() {}
 };
