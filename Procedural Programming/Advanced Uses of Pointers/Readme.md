@@ -1091,6 +1091,345 @@ Nodes: 4
   </details>
     </ul>  
   </details> 
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Insert a new node into a sorted linked list so that the list remains sorted. Delete a node from a sorted list
+
+#include <iostream>
+using namespace std;
+
+//class definition for doubly linked list
+template <typename T>
+class Node
+{
+    public:
+        Node(T val, Node<T> * nxt = nullptr, Node<T> *prev = nullptr) 
+            : value(val), next(nxt), previous(prev) {}
+        T value;
+        Node<T> *next;
+        Node<T> *previous;
+};
+
+template<typename T>
+void insert(Node<T> *&, const T &);
+
+template<typename T>
+void deleteValue(Node<T> *&, const T &);
+
+template<typename T>
+void free(Node<T> *&);
+
+int main()
+{
+    Node<int> *head = new Node<int>(1);
+    Node<int> *second = new Node<int>(2, nullptr, head);
+    Node<int> *third = new Node<int>(3, nullptr, second);
+    Node<int> *fourth = new Node<int>(5, nullptr, third);
+    head->next = second;
+    second->next = third;
+    third->next = fourth;
+
+    insert<int>(head, 4);
+
+    deleteValue<int>(head, 4);
+
+    for (Node<int> *ptr = head; ptr != nullptr; ptr = ptr->next)
+        cout << ptr->value << endl;
+
+
+    free(head);
+
+    return 0;
+}
+
+template<typename T>
+void insert(Node<T> *&head, const T &val)
+{
+    //instantiation of new node
+    Node<T> *newNode = new Node<T>(val);
+
+    //insert new node before head
+    if (head == nullptr || val <= head->value)
+    {
+        newNode->next = head;
+
+        if (head != nullptr)
+            head->previous = newNode;
+
+        head = newNode;
+
+        return;
+    }
+
+    //insert new node after head
+    for (Node<T> *ptr = head; ptr != nullptr; ptr = ptr->next)
+    {
+        //if inserting node at the end of the list
+        if (ptr->next == nullptr) 
+        {
+            ptr->next = newNode;
+            newNode->previous = ptr;
+            break;
+        }
+
+        //if inserting node in the middle of the list
+        if (ptr->next->value >= val)
+        {
+            newNode->next = ptr->next;
+            newNode->previous = ptr;
+            ptr->next->previous = newNode;
+            ptr->next = newNode;
+            break;
+        }
+    }
+}
+
+template <typename T>
+void deleteValue(Node<T> *&head, const T &value)
+{
+    if (head->value == value)
+    {
+        Node<T> *copy = head;
+
+        if (head->next != nullptr)
+            head->next->previous = nullptr;
+
+        head = head->next;
+
+        delete copy;
+
+        return;
+    }
+
+    for (Node<T> *ptr = head; ptr != nullptr; ptr = ptr->next)
+    {
+        if (ptr->next == nullptr && ptr->value == value)
+        {
+            ptr->previous->next = nullptr;
+            delete ptr;
+
+            return;
+        }
+
+        if (ptr->value == value)
+        {
+            if (ptr->previous) 
+                ptr->previous->next = ptr->next;
+            if (ptr->next) 
+                ptr->next->previous = ptr->previous;
+
+            delete ptr;
+
+            return;
+        }
+    }
+}
+
+template <typename T>
+void free(Node<T> *&head)
+{
+    Node<T> *current = head;
+
+    while (current != nullptr)
+    {
+        Node<T> *next = current->next;
+        delete current;
+        current = next;
+    }
+
+    head = nullptr;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+1
+2
+3
+5
+  </details>
+    </ul>  
+  </details> 
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Reverse a linked list
+
+#include <iostream>
+using namespace std;
+
+//class definition for doubly linked list
+template <typename T>
+class Node
+{
+    public:
+        Node(T val, Node<T> * nxt = nullptr, Node<T> *prev = nullptr) 
+            : value(val), next(nxt), previous(prev) {}
+        T value;
+        Node<T> *next;
+        Node<T> *previous;
+};
+
+template<typename T>
+void reverse(Node<T> *&, Node<T> *&);
+
+template<typename T>
+void free(Node<T> *&);
+
+int main()
+{
+    Node<int> *head = new Node<int>(1);
+    Node<int> *second = new Node<int>(2, nullptr, head);
+    Node<int> *third = new Node<int>(3, nullptr, second);
+    Node<int> *fourth = new Node<int>(5, nullptr, third);
+    head->next = second;
+    second->next = third;
+    third->next = fourth;
+    Node<int> *tail = fourth;
+    
+    reverse(head, tail);
+
+    for (Node<int> *ptr = head; ptr != nullptr; ptr = ptr->next)
+        cout << ptr->value << endl;
+
+
+    free(head);
+
+    return 0;
+}
+
+template <typename T>
+void reverse(Node<T> *&head, Node<T> *&tail)
+{
+    for (Node<T> *ptrHead = head, *ptrTail = tail; ptrHead != ptrTail && ptrHead->previous != ptrTail; ptrHead = ptrHead->next, ptrTail = ptrTail->previous)
+    {
+        T value = ptrHead->value;
+        ptrHead->value = ptrTail->value;
+        ptrTail->value = value;
+    }
+}
+
+template <typename T>
+void free(Node<T> *&head)
+{
+    Node<T> *current = head;
+
+    while (current != nullptr)
+    {
+        Node<T> *next = current->next;
+        delete current;
+        current = next;
+    }
+
+    head = nullptr;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+5
+3
+2
+1
+  </details>
+    </ul>  
+  </details> 
+  <details>
+    <summary>Example Program</summary>
+
+```cpp
+//Remove duplicates from a linked list
+
+#include <iostream>
+using namespace std;
+
+//class definition for doubly linked list
+template <typename T>
+class Node
+{
+    public:
+        Node(T val, Node<T> * nxt = nullptr, Node<T> *prev = nullptr) 
+            : value(val), next(nxt), previous(prev) {}
+        T value;
+        Node<T> *next;
+        Node<T> *previous;
+};
+
+template<typename T>
+void remove(Node<T> *&);
+
+template<typename T>
+void free(Node<T> *&);
+
+int main()
+{
+    Node<int> *head = new Node<int>(1);
+    Node<int> *second = new Node<int>(1, nullptr, head);
+    Node<int> *third = new Node<int>(1, nullptr, second);
+    Node<int> *fourth = new Node<int>(1, nullptr, third);
+    head->next = second;
+    second->next = third;
+    third->next = fourth;
+
+    remove(head);
+
+    for (Node<int> *ptr = head; ptr != nullptr; ptr = ptr->next)
+        cout << ptr->value << endl;
+
+    free(head);
+
+    return 0;
+}
+
+template <typename T>
+void remove(Node<T> *&head)
+{
+    if (head == nullptr || head->next == nullptr)
+        return;
+
+    for (Node<T> *ptr = head; ptr != nullptr;)
+    {
+        if (ptr->next != nullptr && ptr->value == ptr->next->value)
+        {
+            Node<T> *copy = ptr->next;
+            ptr->next = copy->next;
+
+            if (copy->next != nullptr)
+                copy->next->previous = ptr;
+
+            delete copy;
+        }
+
+        else
+            ptr = ptr->next;
+    }
+}
+
+template <typename T>
+void free(Node<T> *&head)
+{
+    Node<T> *current = head;
+
+    while (current != nullptr)
+    {
+        Node<T> *next = current->next;
+        delete current;
+        current = next;
+    }
+
+    head = nullptr;
+}
+```
+<ul>
+  <details>
+    <summary>Output</summary>
+1
+  </details>
+    </ul>  
+  </details> 
 </ul>  
 
 ## Circularly Linked Lists and List Reversal

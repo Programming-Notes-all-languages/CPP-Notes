@@ -1,55 +1,76 @@
-//Check if a doubly circularly linked list is a palindrome
+//Remove duplicates from a linked list
 
 #include <iostream>
 using namespace std;
 
-//struct definition for doubly linked list
-struct Node
+//class definition for doubly linked list
+template <typename T>
+class Node
 {
-    double value;
-    Node *next, *previous;
+    public:
+        Node(T val, Node<T> *nxt = nullptr, Node<T> *prev = nullptr) 
+            : value(val), next(nxt), previous(prev) {}
+        T value;
+        Node<T> *next;
+        Node<T> *previous;
 };
 
-bool check(const Node *, const Node *);
-void deleteList(Node *&);
+template<typename T>
+bool palindrome(Node<T> *&);
+
+template<typename T>
+void free(Node<T> *&);
 
 int main()
 {
-    Node *head = new Node{1, nullptr, nullptr};
-    Node *second = new Node{2, nullptr, head};
-    Node *third = new Node{3, nullptr, second};
-    Node *fourth = new Node{0, nullptr, third};
+    Node<int> *head = new Node<int>(1);
+    Node<int> *second = new Node<int>(2, nullptr, head);
+    Node<int> *third = new Node<int>(2, nullptr, second);
+    Node<int> *fourth = new Node<int>(1, nullptr, third);
     head->next = second;
     second->next = third;
     third->next = fourth;
-    head->previous = fourth;
-    fourth->next = head;
 
-    cout << check(head, fourth);
-    deleteList(head);
+    cout << palindrome(head);
+
+    free(head);
 
     return 0;
 }
 
-bool check(const Node *head, const Node *tail)
+template <typename T>
+bool palindrome(Node<T> *&head)
 {
-    for (const Node *ptrHead = head, *ptrTail = tail; ptrHead != ptrTail && ptrTail->previous != ptrHead; ptrHead = ptrHead->next, ptrTail = ptrTail->previous)
-        if (ptrHead->value != ptrTail->value)
-            return false;
+    int count = 0, i = 0;
 
+    for (Node<T> *ptr = head; ptr != nullptr; ptr = ptr->next, count++);
+
+    T *array = new T[count];
+
+    for (Node<T> *ptr = head; ptr != nullptr; array[i] = ptr->value, ptr = ptr->next, i++);
+
+    for (int i = 0, j = count - 1; i != j && j > i; i++, j--)
+        if (array[i] != array[j])
+        {
+            delete [] array;
+            return false;
+        }
+
+    delete [] array;
     return true;
 }
 
-void deleteList(Node *&head)
+template <typename T>
+void free(Node<T> *&head)
 {
-    Node *current = head;
+    Node<T> *current = head;
 
-    do
+    while (current != nullptr)
     {
-        Node *next = current->next;
+        Node<T> *next = current->next;
         delete current;
         current = next;
-    } while (current != head);
+    }
 
     head = nullptr;
 }
