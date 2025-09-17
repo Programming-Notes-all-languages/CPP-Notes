@@ -15,6 +15,7 @@ class CalcList : public CalcListInterface
         Node *next;
         Node *previous;
         double value, stepTotal;
+        int index;
         FUNCTIONS operation;
 
         public:
@@ -27,6 +28,8 @@ class CalcList : public CalcListInterface
             double getValue() const { return this->value; }
             void setStepTotal(const double val) { this->stepTotal = val; }
             double getStepTotal() const { return this->stepTotal; }
+            void setIndex(const int indx) { this->index = indx; }
+            int getIndex() const { return this->index; }
             void setOperation(const FUNCTIONS value) { this->operation = value; }
             FUNCTIONS getOperation () const { return this->operation; }
         };
@@ -34,7 +37,7 @@ class CalcList : public CalcListInterface
     Node *head;
     Node *tail;
     double runningTotal;
-
+ 
     public:
         CalcList() : head(nullptr), tail(nullptr), runningTotal(0) {}
         void setTotal(const double val) { this->runningTotal = val; }
@@ -47,11 +50,15 @@ class CalcList : public CalcListInterface
             {
                 newNode->setPrevious(tail);
                 tail->setNext(newNode);
+                newNode->setIndex(tail->getIndex() + 1);
                 tail = newNode;
             }
 
             else
+            {
                 head = tail = newNode;
+                newNode->setIndex(1);
+            }
 
             switch (newNode->getOperation())
             {
@@ -62,11 +69,11 @@ class CalcList : public CalcListInterface
                 case MULTIPLICATION: this->setTotal(this->total() * newNode->getValue()); break;
                     
                 case DIVISION:
-                    try
-                    {
-                        this->total() / newNode->getValue();
-                    }
-                    throw invalid_argument("Cannot Divide By Zero");
+                    if (newNode->getValue() != 0)
+                        this->setTotal(this->total() / newNode->getValue());
+                    else
+                        throw invalid_argument("Cannot Divide By Zero");
+                    break;
             }
 
             newNode->setStepTotal(this->total());
@@ -75,7 +82,7 @@ class CalcList : public CalcListInterface
         void removeLastOperation() override
         {
             if (tail == nullptr)
-                return;
+                throw runtime_error("No Operations to Remove");
             
             Node *ptr = tail;
 
@@ -98,19 +105,16 @@ class CalcList : public CalcListInterface
 
         string toString(unsigned short precision) const override
         {
-            int numNodes = 0;
             ostringstream temp;
 
             temp << fixed << setprecision(precision);
 
-            for (Node *ptr = tail; ptr != nullptr; numNodes++, ptr = ptr->getPrevious());
-
-            for (Node *ptr = tail; ptr != nullptr; numNodes--, ptr = ptr->getPrevious())
+            for (Node *ptr = tail; ptr != nullptr; ptr = ptr->getPrevious())
             {
                 if (ptr->getPrevious() != nullptr)
-                    temp << numNodes << ": " << ptr->getPrevious()->getStepTotal();
+                    temp << ptr->getIndex() << ": " << ptr->getPrevious()->getStepTotal();
                 else
-                    temp << numNodes << ": " << 0;
+                    temp << ptr->getIndex() << ": " << 0;
                 
                 switch (ptr->getOperation())
                 {

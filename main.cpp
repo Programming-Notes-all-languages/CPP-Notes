@@ -16,9 +16,6 @@ class Node
 };
 
 template<typename T>
-bool palindrome(Node<T> *&);
-
-template<typename T>
 void free(Node<T> *&);
 
 int main()
@@ -30,34 +27,13 @@ int main()
     head->next = second;
     second->next = third;
     third->next = fourth;
+    Node<int> *tail = fourth;
 
-    cout << palindrome(head);
+    reverse(head, tail);
 
     free(head);
 
     return 0;
-}
-
-template <typename T>
-bool palindrome(Node<T> *&head)
-{
-    int count = 0, i = 0;
-
-    for (Node<T> *ptr = head; ptr != nullptr; ptr = ptr->next, count++);
-
-    T *array = new T[count];
-
-    for (Node<T> *ptr = head; ptr != nullptr; array[i] = ptr->value, ptr = ptr->next, i++);
-
-    for (int i = 0, j = count - 1; i != j && j > i; i++, j--)
-        if (array[i] != array[j])
-        {
-            delete [] array;
-            return false;
-        }
-
-    delete [] array;
-    return true;
 }
 
 template <typename T>
