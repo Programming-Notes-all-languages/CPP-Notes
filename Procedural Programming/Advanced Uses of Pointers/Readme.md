@@ -808,6 +808,21 @@ struct node *insert_into_ordered_list(node *list, node *new_node)
   </details> 
 </ul>    
 
+### Advantages and Disadvantages of Singly Linked Lists over Arrays
+#### Advantages
+<ul>
+  <li>Dynamic size</li>
+  <li>Storage of nodes can be non-contiguous</li>
+  <li>No need to shift or reallocate for insertions/deletions</li>
+</ul>
+
+#### Disadvantages
+<ul>
+  <li>Random access is more difficult</li>
+  <li>Extra memory space for link is required with each element</li>
+  <li>Non-contiguous access of nodes can increase access time</li>
+</ul>
+
 ## Doubly Linked list
 <ul>
   <li>A doubly linked list is similar to a singly linked list, with the difference being a doubly linked list has nodes that link to both the prior and next node in the chain</li>

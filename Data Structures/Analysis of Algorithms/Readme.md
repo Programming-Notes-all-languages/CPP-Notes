@@ -5,10 +5,7 @@
     <a href='#the-seven-functions'>The Seven Functions</a>
   </li> 
   <li>
-    <a href='#queues'>Queues</a>
-  </li> 
-  <li>
-    <a href='#deques'>Deques</a>
+    <a href='#abstract-data-type-vs-data-structures'>Abstract Data Type vs Data Structures</a>
   </li> 
 </ol>
 </details>
@@ -165,7 +162,14 @@ int count(Node<T> *head) {
   <details>
     <summary>Output</summary>
 
-O($n$) because the recursive function runs $n$ times throughout the entire list6
+O($n$) because the recursive function runs $n$ times throughout the entire list
   </details>
   </ul>  
 </details> 
+
+## Abstract Data Type vs Data Structures
+### Abstract Data Type
+Is the logical model of a data collection and the operations that can be performed on the data. It defines the behavior of the operations. It also hides the implementation details using encapsulation
+
+### Data Structure
+Is the physical implementation of an ABT model in memory. It specifies how data is actually stored in memory which does not necessarily hide the details

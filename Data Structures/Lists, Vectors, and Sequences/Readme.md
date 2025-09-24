@@ -127,16 +127,23 @@ A vector can be accessed by referring to an index number using the square bracke
 
 An advantage of using vectors is that the vector library supports the <code>.front()</code> and <code>.back()</code> functions like with other data structures
 
-The <code>.at()</code> function can be used to access an element of a vector at a specified index. The <code>.at()</code> function is often the preferred method of accessing vectors compared to the square brackets
+The <code>.at()</code> function can be used to access an element of a vector at a specified index. The <code>.at()</code> function is often the preferred method of accessing vectors compared to the square brackets. An error condition occurs if i is out of range
 
 ### Change a Vector Element
 Changing an element of a vector can be used by using array subscripting to access an item and then alter its value; however, the <code>.at()</code> function is still preferred
 
+Changing an element of a vector can also be done using the <code>.set()</code> function where given <code>.set(i, e)</code>, the value e replaces the vector element at index i. An error condition occurs if i is out of range
+
 ### Adding Elements to a Vector
 To add an element to a vector, the <code>.push_back()</code> function is needed which adds an element to the end of the vector
 
+### Inserting Element to a Vector
+To insert an element at any position in the vector, the <code>.insert()</code> function is needed which given <code>.insert(i, e)</code>, a new element of the vector with the value e is inserted at index i. An error condition occurs if i is out of range
+
 ### Remove Vector Elements
 To remove the last element from a vector, use the <code>.pop_back()</code> function
+
+To remove any element of the vector at any index, use the <code>.erase()</code> function. When given the following function call, <code>.erase(i)</code>, the element in the vector at index i is removed. An error condition occurs if i is out of range
 
 ### Size of a Vector
 To find out how many elements are in a vector, use the <code>.size()</code> function
