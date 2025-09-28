@@ -147,6 +147,7 @@ CalcList::~CalcList()
 
 int main() 
 {
+    //can play with the calculator here with any function calls to perform operations
     CalcList calc;
     calc.newOperation(ADDITION, 10);
     calc.newOperation(ADDITION, 10);
@@ -171,6 +172,8 @@ int main()
     calc.newOperation(DIVISION, 2);
     calc.removeLastOperation();
     cout << calc.toString(3);
+    calc.removeLastOperation();
+    cout << calc.toString(1);
 
     return 0;
 }

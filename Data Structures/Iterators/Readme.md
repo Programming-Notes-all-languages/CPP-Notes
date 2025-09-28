@@ -90,3 +90,57 @@ void reversePrint(const list<int> *integers)
 }
 ```
 </details> 
+
+<details>
+    <summary>Example program</summary>
+This program removes the negative integers from a sequence using an iterator
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector<int> vect = {1,2,-3,-4};
+    auto it = vect.begin();
+
+    for (; it < vect.end();)
+    {
+        if (*it < 0)
+            it = vect.erase(it);
+        else
+            it++;
+    }
+
+    for (it = vect.begin(); it < vect.end(); it++)
+        cout << *it;
+
+    return 0;
+}
+```
+</details> 
+
+<details>
+    <summary>Example program</summary>
+This program counts the number of occurrences of an integer in a sequence using an iterator 
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector<int> vect = {12,3,4,3,2,1,2,2,2,2,3,4,2,1};
+    int occurrence = 2, count = 0;
+    auto it = vect.begin();
+
+    for (; it < vect.end(); it++)
+        if (*it == occurrence)
+            count++;
+
+    return 0;
+}
+```
+</details> 
