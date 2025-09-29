@@ -144,37 +144,3 @@ CalcList::~CalcList()
     //having head and tail point to nullptr to ensure there are no dangling pointers
     head = tail = nullptr;
 }
-
-int main() 
-{
-    //can play with the calculator here with any function calls to perform operations
-    CalcList calc;
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(DIVISION, 2);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(DIVISION, 2);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(DIVISION, 2);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(DIVISION, 2);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(DIVISION, 2);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(DIVISION, 2);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(ADDITION, 10);
-    calc.newOperation(DIVISION, 2);
-    calc.removeLastOperation();
-    cout << calc.toString(3);
-    calc.removeLastOperation();
-    cout << calc.toString(1);
-
-    return 0;
-}
-
