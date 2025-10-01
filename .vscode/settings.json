@@ -70,6 +70,7 @@
     "stacktrace": "cpp",
     "regex": "cpp",
     "valarray": "cpp",
-    "format": "cpp"
+    "format": "cpp",
+    "stdexcept": "cpp"
   }
 }
