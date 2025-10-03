@@ -2,16 +2,20 @@
 #include <iostream>
 using namespace std;
 
+//method for pushing new item to the back of the linked list
 void NotationConverter::pushFront(const string &value)
 {
+    //instantiating new node
     Node *newNode = new Node(value);
 
+    //checking if the linked list is empty; if so, have the head and tail pointers point to the newly created node
     if (head == nullptr)
     {
         head = newNode;
         tail = newNode;
     }
 
+    //if the linked list has at least one node, add the new node to the beginning of the linked list
     else
     {
         newNode->next = head;
@@ -19,19 +23,24 @@ void NotationConverter::pushFront(const string &value)
         head = newNode;
     }
 
+    //increment the total node count by one to account for the newly inserted node
     this->count++;
 }
 
+//method for pushing new item the back of the linked list
 void NotationConverter::pushBack(const string &value)
 {
+    //instantiating new node
     Node *newNode = new Node(value);
 
+    //checking if the linked list is empty; if so, have the head and tail pointers point to the newly created node
     if (head == nullptr)
     {
         head = newNode;
         tail = newNode;
     }
 
+    //if the linked list has at least one node, add the new node to the end of the linked list
     else
     {
         newNode->previous = tail;
@@ -39,14 +48,18 @@ void NotationConverter::pushBack(const string &value)
         tail = newNode;
     }
 
+    //increment the total node count by one to account for the newly inserted node    
     this->count++;
 }
 
+//method for removing the head of the linked list
 void NotationConverter::popFront()
 {
+    //checking if the linked list is empty; if so, do nothing since there is no node to remove
     if (head == nullptr)
         return;
 
+    //checking if the the linked list has more than one node; if so, remove the head node and assign the head pointer to point to the node right after head
     if (head->next != nullptr)
     {
         Node *ptr = head->next;
@@ -55,20 +68,25 @@ void NotationConverter::popFront()
         head = ptr;
     }
 
+    //if the linked list only has one node, delete the head pointer, which is also the tail pointer, and have head and tail point to nullptr to leave no dangling pointers
     else
     {
         delete head;
         head = tail = nullptr;
     }
 
+    //decrement the count of the total number of nodes in the list by one
     this->count--;
 }
 
+//method for removing the last element in the linked list
 void NotationConverter::popBack()
 {
+    //checking if the linked list has no nodes; if so, do nothing as there is no node to remove
     if (tail == nullptr)
         return;
 
+    //checking if the linked list has more than one node; if so, remove the tail pointer from memory and assign the node just before the existing tail to be the new tail
     if (tail->previous != nullptr)
     {
         Node *ptr = tail->previous;
@@ -77,28 +95,35 @@ void NotationConverter::popBack()
         tail = ptr;
     }
 
+    //if the linked list has only one node; remove the tail node, which is also the head node, and set head and tail to point to nullptr to leave no dangling pointers
     else
     {
         delete tail;
         head = tail = nullptr;
     }
 
+    //decrement the count of the total number of nodes in the list by one
     this->count--;
 }
 
+//method for returning the string value of the head node
 string NotationConverter::front() const
 {
+    //checking if the linked list is empty; if so, throw an error
     if (head == nullptr)
         throw runtime_error("Queue is empty");
 
+    //returning the string value of the head node
     return head->value;
 }
 
 string NotationConverter::back() const
 {
+    //checking if the linked list is empty; if so, throw an error
     if (head == nullptr)
         throw runtime_error("Queue is empty");
 
+    //returning the string value of the tail node
     return tail->value;
 }
 
