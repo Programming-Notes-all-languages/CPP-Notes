@@ -8,7 +8,6 @@
 //    Example: a.out -s
 // A successful test should output: All tests passed (24 assertions in 1 test case)
 /**************************************************************************************************/
-
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include <string>
