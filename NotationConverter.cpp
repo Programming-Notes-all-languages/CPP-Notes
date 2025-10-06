@@ -679,9 +679,6 @@ bool validateString(string inStr, const STATUS &status)
                     prePostCount++;
                 }
                 
-                else
-                    continue;
-                
                 //if the number of operands is less than one at any point, the string is invalid
                 if (prePostCount < 1)
                     return false;

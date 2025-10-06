@@ -7,6 +7,7 @@
 class NotationConverterInterface
 {
     public:
+        //six methods that convert a given expression from its current form to a desired form
         virtual std::string postfixToInfix(std::string inStr) = 0;
         virtual std::string postfixToPrefix(std::string inStr) = 0;
 
