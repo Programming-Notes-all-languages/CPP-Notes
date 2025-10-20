@@ -241,7 +241,7 @@ Draw the binary tree representation of the following arithmetic expression: (((5
 ## Priority Queues
 A priority queue is a special type of queue in which each elements has a priority associated with it, and elements with higher priority are served before those with lower priority, regardless of order in which they were inserted
 
-Unlike a regular queue which is first-in-first-out, a priority queue dequeues elements based on priority, not position
+Unlike a regular queue which is first-in-first-out, a priority queue dequeues elements based on priority, not position. Highest-priority elements are removed first
 
 A priority queue can be implemented using an array or linked list, but a heap is the most common and most efficient data structure used to implement this ADT
 
@@ -294,7 +294,95 @@ So there can be a member simulating a count that starts at zero. With each push 
 </ul>  
 </details>
 
+### List-Based Priority Queues
+A list-based priority queues uses a linked list or a dynamic array to store items
+
+Assume each element in a queue is a pair:
+
+```cpp
+struct Node {
+    int data, priority;
+    Node *next;
+}
+```
+
+There are two common approaches to creating a priority queue using linked lists: using an unsorted list or using a sorted list
+
+#### Unsorted List
+Inserting a new element at the end of the queue is O(1), but dequeueing requires scanning the entire list for the highest-priority element, O(n)
+
+#### Sorted List
+A sorted list keeps the list sorted by priority at all times. Enqueueing must find the correct place, O(n). Dequeueing is O(1) as one needs to only remove the element at the front of the list, if the highest priority element is at the front of the list
+
 ## Heaps
-There are two main types of heaps: max-heaps and min-heaps
+There are two main types of heaps: max-heaps and min-heaps. The data structure to implement a binary heap is an array
+
+Space complexity is O(n)
 
 ### Max-Heaps
+<em>Max-heaps</em> are where every parent node is larger than, or equal to, its children. The root is the maximum element
+
+### Min-Heaps
+<em>Min-heaps</em> are where every parent node is smaller than, or equal to, its children. The root is the minimum element
+
+### Heap Declaration
+```cpp
+struct MinHeap {
+    int array[MAX];
+    int size;
+};
+```
+
+### <code>parent(i)</code>
+<code>int parent(int i) { return (i - 2) / 2; }</code>
+This function takes in an integer <code>i</code>, which represents the index of a node in the heap's array representation, and returns the index of that node's parent
+
+### <code>left(i)</code>
+<code>int left(int i) { return 2 * i + 1; }</code>
+This function takes in an integer <code>i<code>, which represents the index of a parent node in the heap's array representation, and returns the index of the parent's left child
+
+### <code>right(i)</code>
+<code>int right(int i) { return 2 * i + 2; }</code>
+This function takes in an integer <code>i</code>, which represents the index of a parent node in the heap's array, and returns the index of its right child
+
+### <code>swap(int *a, int *b)</code>
+The purpose of this function is to swap two elements in the heap array
+
+```cpp
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+```
+
+### Time Complexities
+#### Peek
+Returns the root element, O(1)
+
+#### Enqueue (heapifyUp())
+Adds a new value to the heap and heapifies up until the heap property is restored, O(log n)
+
+To insert into the max-heap:
+<ol>
+  <li>Put the new node in the last index of the array, which means the rightmost child node in the tree</li>
+  <li>Repeatedly swap that node with its parents until the parent is smaller</li>
+</ol>
+
+#### Dequeue (heapifyDown())
+Removes and returns the root element, then moves the last element to the root and heapifies down, O(log n)
+
+To remove from a max-heap:
+<ol>
+  <li>Remove the maximum element, the root</li>
+  <li>Replace root with last element in heap</li>
+  <li>Remove the last element so that the heap size decreases by one</li>
+  <li>Heapify from the root. Swap repeatedly the new root with its largest child</li>
+</ol> 
+
+### Search
+Finds a specific value anywhere in the heap, O(n)
+
+### Delete
+Removes an element from inside the heap, O(n)
