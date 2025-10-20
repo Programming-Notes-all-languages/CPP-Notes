@@ -10,6 +10,9 @@
   <li>
     <a href='#priority-queues'>Priority Queues</a>
   </li> 
+  <li>
+    <a href='heaps'>Heaps</a>
+  </li>
 </ol>
 </details>
 
@@ -32,9 +35,93 @@ class Node
 }
 ```
 
+<details>
+    <summary>Example problem</summary>
+Count the number of leaf nodes in a tree
+  <details>
+    <summary>Solution</summary>
+
+int count(Node *root)
+{
+    if (root == nullptr)
+        return 0;
+
+    if (root->left == nullptr && root->right == nullptr)
+        return 1;
+    
+    return count(root->left) + count(root->right);
+}
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example problem</summary>
+Count the number of non-leaf nodes in a tree
+  <details>
+    <summary>Solution</summary>
+
+int count(Node *root)
+{
+    if (root == nullptr)
+        return 0;
+    
+    if (root->left == nullptr && root->right == nullptr)
+        return 0;
+    
+    return 1 + count(root->left) + count(root->right);
+}
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example problem</summary>
+Write a function to free a binary tree from memory
+  <details>
+    <summary>Solution</summary>
+
+void destroy(Node *root)
+{
+    if (root == nullptr)
+        return;
+    
+    destroy(root->left);
+    destroy(root->right);
+    delete root;
+}
+</details> 
+</ul>  
+</details>
+
 ### Height and Depth
 #### Height
 The height measures the distance from a node to its deepest leaf
+
+<details>
+    <summary>Example problem</summary>
+Write a function to compute the height of a binary tree
+  <details>
+    <summary>Solution</summary>
+
+int height(Node *root)
+{
+    int leftHeight, rightHeight;
+
+    if (root == nullptr)
+        return -1;
+    
+    leftHeight = height(root->left);
+    rightHeight = height(root->right);
+
+    if (leftHeight > rightHeight)
+        return leftHeight + 1;
+    else
+        return rightHeight + 1;
+}
+</details> 
+</ul>  
+</details>
 
 #### Depth
 The depth measures the distance from the root of the tree to a node
@@ -62,7 +149,7 @@ void preorder(Node *root)
     cout << root->data << " ";
 
     preorder(root->left);
-    preorder(root-right);
+    preorder(root->right);
 }
 ```
 
@@ -88,7 +175,7 @@ void preorder(Node *root)
   
     preorder(root->left);
     cout << root->data << " ";
-    preorder(root-right);
+    preorder(root->right);
 }
 ```
 
@@ -103,7 +190,7 @@ Postorder traversal starts that the left, then goes to the right, then finally t
      /           / \
     8           9  10
 
-So, the postorder traversal here is: 8, 4, 2, 5, 9, 10, 6, 7, 3, 1
+So, the postorder traversal here is: 8, 4, 5, 2, 9, 10, 6, 7, 3, 1
 
 ```cpp
 void postorder(Node *root)
@@ -112,7 +199,7 @@ void postorder(Node *root)
         return;
 
     preorder(root->left);
-    preorder(root-right);
+    preorder(root->right);
 
     cout << root->data << " ";
 }
@@ -339,7 +426,7 @@ This function takes in an integer <code>i</code>, which represents the index of 
 
 ### <code>left(i)</code>
 <code>int left(int i) { return 2 * i + 1; }</code>
-This function takes in an integer <code>i<code>, which represents the index of a parent node in the heap's array representation, and returns the index of the parent's left child
+This function takes in an integer <code>i</code>, which represents the index of a parent node in the heap's array representation, and returns the index of the parent's left child
 
 ### <code>right(i)</code>
 <code>int right(int i) { return 2 * i + 2; }</code>
@@ -370,6 +457,45 @@ To insert into the max-heap:
   <li>Repeatedly swap that node with its parents until the parent is smaller</li>
 </ol>
 
+<details>
+    <summary>Example program</summary>
+Given the following array, [2, 4, 6, 8, 10, 12, 14, 16], enqueue 3 into the min-heap
+<ul>  
+  <details>
+    <summary>Solution</summary>
+<pre><code>
+         2
+       /   \
+      4     6
+     / \   / \
+    8  10 12 14
+   / \
+  16  3
+</code></pre>
+First swap:
+<pre><code>
+         2
+       /   \
+      3     6
+     / \   / \
+    4  10 12 14
+   / \
+  16  8
+</code></pre>
+Final swap:
+<pre><code>
+         2
+       /   \
+      3     6
+     / \   / \
+    4  10 12 14
+   / \
+ 16   8
+</code></pre>
+</details> 
+</ul>  
+</details>
+
 #### Dequeue (heapifyDown())
 Removes and returns the root element, then moves the last element to the root and heapifies down, O(log n)
 
@@ -380,6 +506,104 @@ To remove from a max-heap:
   <li>Remove the last element so that the heap size decreases by one</li>
   <li>Heapify from the root. Swap repeatedly the new root with its largest child</li>
 </ol> 
+
+<details>
+    <summary>Example program</summary>
+Given the following array, [2, 3, 6, 4, 10, 12, 14, 16, 8], dequeue 2 from the min-heap
+<ul>  
+  <details>
+    <summary>Solution</summary>
+<pre><code>
+         2
+       /   \
+      3     6
+     / \   / \
+    4  10 12 14
+   / \
+ 16   8
+</code></pre>
+Remove root and replace with last element in heap:
+<pre><code>
+         8
+       /   \
+      3     6
+     / \   / \
+    4  10 12 14
+   /
+  16
+</code></pre>
+Swap:
+<pre><code>
+         3
+       /   \
+      8     6
+     / \   / \
+    4  10 12 14
+   /
+  16
+</code></pre>
+Final swap:
+
+         3
+       /   \
+      4     6
+     / \   / \
+    8  10 12 14
+   /
+  16
+</code></pre>
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example program</summary>
+Given the following array, [1, 3, 2, 6, 7, 8, 9, 10, 14, 16], dequeue 1 from the min-heap
+<ul>  
+  <details>
+    <summary>Solution</summary>
+<pre><code>
+          1
+        /   \
+       3     2
+      / \   / \
+     6  7  8  9
+    / \  /
+   10 14 16
+</code></pre>
+Remove root and replace with last element in heap:
+<pre><code>
+          16
+        /   \
+       3     2
+      / \   / \
+     6  7  8  9
+    / \ 
+   10 14
+</code></pre>
+Swap:
+ <pre><code>
+          2
+        /   \
+       3     16
+      / \   / \
+     6  7  8  9
+    / \ 
+   10 14
+</code></pre>
+Final swap:
+<pre><code>
+          2
+        /   \
+       3     8
+      / \   / \
+     6  7  16  9
+    / \ 
+   10 14
+</code></pre>
+</details> 
+</ul>  
+</details>
 
 ### Search
 Finds a specific value anywhere in the heap, O(n)
