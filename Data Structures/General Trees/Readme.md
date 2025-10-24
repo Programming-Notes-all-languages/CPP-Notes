@@ -13,6 +13,12 @@
   <li>
     <a href='heaps'>Heaps</a>
   </li>
+  <li>
+    <a href='binary-search-trees'>Binary Search Trees</a>
+  </li>
+  <li>
+    <a href='avl-trees'>AVL Trees</a>
+  </li>
 </ol>
 </details>
 
@@ -41,6 +47,7 @@ Count the number of leaf nodes in a tree
   <details>
     <summary>Solution</summary>
 
+```cpp
 int count(Node *root)
 {
     if (root == nullptr)
@@ -51,6 +58,7 @@ int count(Node *root)
     
     return count(root->left) + count(root->right);
 }
+```
 </details> 
 </ul>  
 </details>
@@ -61,6 +69,7 @@ Count the number of non-leaf nodes in a tree
   <details>
     <summary>Solution</summary>
 
+```cpp
 int count(Node *root)
 {
     if (root == nullptr)
@@ -71,6 +80,7 @@ int count(Node *root)
     
     return 1 + count(root->left) + count(root->right);
 }
+```
 </details> 
 </ul>  
 </details>
@@ -81,6 +91,7 @@ Write a function to free a binary tree from memory
   <details>
     <summary>Solution</summary>
 
+```cpp
 void destroy(Node *root)
 {
     if (root == nullptr)
@@ -90,6 +101,7 @@ void destroy(Node *root)
     destroy(root->right);
     delete root;
 }
+```
 </details> 
 </ul>  
 </details>
@@ -104,6 +116,7 @@ Write a function to compute the height of a binary tree
   <details>
     <summary>Solution</summary>
 
+```cpp
 int height(Node *root)
 {
     int leftHeight, rightHeight;
@@ -119,12 +132,32 @@ int height(Node *root)
     else
         return rightHeight + 1;
 }
+```
 </details> 
 </ul>  
 </details>
 
 #### Depth
 The depth measures the distance from the root of the tree to a node
+
+<details>
+    <summary>Example problem</summary>
+Write a function to compute the sum of all the elements in a binary tree
+  <details>
+    <summary>Solution</summary>
+
+```cpp
+int sum(Node *root)
+{
+    if (root == nullptr)
+        return 0;
+    
+    return root->data + sum(root->left) + sum(root->right);
+}
+```
+</details> 
+</ul>  
+</details>
 
 ### Preorder
 Preorder traversal starts at the root, then goes left to right. Visit the current node first, then recursively visit the left subtree, then the right subtree
@@ -476,9 +509,9 @@ First swap:
 <pre><code>
          2
        /   \
-      3     6
+      4     6
      / \   / \
-    4  10 12 14
+    3  10 12 14
    / \
   16  8
 </code></pre>
@@ -610,3 +643,158 @@ Finds a specific value anywhere in the heap, O(n)
 
 ### Delete
 Removes an element from inside the heap, O(n)
+
+## Binary Search Trees
+A <em>binary search tree</em> is a type of binary tree with the following properties:
+
+For every node <code>N</code>:
+<ul>
+  <li>All values in the left subtree of <code>N</code> are less than <code>N->data</code></li>
+  <li>All values in the right subtree of <code>N</code> are greater than <code>N->data</code>
+</ul>
+
+This property allows efficient searching, insertion, and deletion operations
+
+### Basic Structure
+```cpp
+struct Node {
+    int data;
+    Node *left, *right;
+};
+```
+
+### Number of Different Binary Search Trees given a Key
+The number of possible binary search trees that can be formed with n distinct keys is given in the n-th Catalan number:
+
+<div align="center">
+
+$C = (2n)! / ((n + 1)! * n!)$
+</div>
+
+<details>
+    <summary>Example program</summary>
+How mand different binary search trees can store the keys: {1, 2, 3}?
+<ul>  
+  <details>
+    <summary>Solution</summary>
+
+$C = (2 * 3)! / ((3 + 1)! * 3!)$
+
+$C = 6! / (4! * 3!)$
+
+$C = 6 * 5 * 4! / (4! * 3!)$
+
+$C = 30 / (3 * 2 * 1)$
+
+$C = 5$
+</details> 
+</ul>  
+</details>
+
+### Operations
+#### Searching a Binary Tree
+```cpp
+Node *search(Node *root, int key)
+{
+    if (root == nullptr || root->data == key)
+        return root;
+    
+    if (key < root->data)
+        return search(root->left, key);
+    else
+        return search(root->right, key);
+}
+```
+
+Average time complexity: O(log n)
+
+Worst-case: O(n)
+
+#### Insertion
+```cpp
+Node *insert(Node *root, int key)
+{
+    if (root == nullptr)
+    {
+        Node *newNode = new Node{key, nullptr, nullptr};
+        return newNode;
+    }
+
+    if (key < root ->data)
+        root->left = insert(root->left, key);
+    else if (key > root->data)
+        root->right = insert(root->right, key);
+    
+    return root;
+}
+```
+
+Average time complexity: O(log n)
+
+Worst: O(n)
+
+#### Deletion
+```cpp
+Node *delete(Node *root, int key)
+{
+  if (root == nullptr)
+      return root;
+  if (key < root->data)
+      root->left = delete(root->left, key);
+  else if (key > root ->data)
+      root->right = delete(root->right, key);
+  else 
+  {
+        
+      if (!root->left) {
+          Node* temp = root->right;
+          delete root;
+          return temp;
+      }
+
+      else if (!root->right) {
+          Node* temp = root->left;
+          delete root;
+          return temp;
+      }
+
+      Node* temp = findMin(root->right);
+      root->data = temp->data;
+      root->right = deleteNode(root->right, temp->data);
+  }
+
+  return root;
+}
+
+Node* findMin(Node* root) 
+{
+    while (root && root->left)
+        root = root->left;
+
+    return root;
+}
+```
+
+Average time complexity: O(log n)
+
+Worst: O(n)
+
+#### Traversal
+Traversing a binary search tree can be done using preorder traversal, inorder traversal, and postorder traversal
+
+Time complexity is O(n)
+
+## AVL Trees
+An <em>AVL</em> is a self-balancing binary search tree. It maintains the BST property and ensures that for every node in the tree, the height difference between its left and right subtrees is at most 1
+
+### Why Balance Matters
+In a normal binary search tree, the worst case for search time is O(n) time complexity. In an AVL tree, the tree stays balance and all operations are O(log n), except for traversal. Space complexity is O(n)
+
+### Node Structure
+```cpp
+struct Node
+{
+    int data, height;
+    Node *left, *right;
+}
+```
