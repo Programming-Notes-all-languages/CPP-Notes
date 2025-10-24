@@ -43,22 +43,47 @@ class Node
 
 <details>
     <summary>Example problem</summary>
+Count the number of nodes in a tree
+  <details>
+    <summary>Solution</summary>
+
+```cpp
+int countNodes(Node *root) {
+	if (root == nullptr)
+		return 0;
+	
+	return 1 + countNodes(root->left) + countNodes(root->right);
+}
+```
+
+Time complexity: O(n)
+
+Space complexity: O(n)
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example problem</summary>
 Count the number of leaf nodes in a tree
   <details>
     <summary>Solution</summary>
 
 ```cpp
-int count(Node *root)
-{
+int countLeaves(Node *root) {
     if (root == nullptr)
         return 0;
-
-    if (root->left == nullptr && root->right == nullptr)
+    
+    else if (root->left == nullptr && root->right == nullptr)
         return 1;
     
-    return count(root->left) + count(root->right);
+    return countLeaves(root->left) + countLeaves(root->right);
 }
 ```
+
+Time complexity: O(n)
+
+Space complexity: O(n)
 </details> 
 </ul>  
 </details>
@@ -180,7 +205,6 @@ void preorder(Node *root)
         return;
   
     cout << root->data << " ";
-
     preorder(root->left);
     preorder(root->right);
 }
@@ -233,7 +257,6 @@ void postorder(Node *root)
 
     preorder(root->left);
     preorder(root->right);
-
     cout << root->data << " ";
 }
 ```
@@ -692,6 +715,28 @@ $C = 5$
 </details>
 
 ### Operations
+
+<details>
+    <summary>Example problem</summary>
+Write a function to find the minimum value in a binary search tree
+  <details>
+    <summary>Solution</summary>
+
+```cpp
+int findMin(Node *root) {
+	  if (root == nullptr)
+		    return 0;
+		
+	  if (root->left == nullptr)
+		    return root->data;
+	
+	    return findMin(root->left);
+}
+```
+</details> 
+</ul>  
+</details>
+
 #### Searching a Binary Tree
 ```cpp
 Node *search(Node *root, int key)
@@ -710,20 +755,43 @@ Average time complexity: O(log n)
 
 Worst-case: O(n)
 
+<details>
+    <summary>Example problem</summary>
+Write a function that returns a boolean value indicating if a node in the tree is found
+  <details>
+    <summary>Solution</summary>
+
+```cpp
+bool search(Node *root, int key) {
+	  if (root == nullptr)
+	    	return false;
+	
+	  if (key < root->data)
+	    	return search(root->left, key);
+	  else if (key > root->data)
+	    	return search(root->right, key);
+	
+	  return true;
+}
+```
+</details> 
+</ul>  
+</details>
+
 #### Insertion
 ```cpp
-Node *insert(Node *root, int key)
+Node *insert(Node *root, int val)
 {
     if (root == nullptr)
     {
-        Node *newNode = new Node{key, nullptr, nullptr};
+        Node *newNode = new Node{val, nullptr, nullptr};
         return newNode;
     }
 
-    if (key < root ->data)
-        root->left = insert(root->left, key);
-    else if (key > root->data)
-        root->right = insert(root->right, key);
+    if (val < root ->data)
+        root->left = insert(root->left, val);
+    else if (val > root->data)
+        root->right = insert(root->right, val);
     
     return root;
 }
