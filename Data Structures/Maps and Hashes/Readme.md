@@ -180,7 +180,11 @@ A hash function will generate an integer that corresponds to the key in which th
 
 <code>find(key)</code>: O(1)
 
+<code>traverse()</code>:O(n)
+
 <code>erase(key)</code>: O(1)
+
+For the worse case scenario, the four methods above have complexity of O(n) if collisions cause chains
 
 <details>
     <summary>Example problem</summary>
