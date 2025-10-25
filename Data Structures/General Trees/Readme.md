@@ -428,11 +428,36 @@ struct Node {
 
 There are two common approaches to creating a priority queue using linked lists: using an unsorted list or using a sorted list
 
-#### Unsorted List
-Inserting a new element at the end of the queue is O(1), but dequeueing requires scanning the entire list for the highest-priority element, O(n)
-
-#### Sorted List
-A sorted list keeps the list sorted by priority at all times. Enqueueing must find the correct place, O(n). Dequeueing is O(1) as one needs to only remove the element at the front of the list, if the highest priority element is at the front of the list
+<table>
+  <thead>
+    <tr>
+      <th>List-Based Priority Queue</th>
+      <th>enqueue (insert)</th>
+      <th>dequeue (remove front)</th>
+      <th>remove min / max</th>
+      <th>search</th>
+      <th>notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Unsorted list</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>Fast insert; must scan to find min/max</td>
+    </tr>
+    <tr>
+      <td>Sorted list</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>Maintain order on insert; min/max at an end</td>
+    </tr>
+  </tbody>
+</table>
 
 <details>
     <summary>Example program</summary>
@@ -522,8 +547,6 @@ void swap(int *a, int *b)
 ```
 
 ### Time Complexities
-#### Peek
-Returns the root element, O(1)
 
 #### Enqueue (heapifyUp())
 Adds a new value to the heap and heapifies up until the heap property is restored, O(log n)
@@ -682,11 +705,37 @@ Final swap:
 </ul>  
 </details>
 
-### Search
-Finds a specific value anywhere in the heap, O(n)
+<table>
+  <thead>
+    <tr>
+      <th>Heap-Based Priority Queue</th>
+      <th>Insert (enqueue)</th>
+      <th>Remove min / max</th>
+      <th>Peek min / max</th>
+      <th>Remove non-root element</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Min-Heap</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>Root is smallest element; removing max requires scanning all leaves</td>
+    </tr>
+    <tr>
+      <td>Max-Heap</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>Root is largest element; removing min requires scanning all leaves</td>
+    </tr>
+  </tbody>
+</table>
 
-### Delete
-Removes an element from inside the heap, O(n)
 
 ## Binary Search Trees
 A <em>binary search tree</em> is a type of binary tree with the following properties:
@@ -827,6 +876,38 @@ Worst: O(n)
 Traversing a binary search tree can be done using preorder traversal, inorder traversal, and postorder traversal
 
 Time complexity is O(n)
+
+<table>
+  <thead>
+    <tr>
+      <th>Binary Search Tree (BST)</th>
+      <th>Insertion</th>
+      <th>Search</th>
+      <th>Deletion</th>
+      <th>Traversal (inorder, preorder, postorder)</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Unbalanced BST</td>
+      <td>O(h) (worst O(n))</td>
+      <td>O(h) (worst O(n))</td>
+      <td>O(h) (worst O(n))</td>
+      <td>O(n)</td>
+      <td>Performance depends on tree shape; can degenerate into a linked list</td>
+    </tr>
+    <tr>
+      <td>Balanced BST (AVL / Red-Black)</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(n)</td>
+      <td>Height kept near log n; used by std::map in C++</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## AVL Trees
 An <em>AVL</em> is a self-balancing binary search tree. It maintains the BST property and ensures that for every node in the tree, the height difference between its left and right subtrees is at most 1
