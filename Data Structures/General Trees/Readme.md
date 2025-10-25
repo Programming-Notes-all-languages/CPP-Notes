@@ -43,47 +43,22 @@ class Node
 
 <details>
     <summary>Example problem</summary>
-Count the number of nodes in a tree
-  <details>
-    <summary>Solution</summary>
-
-```cpp
-int countNodes(Node *root) {
-	if (root == nullptr)
-		return 0;
-	
-	return 1 + countNodes(root->left) + countNodes(root->right);
-}
-```
-
-Time complexity: O(n)
-
-Space complexity: O(n)
-</details> 
-</ul>  
-</details>
-
-<details>
-    <summary>Example problem</summary>
 Count the number of leaf nodes in a tree
   <details>
     <summary>Solution</summary>
 
 ```cpp
-int countLeaves(Node *root) {
+int count(Node *root)
+{
     if (root == nullptr)
         return 0;
-    
-    else if (root->left == nullptr && root->right == nullptr)
+
+    if (root->left == nullptr && root->right == nullptr)
         return 1;
     
-    return countLeaves(root->left) + countLeaves(root->right);
+    return count(root->left) + count(root->right);
 }
 ```
-
-Time complexity: O(n)
-
-Space complexity: O(n)
 </details> 
 </ul>  
 </details>
@@ -205,6 +180,7 @@ void preorder(Node *root)
         return;
   
     cout << root->data << " ";
+
     preorder(root->left);
     preorder(root->right);
 }
@@ -257,6 +233,7 @@ void postorder(Node *root)
 
     preorder(root->left);
     preorder(root->right);
+
     cout << root->data << " ";
 }
 ```
@@ -456,6 +433,50 @@ Inserting a new element at the end of the queue is O(1), but dequeueing requires
 
 #### Sorted List
 A sorted list keeps the list sorted by priority at all times. Enqueueing must find the correct place, O(n). Dequeueing is O(1) as one needs to only remove the element at the front of the list, if the highest priority element is at the front of the list
+
+<details>
+    <summary>Example program</summary>
+
+Given a min-heap based priority queue containing: [3, 8, 5, 10, 12, 9], insert an element with priority 4
+<ul>  
+  <details>
+    <summary>Solution</summary>
+<pre><code>
+        3
+       / \
+      8   5
+     / \   \
+   10  12   9
+  /
+ 
+</code></pre>
+
+<pre><code>
+        3
+       / \
+      8   5
+     / \   \
+   4   12   9
+  /
+ 10
+</code></pre>
+
+<pre><code>
+        3
+       / \
+      4   5
+     / \   \
+   8   12   9
+  /
+ 10
+</code></pre>
+
+```cpp
+[3, 8, 5, 4, 12, 9, 10]
+```
+</details> 
+</ul>  
+</details>
 
 ## Heaps
 There are two main types of heaps: max-heaps and min-heaps. The data structure to implement a binary heap is an array
@@ -715,28 +736,6 @@ $C = 5$
 </details>
 
 ### Operations
-
-<details>
-    <summary>Example problem</summary>
-Write a function to find the minimum value in a binary search tree
-  <details>
-    <summary>Solution</summary>
-
-```cpp
-int findMin(Node *root) {
-	  if (root == nullptr)
-		    return 0;
-		
-	  if (root->left == nullptr)
-		    return root->data;
-	
-	    return findMin(root->left);
-}
-```
-</details> 
-</ul>  
-</details>
-
 #### Searching a Binary Tree
 ```cpp
 Node *search(Node *root, int key)
@@ -755,43 +754,20 @@ Average time complexity: O(log n)
 
 Worst-case: O(n)
 
-<details>
-    <summary>Example problem</summary>
-Write a function that returns a boolean value indicating if a node in the tree is found
-  <details>
-    <summary>Solution</summary>
-
-```cpp
-bool search(Node *root, int key) {
-	  if (root == nullptr)
-	    	return false;
-	
-	  if (key < root->data)
-	    	return search(root->left, key);
-	  else if (key > root->data)
-	    	return search(root->right, key);
-	
-	  return true;
-}
-```
-</details> 
-</ul>  
-</details>
-
 #### Insertion
 ```cpp
-Node *insert(Node *root, int val)
+Node *insert(Node *root, int key)
 {
     if (root == nullptr)
     {
-        Node *newNode = new Node{val, nullptr, nullptr};
+        Node *newNode = new Node{key, nullptr, nullptr};
         return newNode;
     }
 
-    if (val < root ->data)
-        root->left = insert(root->left, val);
-    else if (val > root->data)
-        root->right = insert(root->right, val);
+    if (key < root ->data)
+        root->left = insert(root->left, key);
+    else if (key > root->data)
+        root->right = insert(root->right, key);
     
     return root;
 }
@@ -866,3 +842,275 @@ struct Node
     Node *left, *right;
 }
 ```
+
+### Balance Factor Formula
+BF = height(left) - height(right)
+
+<details>
+    <summary>Example program</summary>
+Given the AVL tree
+
+<pre><code>
+        40
+       /  \
+     25    60
+    / \    / \
+   10 30  50 70
+       \
+        35
+</code></pre>
+
+find the balance factor for every node
+<ul>  
+  <details>
+    <summary>Solution</summary>
+
+35: 0, height = 0<br />
+30: -1, height = 0<br />
+10: 0, height = 0<br />
+50: 0, height = 0<br />
+70: 0, height = 0<br />
+25: 1 - 2 = -1, height = 2<br />
+60: 1 - 1 = 0, height = 1<br />
+40: 3 - 2 = 1, height = 3<br />
+
+Conclusion: all nodes have |BF| <= 1; therefore, the tree is balanced and hence a valid AVL tree
+</details> 
+</ul>  
+</details>
+
+### Four Rotation Cases
+<table>
+  <thead>
+    <tr>
+      <th>Case</th>
+      <th>Insertion pattern</th>
+      <th>Imbalance at node</th>
+      <th>Rotation fix</th>
+      <th>Steps</th>
+      <th>Quick diagram (before → after)</th>
+      <th>Mnemonic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LL (Left–Left)</td>
+      <td>Inserted into <strong>left subtree of left child</strong></td>
+      <td>BF = +2 (left heavy)</td>
+      <td>Single <strong>Right</strong> rotation</td>
+      <td>RotateRight(z)</td>
+      <td>
+        <pre>    z               y
+   /               / \
+  y       →       x   z
+ /                   
+x                     </pre>
+      </td>
+      <td>LL → Right</td>
+    </tr>
+    <tr>
+      <td>RR (Right–Right)</td>
+      <td>Inserted into <strong>right subtree of right child</strong></td>
+      <td>BF = −2 (right heavy)</td>
+      <td>Single <strong>Left</strong> rotation</td>
+      <td>RotateLeft(z)</td>
+      <td>
+        <pre>  z                 y
+   \               / \
+    y     →       z   x
+     \               
+      x             </pre>
+      </td>
+      <td>RR → Left</td>
+    </tr>
+    <tr>
+      <td>LR (Left–Right)</td>
+      <td>Inserted into <strong>right subtree of left child</strong></td>
+      <td>BF = +2 at z; left child has BF = −1</td>
+      <td><strong>Double</strong> rotation</td>
+      <td>RotateLeft(y), then RotateRight(z)</td>
+      <td>
+        <pre>      z               z               x
+     /               /               / \
+    y       →       x       →       y   z
+     \             /                 
+      x           y                   </pre>
+      </td>
+      <td>LR → Left then Right</td>
+    </tr>
+    <tr>
+      <td>RL (Right–Left)</td>
+      <td>Inserted into <strong>left subtree of right child</strong></td>
+      <td>BF = −2 at z; right child has BF = +1</td>
+      <td><strong>Double</strong> rotation</td>
+      <td>RotateRight(y), then RotateLeft(z)</td>
+      <td>
+        <pre>  z                   z                 x
+   \                   \               / \
+    y         →         x     →       z   y
+   /                     \              
+  x                       y              </pre>
+      </td>
+      <td>RL → Right then Left</td>
+    </tr>
+  </tbody>
+</table>
+
+<details>
+    <summary>Example program</summary>
+Given the AVL tree
+
+<pre><code>
+        40
+       /  \
+     20    60
+    / \
+  10   30
+</code></pre>
+
+Insert the node with the value 5
+
+<ol type="a">
+  <li>WHich node becomes unbalanced?</li>
+  <li>What is its balance factor?</li>
+  <li>What rotation case is needed to fix it?</li>>
+<ul>  
+  <details>
+    <summary>Solution</summary>
+
+<pre><code>
+        40
+       /  \
+     20    60
+    / \
+  10   30
+ /    /
+5    25
+</code></pre>
+
+5: 0, height = 0<br />
+30: 0, height = 0<br />
+60: 0, height = 0<br />
+10: 1, height = 1<br />
+20: 1, height = 2<br />
+40: 2, height = 3<br />
+
+Conclusion: |BF| > 1 for node 40; therefore, the tree is not balanced and hence not a valid AVL tree
+
+A right rotation is needed to fix it
+
+Here is the final balanced tree:
+<pre><code>
+        20
+       /  \
+     10    40
+    /     /  \
+   5     30   60
+</code></pre>
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example program</summary>
+Given the AVL tree
+
+<pre><code>
+           50
+         /    \
+       30      70
+      /  \    /  \
+    20   40  60   80
+   /  
+ 10   
+</code></pre>
+
+Insert the node with the value 25
+
+<ol type="a">
+  <li>Which node becomes unbalanced?</li>
+  <li>What is its balance factor?</li>
+  <li>What rotation case is needed to fix it?</li>>
+<ul>  
+  <details>
+    <summary>Solution</summary>
+
+<pre><code>
+           50
+         /    \
+       30      70
+      /  \    /  \
+    20   40  60   80
+   /  \    
+ 10   25 
+</code></pre>
+
+10: 0, height = 0<br />
+25: 0, height = 0<br />
+40: 0, height = 0<br />
+60: 0, height = 0<br />
+80: 0, height = 0<br />
+20: 0, height = 1<br />
+30: 1, height = 2<br />
+70: 0, height = 1<br />
+50: 1, height = 3<br />
+
+Conclusion: |BF| <= 1 for all nodes; therefore, the tree is balanced and hence a valid AVL tree
+
+No rotation is needed here
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example program</summary>
+Given the AVL tree
+
+<pre><code>
+        50
+       /
+     30
+    / 
+  20
+    \
+     25
+</code></pre>
+
+
+
+<ol type="a">
+  <li>Which node becomes unbalanced?</li>
+  <li>What is its balance factor?</li>
+  <li>What rotation case is needed to fix it?</li>>
+<ul>  
+  <details>
+    <summary>Solution</summary>
+
+25: 0, height = 0<br />
+20: -1, height = 1<br />
+30: 2, height = 2<br />
+50: 3, height = 3<br />
+
+Conclusion: |BF| > 1 for some nodes; therefore, the tree is not balanced and hence not a valid AVL tree
+
+A left right rotation is needed, then followed by a right rotation
+<pre><code>
+        50
+       /
+     30
+    / 
+  25
+ /
+20
+</code></pre>
+
+<pre><code>
+        30
+       /  \
+     25    30
+    / 
+  20
+</code></pre>
+</details> 
+</ul>  
+</details>
