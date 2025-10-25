@@ -38,25 +38,91 @@ The key is unique and if another <code>"apple"</code> is inserted, it replaces t
 #### <code>put(key, value)</code>
 Adds a key-value pair or updates an existing one
 
-Complexity is O(n) because one must search through the whole list to see if the key already exists
-
-If a map is implemented with a list and one is determining time complexity, the following is needed:
-
-<ul>
-  <li>To insert a new key-value pair, one must check if the key already exists, since maps cannot have duplicates. That requires scanning through the entire list which is O(n)</li>
-  <li>Then if the key exists, one would have to search through all the values associated with that key, which again is O(n)</li>
-  <li>This makes the entire process O(n<sup>2</sup>)
-</ul>
-
 #### <code>find(key)</code>
 Looks for a key and returns its value
-
-Complexity is O(n) because one might need to check every element to find the key
 
 #### <code>erase(key)</code>
 Removes a key-value pair from the map
 
-Complexity is O(n) because one must find the key first
+<details>
+    <summary>Example problem</summary>
+Given the following code snippet:
+
+```cpp
+int main() {
+    map<int, string> m;
+    m[5] = "apple";
+    m[2] = "banana";
+    m[8] = "cherry";
+    m[2] = "grape";
+    m[10] = "pear";
+
+    for (auto p : m)
+        cout << p.first << ": " << p.second << endl;
+}
+```
+
+<ol type="a">
+  <li>How many elements are in the map at the end?</li>
+  <li>In what order will the keys print?</li>
+  <li>What value is stored in key 2?</li>
+  <li>What is the time complexity of each insertion?</li>
+</ol>
+  <details>
+    <summary>Solution</summary>
+
+<ol type ="a">
+  <li>4</li>
+  <li>"grape", "apple", "cherry", "pear"</li>
+  <li>"grape"</li>
+  <li>O(log n) if implemented with a AVL</li>
+</ol>
+</details> 
+</ul>  
+</details>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th>Insertion</th>
+      <th>Search</th>
+      <th>Deletion</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Linked List</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>Linear scan; simple but slow</td>
+    </tr>
+    <tr>
+      <td>Unbalanced BST</td>
+      <td>O(h) (worst O(n))</td>
+      <td>O(h) (worst O(n))</td>
+      <td>O(h) (worst O(n))</td>
+      <td>Performance depends on tree shape</td>
+    </tr>
+    <tr>
+      <td>Balanced BST (e.g., Red-Black / AVL) — <code>std::map</code></td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>Keys kept in sorted order</td>
+    </tr>
+    <tr>
+       <td>Hash Table — <code>std::unordered_map</code></td>
+      <td>O(1) average (worst O(n))</td>
+      <td>O(1) average (worst O(n))</td>
+      <td>O(1) average (worst O(n))</td>
+      <td>No ordering; depends on good hashing/load factor</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## Hashes
 A <em>hash</em> is a number of code generated from data, that represents a key
@@ -115,6 +181,104 @@ A hash function will generate an integer that corresponds to the key in which th
 <code>find(key)</code>: O(1)
 
 <code>erase(key)</code>: O(1)
+
+<details>
+    <summary>Example problem</summary>
+Given a hash table of size 7, using linear probing for collision resolution
+
+The function is: $h = k$ mod 7
+
+Insert the following keys in order: 10, 17, 24, 6, 31
+
+  <details>
+    <summary>Solution</summary>
+
+h(10) = 3<br />
+h(17) = 3 -> 4<br />
+h(24) = 3 -> 4 -> 5<br />
+h(6) = 6<br />
+h(31) = 3 -> 4 -> 5 -> 6 -> 0<br />
+
+Answer: [31, x, x, 10, 17, 24, 6]
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example problem</summary>
+Given a hash table of size 5 using chaining for collision resolution
+
+The hash function is: $h(k) = k$ mod 5
+
+Insert the following keys in order: 12, 7, 22, 17, 32
+  <details>
+    <summary>Solution</summary>
+
+h(12) = 2<br />
+h(7) = 2<br />
+h(22) = 2<br />
+h(17) = 2<br />
+h(32) = 2<br />
+
+Answer: [x, x, 12->7->22->17->32, x, x]
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example problem</summary>
+Given a hash table of size 7 using chaining for quadratic probing
+
+The hash function is: $h(k) = k$ mod 7
+
+Insert the following keys in order: 10, 17, 24, 31
+  <details>
+    <summary>Solution</summary>
+
+h(10) = 3<br />
+h(17) = 3 -> (3 + 1^2) mod 7 = 4<br />
+h(24) = 3 -> (3 + 1^2) mod 7 = 4 -> (3 + 2^2) mod 7 = 0<br />
+h(31) = 3 -> (3 + 1^2) mod 7 = 4 -> (3 + 2^2) mod 7 = 0 -> (3 + 3^3) mod 7 = 5<br />
+
+Answer: [24, x, x, 10, 17, 31, x]
+</details> 
+</ul>  
+</details>
+
+
+<details>
+    <summary>Example problem</summary>
+Given a hash table of size 7 using two hash functions:
+
+$h1(k) = k$ mod 7<br />
+$h2(k)$ 5 - ($k$ mod 5)
+
+Insert the following keys in order: 50, 700, 76, 85, 92, 73, 101
+  <details>
+    <summary>Solution</summary>
+
+index = $(h1(k) + i * h2(k))$ mod $m$
+
+h1(50) = 1<br />
+h1(700) = 0<br />
+h1(76) = 6<br />
+h1(85) = 1<br />
+h2(85) = 5 - (85 mod 5) = 5<br />
+index = (1 + 0 * 5) mod 7 = 1 -> (1 + 1 * 5) mod 7 = 6 -> (1 + 2 * 5) mod 7 = 4<br />
+h1(92) = 1<br />
+h2(92) = 5 - (92 mod 5) = 3<br />
+index = (1 + 0 * 3) mod 7 = 1 -> (1 + 1 * 3) mod 7 = 4 -> (1 + 2 * 3) mod 7 = 0 -> (1 + 3 * 3) = 3<br />
+h1(73) = 3<br />
+h2(73) = 5 - (73 mod 5) = 2<br />
+index = (3 + 0 * 2) mod 7 = 3 -> (3 + 1 * 2) mod 7 = 5<br />
+h1(101) = 3<br />
+h2(101) = 5 - (101 mod 5) = 4<br />
+index = (3 + 0 * 4) mod 7 = 3 -> (3 + 1 * 4) mod 7 = 0 -> (3 + 2 * 4) mod 7 = 4 -> (3 + 3 * 4) mod 7 = 1 -> (3 + 4 * 4) mod 7 = 5 -> (3 + 5 * 4) mod 7 = 2<br />
+
+Answer: [700, 50, 101, 02, 85, 73, 76]
+</details> 
+</ul>  
+</details>
 
 <details>
     <summary>Example problem</summary>
