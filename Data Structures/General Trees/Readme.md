@@ -473,7 +473,7 @@ Given a min-heap based priority queue containing: [3, 8, 5, 10, 12, 9], insert a
      / \   \
    10  12   9
   /
- 
+ 4
 </code></pre>
 
 <pre><code>
@@ -497,7 +497,7 @@ Given a min-heap based priority queue containing: [3, 8, 5, 10, 12, 9], insert a
 </code></pre>
 
 ```cpp
-[3, 8, 5, 4, 12, 9, 10]
+[3, 4, 5, 8, 12, 9, 10]
 ```
 </details> 
 </ul>  
@@ -1054,7 +1054,8 @@ Insert the node with the value 5
 <ol type="a">
   <li>WHich node becomes unbalanced?</li>
   <li>What is its balance factor?</li>
-  <li>What rotation case is needed to fix it?</li>>
+  <li>What rotation case is needed to fix it?</li>
+</ol>
 <ul>  
   <details>
     <summary>Solution</summary>
@@ -1065,8 +1066,8 @@ Insert the node with the value 5
      20    60
     / \
   10   30
- /    /
-5    25
+ / 
+5 
 </code></pre>
 
 5: 0, height = 0<br />
@@ -1111,7 +1112,8 @@ Insert the node with the value 25
 <ol type="a">
   <li>Which node becomes unbalanced?</li>
   <li>What is its balance factor?</li>
-  <li>What rotation case is needed to fix it?</li>>
+  <li>What rotation case is needed to fix it?</li>
+</ol>
 <ul>  
   <details>
     <summary>Solution</summary>
@@ -1162,7 +1164,8 @@ Given the AVL tree
 <ol type="a">
   <li>Which node becomes unbalanced?</li>
   <li>What is its balance factor?</li>
-  <li>What rotation case is needed to fix it?</li>>
+  <li>What rotation case is needed to fix it?</li>
+</ol>
 <ul>  
   <details>
     <summary>Solution</summary>
