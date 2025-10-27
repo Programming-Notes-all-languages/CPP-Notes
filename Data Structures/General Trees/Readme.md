@@ -315,7 +315,7 @@ Node *create(int data)
 void traverseTree(Node *root)
 {
     if (root == nullptr)
-        return
+        return;
     
     traverseTree(root->left);
     traverseTree(root->right);
