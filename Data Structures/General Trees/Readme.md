@@ -338,6 +338,20 @@ Draw an arithmetic expression tree that has four external nodes, storing the num
 </ul>  
 </details>
 
+        50
+       /  \
+     40    70
+    /  \   
+   20  45  
+    \ 
+    30
+
+        40
+       /  \
+     20    50
+       \    / \
+      30   45   70
+
 <details>
     <summary>Example program</summary>
 Draw the binary tree representation of the following arithmetic expression: (((5 + 4) / (2 + 1)) * (((3 + 6) - 7) / (9 - 7)) * 8)

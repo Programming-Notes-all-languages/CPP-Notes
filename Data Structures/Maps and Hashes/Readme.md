@@ -170,6 +170,16 @@ for (auto it = m.begin(); it != m.end(); ++it)
 
 ```
 
+### Load Factor
+The <em>load factor</em> measures how full a hash table is where
+
+<div align="center">
+
+$LF$ = number of elements / number of buckets
+</div>
+
+A higher load factor means the table is more crowded, which increases the chance of collisions
+
 ### Hash Map
 A <em>hash map</em> is a data structure that stores key-value pairs using their hash code to decide where to put them in an array
 
@@ -261,7 +271,7 @@ Insert the following keys in order: 50, 700, 76, 85, 92, 73, 101
   <details>
     <summary>Solution</summary>
 
-index = $(h1(k) + i * h2(k))$ mod $m$
+index = $(h1(k) + i * h2(k))$ mod $m$, where $m$ is the size of the hash table
 
 h1(50) = 1<br />
 h1(700) = 0<br />
@@ -275,7 +285,7 @@ index = (1 + 0 * 3) mod 7 = 1 -> (1 + 1 * 3) mod 7 = 4 -> (1 + 2 * 3) mod 7 = 0 
 h1(73) = 3<br />
 h2(73) = 5 - (73 mod 5) = 2<br />
 index = (3 + 0 * 2) mod 7 = 3 -> (3 + 1 * 2) mod 7 = 5<br />
-h1(101) = 3<br />
+h1(101) = 3<br />x
 h2(101) = 5 - (101 mod 5) = 4<br />
 index = (3 + 0 * 4) mod 7 = 3 -> (3 + 1 * 4) mod 7 = 0 -> (3 + 2 * 4) mod 7 = 4 -> (3 + 3 * 4) mod 7 = 1 -> (3 + 4 * 4) mod 7 = 5 -> (3 + 5 * 4) mod 7 = 2<br />
 
