@@ -41,6 +41,15 @@ class Node
 }
 ```
 
+### Space Complexity
+| Case                                 | What it means                      | Space Complexity |
+| ------------------------------------ | ---------------------------------- | ---------------- |
+| **Tree storage itself**              | Total space to hold `n` nodes      | **O(n)**         |
+| **Recursive or iterative traversal** | Call stack or explicit stack/queue | **O(h)**         |
+| **Balanced tree**                    | Height `h = log n`                 | **O(log n)**     |
+| **Skewed tree**                      | Height `h = n`                     | **O(n)**         |
+
+
 <details>
     <summary>Example problem</summary>
 Count the number of leaf nodes in a tree
@@ -338,20 +347,6 @@ Draw an arithmetic expression tree that has four external nodes, storing the num
 </ul>  
 </details>
 
-        50
-       /  \
-     40    70
-    /  \   
-   20  45  
-    \ 
-    30
-
-        40
-       /  \
-     20    50
-       \    / \
-      30   45   70
-
 <details>
     <summary>Example program</summary>
 Draw the binary tree representation of the following arithmetic expression: (((5 + 4) / (2 + 1)) * (((3 + 6) - 7) / (9 - 7)) * 8)
@@ -378,6 +373,16 @@ A priority queue is a special type of queue in which each elements has a priorit
 Unlike a regular queue which is first-in-first-out, a priority queue dequeues elements based on priority, not position. Highest-priority elements are removed first
 
 A priority queue can be implemented using an array or linked list, but a heap is the most common and most efficient data structure used to implement this ADT
+
+### Space Complexity
+| Implementation                  | Explanation                                            | Space Complexity | Notes                                           |
+| ------------------------------- | ------------------------------------------------------ | ---------------- | ----------------------------------------------- |
+| **Unsorted list / array**       | Elements stored linearly; find-min/max by scanning.    | **O(n)**         | Simple, but inefficient for retrieval.          |
+| **Sorted list / array**         | Always kept sorted; insert requires shifting elements. | **O(n)**         | Still linear storage.                           |
+| **Binary heap**                 | Stored as a complete binary tree in an array.          | **O(n)**         | Very efficient and compact.                     |
+| **Auxiliary space**             | During insert/delete operations.                       | **O(1)**         | Operations done in-place (except recursion).    |
+| **Recursive heapify (if used)** | Each recursive call adds one frame.                    | **O(log n)**     | Only if heapify is recursive; iterative = O(1). |
+
 
 <details>
     <summary>Example program</summary>
@@ -442,6 +447,7 @@ struct Node {
 
 There are two common approaches to creating a priority queue using linked lists: using an unsorted list or using a sorted list
 
+### Time Complexity
 <table>
   <thead>
     <tr>
@@ -520,7 +526,15 @@ Given a min-heap based priority queue containing: [3, 8, 5, 10, 12, 9], insert a
 ## Heaps
 There are two main types of heaps: max-heaps and min-heaps. The data structure to implement a binary heap is an array
 
-Space complexity is O(n)
+### Space Complexity
+| Scenario                             | Explanation                                   | Space Complexity | Notes                                 |
+| ------------------------------------ | --------------------------------------------- | ---------------- | ------------------------------------- |
+| **Heap storage**                     | Complete binary tree stored in an array.      | **O(n)**         | n = number of elements.               |
+| **Insertion / Deletion (iterative)** | Operations done in-place (percolate up/down). | **O(1)**         | No extra memory needed.               |
+| **Heapify (bottom-up, in-place)**    | Builds heap directly in the given array.      | **O(1)**         | No additional array created.          |
+| **Heapify (recursive)**              | Each recursive call adds one stack frame.     | **O(log n)**     | Due to recursion depth = tree height. |
+| **Auxiliary space overall**          | Temporary or extra structures.                | **O(1)**         | Negligible extra space.               |
+
 
 ### Max-Heaps
 <em>Max-heaps</em> are where every parent node is larger than, or equal to, its children. The root is the maximum element
@@ -719,6 +733,7 @@ Final swap:
 </ul>  
 </details>
 
+### Time Complexity
 <table>
   <thead>
     <tr>
@@ -891,6 +906,7 @@ Traversing a binary search tree can be done using preorder traversal, inorder tr
 
 Time complexity is O(n)
 
+### Time Complexity
 <table>
   <thead>
     <tr>
@@ -921,6 +937,15 @@ Time complexity is O(n)
     </tr>
   </tbody>
 </table>
+
+### Space Complexity
+| Scenario                                          | Explanation                                                       | Space Complexity | Notes                       |
+| ------------------------------------------------- | ----------------------------------------------------------------- | ---------------- | --------------------------- |
+| **Tree storage**                                  | Each node stores a key, value (optional), and two child pointers. | **O(n)**         | n = number of nodes.        |
+| **Recursive operations (insert, search, delete)** | Call stack depth equals the height of the tree.                   | **O(h)**         | h = tree height.            |
+| **Balanced BST**                                  | Height ≈ log n.                                                   | **O(log n)**     | AVL, Red-Black, etc.        |
+| **Skewed BST**                                    | Height ≈ n (like a linked list).                                  | **O(n)**         | Worst case when unbalanced. |
+| **Auxiliary structures**                          | Temporary variables or stacks for traversal.                      | **O(h)**         | Same as recursion depth.    |
 
 
 ## AVL Trees
@@ -1212,3 +1237,11 @@ A left right rotation is needed, then followed by a right rotation
 </details> 
 </ul>  
 </details>
+
+### Space Complexity
+| Scenario                                          | Explanation                                                          | Space Complexity | Notes                                                  |
+| ------------------------------------------------- | -------------------------------------------------------------------- | ---------------- | ------------------------------------------------------ |
+| **Tree storage**                                  | Each node stores data, left/right pointers, and balance/height info. | **O(n)**         | n = number of nodes; height info is constant per node. |
+| **Recursive operations (insert, search, delete)** | Uses the call stack up to the height of the tree.                    | **O(log n)**     | Height of AVL tree = log n.                            |
+| **Balancing / Rotations**                         | Performed locally (constant number of pointer swaps).                | **O(1)**         | No extra structures used.                              |
+| **Auxiliary space overall**                       | Temporary variables, recursion stack, etc.                           | **O(log n)**     | Due to recursion depth.                                |

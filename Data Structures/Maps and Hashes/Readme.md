@@ -430,3 +430,11 @@ Draw the 11-entry hash table that results from using the hash function, h(k) = (
 </details> 
 </ul>  
 </details>
+
+### Space Complexity
+| Implementation                             | Explanation                                                           | Space Complexity                   | Notes                                   |
+| ------------------------------------------ | --------------------------------------------------------------------- | ---------------------------------- | --------------------------------------- |
+| **Hash Table (with chaining)**             | Uses an array of buckets; each bucket holds a linked list of entries. | **O(n)**                           | n = total key–value pairs.              |
+| **Hash Table (open addressing / probing)** | Stores all entries directly in the array.                             | **O(n)**                           | Still linear in the number of elements. |
+| **Auxiliary structures**                   | Temporary memory used for insert, search, etc.                        | **O(1)**                           | Operations are in-place.                |
+| **Resizing / rehashing**                   | Table doubles in size when load factor is exceeded.                   | **O(2n)** → simplifies to **O(n)** | Temporary extra array during resize.    |
