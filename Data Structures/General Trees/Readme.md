@@ -41,6 +41,52 @@ class Node
 }
 ```
 
+### Complete Binary Tree
+All levels are filled except last; last filled left to right
+
+```cpp
+        1
+      /   \
+     2     3
+    / \   /
+   4  5  6
+```
+
+### Proper Binary Tree
+Every node has 0 or 2 children
+
+### Perfect Binary Tree
+Both full and leaves are all at the same level
+
+```cpp
+        1
+      /   \
+     2     3
+    / \   / \
+   4  5  6  7
+```
+
+<details>
+    <summary>Example problem</summary>
+A perfect binary tree has height 3
+
+<ol type="a">
+  <li>How many total nodes does it have?</li>
+  <li>How many internal nodes?</li>
+  <li>How many leaves?</li>
+</ol>
+  <details>
+    <summary>Solution</summary>
+
+<ol type="a">
+  <li>15</li>
+  <li>7</li>
+  <li>8</li>
+</ol>
+</details> 
+</ul>  
+</details>
+
 ### Space Complexity
 | Case                                 | What it means                      | Space Complexity |
 | ------------------------------------ | ---------------------------------- | ---------------- |
@@ -66,6 +112,28 @@ int count(Node *root)
         return 1;
     
     return count(root->left) + count(root->right);
+}
+```
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example problem</summary>
+Write a simple recursive function that prints the expanded form of a linked binary tree
+  <details>
+    <summary>Solution</summary>
+
+```cpp
+void printExpanded(Node *root) {
+    if (root == nullptr) {
+        cout << "External ";
+        return;
+    }
+
+    cout << root->data << " ";
+    printExpanded(root->left);
+    printExpanded(root->right);
 }
 ```
 </details> 
