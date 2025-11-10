@@ -64,6 +64,8 @@ Two or more edges that connect the same pair of vertices are parallel edges
 #### Self Loop
 A self loop is an edge that connects a vertex to itself
 
+A single self loop adds two degrees to a vertex
+
 ### Undirected Graphs
 Edges go both ways where the connection between A-B is the same as the connection between B-A
 
@@ -206,3 +208,102 @@ C [0, 1, 1]
     <td>Slow add/remove vertices/edges for matrix resize/copy</td>
   </tr>
 </table>
+
+<details>
+    <summary>Example problem</summary>
+Of the three data structures (Adjacency List, Adjacency Matrix, and Incidence Matrix),
+what would have the smallest memory footprint for a simple undirected graph with:
+
+6 vertices and 4 edges50 vertices and 60 edges
+
+  <details>
+    <summary>Solution</summary>
+
+Space Complexities:<br />
+Adjacency list: O(V + E)<br />
+Adjacency Matrix: O(V<sup>2</sup>)<br />
+Incidence Matrix: O(V x E)<br />
+
+Space Complexities:<br />
+Adjacency list: 6 + 4 = 10 ✅<br />
+Adjacency Matrix: 6<sup>2</sup> = 36<br />
+Incidence Matrix: 6 * 4 = 24<br />
+</details> 
+</ul>  
+</details>
+
+### Maximum Number of Edges in a Graph
+#### Undirected Graph
+$E = V(V - 1) / 2$
+
+#### Directed Graph
+$E = V(V - 1)$
+
+<details>
+    <summary>Example problem</summary>
+Can the worst-case memory footprint of an Adjacency Matrix be smaller than an Adjacency List
+
+<ol type="a">
+<li>For a simple undirected graph?</li>
+<li>For a simple directed graph?</li>
+</ol>
+
+  <details>
+    <summary>Solution</summary>
+
+<ol type="a">
+<li>
+
+Matrix space: $O(V$<sup>2</sup>$)$<br />
+
+List space: $O(V + E)$<br />
+
+Maximum number of edges for undirected graph: $E = V(V - 1) / 2$<br />
+
+$V$<sup>2</sup> $< V + E$<br />
+
+$V$<sup>2</sup> $< V + V(V - 1) / 2$<br />
+
+$V$<sup>2</sup> $< V + V$<sup>2</sup>$ / 2 - V / 2$<br />
+
+$V$<sup>2</sup> $< V$<sup>2</sup>$ / 2 + V / 2$<br />
+
+This is impossible so no the adjacency matrix is never smaller for an undirected graph
+</li>
+<li>
+
+Matrix space: $O(V$<sup>2</sup>$)$<br />
+
+List space: $O(V + E)$<br />
+
+Maximum number of edges for directed graph: $E = V(V - 1)$<br />
+
+$V$<sup>2</sup> $< V + E$<br />
+
+$V$<sup>2</sup> $< V + V(V - 1)$<br />
+
+$V$<sup>2</sup> $< V + V$<sup>2</sup>$ - V$<br />
+
+$V$<sup>2</sup> $< V$<sup>2</sup><br />
+
+This is impossible so no the adjacency matrix is never smaller for an directed graph graph
+</li>
+</ol>
+</details> 
+</ul>  
+</details>
+
+<details>
+    <summary>Example problem</summary>
+A complete directed graph has every possible edge (including direction).
+If it has n vertices, how many entries (cells) would exist in the adjacency matrix?
+
+  <details>
+    <summary>Solution</summary>
+
+Maximum number of edges for directed graph: $E = n(n - 1)$<br />
+
+There would be $n$ <sup>2</sup> edges
+</details> 
+</ul>  
+</details>
