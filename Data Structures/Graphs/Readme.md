@@ -244,15 +244,50 @@ An undirected graph $T$ such that it is connected and acyclic
 The number of vertices in a tree graph with n vertices has n - 1 edges 
 
 #### Forests
-An undirected graph with no cycles and each connected component of a forest is a tree
+Is a collection of disconnected trees. An undirected graph with no cycles and each connected component of a <em>forest</em> is a tree
 
 ### Spanning Trees and Spanning Forests
 #### Spanning Trees
 A spanning subgraph that is a tree:
 <ul>
 <li>Contains all vertices</li>
+<li>Is connected</li>
+<li>Has no cycles</li>
 <li>n vertices --> n-1 edges</li>
 </ul>
 
+#### Spanning Forests
+If the graph is not connected, a <em>spanning forest</em> contains one spanning tree per component
+
 ### Depth-First Search
-A DFS traversal visits all vertices and edges; determines if $G$ is connected; computes connected components; computes a spanning forest
+A DFS traversal visits all vertices and edges; determines if $G$ is connected; computes connected components; computes a spanning forest.l It is not used for finding the shortest path
+
+Explore as far as possible along each branch before backtracking using a stack
+
+#### Time Complexity
+O(V + E)
+
+#### S-ace Complexity
+O(V)
+
+#### Breadth-First Search
+Explore a graph level by level and finds the shortest path in edges between vertices in an unweighted graph using a queue
+
+#### Time Complexity
+O(V + E)
+
+#### Space Complexity
+O(V)
+
+### Dijkstra's Algorithm
+Finds the shortest weighted paths from a starting vertex to all other vertices
+
+#### Time Complexities
+| Data Structure for Priority Queue | Time Complexity      |
+| --------------------------------- | -------------------- |
+| Array                             | O(V²)                |
+| Binary Heap                       | **O((V + E) log V)** |
+| Fibonacci Heap                    | O(E + V log V)       |
+
+#### Space Complexity
+O(V)
