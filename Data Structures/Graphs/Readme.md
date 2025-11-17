@@ -364,3 +364,6 @@ Total weight: 1 + 2 + 3 = 6
 </details> 
 </ul>  
 </details>
+
+### Prim's and Kruskal's Algorithm Comparisons
+Both algorithms produce the same total weight minimum spanning tree; however, they do not always produce the same exact set of edges
