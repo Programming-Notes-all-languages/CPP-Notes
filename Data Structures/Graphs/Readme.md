@@ -291,3 +291,76 @@ Finds the shortest weighted paths from a starting vertex to all other vertices
 
 #### Space Complexity
 O(V)
+
+### Prim's Algorithm
+Starting from any vertex, add the minimum-weight edge from the tree to any new vertex. Continue adding the cheapest valid edge until all vertices are included
+
+This is Dijkstra-like, but it uses a priority queue
+
+<details>
+    <summary>Example program</summary>
+Given the following graph, perform Prim's algorithm
+
+<pre>
+  (2)
+A ---- B
+| \    |
+|3 \5  | 1
+|    \ |
+C ---- D
+   (4)
+</pre>
+<ul>  
+  <details>
+    <summary>Solution</summary>
+
+Minimum spanning tree result:
+<pre>
+  (2)
+A ---- B
+|      |
+|3     | 1
+|      |
+C      D
+</pre>
+
+Total weight: 1 + 2 + 3 = 6
+</details> 
+</ul>  
+</details>
+
+### Kruskal's Algorithm
+Start with picking the edge that has the smallest weight and continue to sort all edges by weight, ascending. For each edge in sorted order: add it if it does not create a cycle and skip it if it would create a cycle. Continue until there are n - 1 edges
+
+<details>
+    <summary>Example program</summary>
+Given the following graph, perform Prim's algorithm
+
+<pre>
+  (2)
+A ---- B
+| \    |
+|3 \5  | 1
+|    \ |
+C ---- D
+   (4)
+</pre>
+<ul>  
+  <details>
+    <summary>Solution</summary>
+
+Minimum spanning tree result:
+<pre>
+  (2)
+A ---- B
+|      |
+|3     | 1
+|      |
+C      D
+   
+</pre>
+
+Total weight: 1 + 2 + 3 = 6
+</details> 
+</ul>  
+</details>
