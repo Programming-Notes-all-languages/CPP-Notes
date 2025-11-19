@@ -267,7 +267,7 @@ Explore as far as possible along each branch before backtracking using a stack
 #### Time Complexity
 O(V + E)
 
-#### S-ace Complexity
+#### Space Complexity
 O(V)
 
 #### Breadth-First Search
@@ -329,6 +329,14 @@ Total weight: 1 + 2 + 3 = 6
 </ul>  
 </details>
 
+#### Time Complexity
+For a heap and a list: O(E log V)
+
+For a matrix: O(V<sup>2</sup>)
+
+#### Space Complexity
+O(V + E) or O(V<sup>2</sup>)
+
 ### Kruskal's Algorithm
 Start with picking the edge that has the smallest weight and continue to sort all edges by weight, ascending. For each edge in sorted order: add it if it does not create a cycle and skip it if it would create a cycle. Continue until there are n - 1 edges
 
@@ -365,5 +373,12 @@ Total weight: 1 + 2 + 3 = 6
 </ul>  
 </details>
 
+#### Time Complexity
+O(E log E)
+
+#### Space Complexity
+O(V + E)
+
 ### Prim's and Kruskal's Algorithm Comparisons
 Both algorithms produce the same total weight minimum spanning tree; however, they do not always produce the same exact set of edges
+
