@@ -1,5 +1,6 @@
 #include "Graph.hpp"
 #include "PriorityQueue.hpp"
+#include <algorithm>
 using namespace std;
 
 void Graph::addVertex(string label)
@@ -91,7 +92,8 @@ unsigned long Graph::shortestPath(string labelStart, string labelEnd, vector<str
     unordered_map<string, string> prev;
     unordered_map<string, bool> visited;
     PriorityQueue queue;
-    int min;
+    unsigned long alternate;
+    string current;
 
     queue.push(labelStart, 0);
 
@@ -106,7 +108,7 @@ unsigned long Graph::shortestPath(string labelStart, string labelEnd, vector<str
     if (!foundLabel1 || !foundLabel2)
         return ULONG_MAX;
     
-    for (; it != adjacentList.end(); it++)
+    for (it = adjacentList.begin(); it != adjacentList.end(); it++)
     {
         dist[it->first] = ULONG_MAX;
         prev[it->first] = "";
@@ -117,6 +119,45 @@ unsigned long Graph::shortestPath(string labelStart, string labelEnd, vector<str
 
     while (!queue.empty())
     {
+        auto[u, d] = queue.pop();
+
+        if (visited[u])
+            continue;
         
+        visited[u] = true;
+
+        if (u == labelEnd)
+            break;
+        
+        for (auto it = adjacentList[u].begin(); it != adjacentList[u].end(); it++)
+        {
+            alternate = dist[u] + it->second;
+
+            if (alternate < dist[it->first])
+            {
+                dist[it->first] = alternate;
+                prev[it->first] = u;
+
+                queue.push(it->first, alternate);
+            }
+        }
     }
+
+    path.clear();
+    current = labelEnd;
+
+    while (current != "" && prev.find(current) != prev.end())
+    {
+        path.push_back(current);
+        current = prev[current];
+    }
+
+    reverse(path.begin(), path.end());
+
+    return dist[labelEnd];
+}
+
+Graph::~Graph()
+{
+    
 }
