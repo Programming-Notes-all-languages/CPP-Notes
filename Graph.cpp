@@ -174,16 +174,19 @@ unsigned long Graph::shortestPath(string labelStart, string labelEnd, vector<str
         if (u == labelEnd)
             break;
         
-        //for loop 
+        //for loop which iterates over each edge on the current vertex
         for (auto it = adjacentList[u].begin(); it != adjacentList[u].end(); it++)
         {
+            //finding the length of the path
             alternate = dist[u] + it->second;
 
+            //selection statement seeing if the current length is less than the distance from the first vertex
             if (alternate < dist[it->first])
             {
                 dist[it->first] = alternate;
                 prev[it->first] = u;
 
+                //push the current vertex to the priority queue
                 queue.push(it->first, alternate);
             }
         }
@@ -192,7 +195,7 @@ unsigned long Graph::shortestPath(string labelStart, string labelEnd, vector<str
     path.clear();
     current = labelEnd;
 
-
+    //while loop which iterates until the current vertex is not blank and other condition
     while (current != "" && prev.find(current) != prev.end())
     {
         path.push_back(current);
