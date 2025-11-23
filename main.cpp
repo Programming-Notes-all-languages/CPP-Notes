@@ -6,14 +6,15 @@ using namespace std;
 
 int main() {
 
+    //the following main function is an example of running Dijkstra's algorithm
     Graph g;
 
-    // Add vertices
+    //add vertices to the graph
     vector<string> vertices = { "1", "2", "3", "4", "5", "6" };
     for (auto &v : vertices)
         g.addVertex(v);
 
-    // Add edges
+    //add edges to the graph
     g.addEdge("1", "2", 7);
     g.addEdge("1", "3", 9);
     g.addEdge("1", "6", 14);
@@ -24,11 +25,11 @@ int main() {
     g.addEdge("4", "5", 6);
     g.addEdge("5", "6", 9);
 
-    // Run Dijkstra
+    //run Dijkstra algorithm
     vector<string> path;
     unsigned long result = g.shortestPath("1", "5", path);
 
-    // Print result
+    //print results
     cout << "Shortest path cost: " << result << endl;
     cout << "Path: ";
     for (string &step : path)
