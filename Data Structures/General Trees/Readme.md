@@ -236,6 +236,55 @@ int sum(Node *root)
 </ul>  
 </details>
 
+### expandExternal(p)
+This function turns a leaf node into an internal node by adding two children
+
+```cpp
+void expandExternal(const Position &p)
+{
+    Node *v = p.v;
+    Node *newNodeL = new Node;
+    Node *newNodeR = new Node;
+
+    v->left =  newNodeL;
+    v->left->parent = v;
+    v->right = newNodeR;
+    v->right->parent = v;
+
+    size += 2;
+}
+```
+
+### removeAboveExternal(p)
+This function removes a node, its parent, and its sibling node. It connects the tree with a given node called p that is the leaf node
+
+```cpp
+Node *removeAboveExternal(const Position &p)
+{
+    Node *v = p-par; //parent
+    Node *sib = (p == v->left) ? v->right : v->left; //sibling
+
+    if (v == root) //if parent is root
+    {
+        root = sib;
+        sib->parent = nullptr;
+    }
+
+    else //grandparent
+    {
+        Node *g = v->par;
+        if (v == g->left) g->left = sib;
+        else g->right = sib;
+        sib->par = g;
+    }
+
+    delete p;
+    delete v;
+    n -= 2;
+    return sib;
+}
+```
+
 ### Preorder
 Preorder traversal starts at the root, then goes left to right. Visit the current node first, then recursively visit the left subtree, then the right subtree
 
