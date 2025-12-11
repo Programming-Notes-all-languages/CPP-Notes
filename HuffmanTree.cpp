@@ -2,6 +2,7 @@
 #include "HeapQueue.hpp"
 #include <iostream>
 #include <map>
+#include <stack>
 using namespace std;
 
 //compress method definition which turns the input string into a binary string using Huffman encoding
@@ -173,35 +174,45 @@ void HuffmanTree::serialize(HuffmanNode *node, string &output) const
 //deserialize method for constructing a Huffman tree from the previously created serialized string
 HuffmanNode *HuffmanTree::deserialize(const string &serialized, int &index)
 {
-    //this condition will prevent the string from being read past its last character
-    if (index >= serialized.size())
-        return nullptr;
+    char token, ch;
+    stack<HuffmanNode *> stk;
 
-    //if the current character in the serialized string is L, indicating a leaf node, the next character is stored. The index is then advanced by two positions skipping L and the newly stored character
-    if (serialized[index] == 'L')
+    for (int i = 0; i < (int)serialized.size();)
     {
-        HuffmanNode *node = new HuffmanNode(serialized[index + 1], 0);
-        index += 2;
-        return node;
+        token = serialized[i++];
+
+        //if the current character in the serialized string is L, indicating a leaf node, the next character is stored. The index is then advanced by two positions skipping L and the newly stored character
+        if (token == 'L')
+        {
+            ch = serialized[i++];
+
+            HuffmanNode *node = new HuffmanNode(ch, 0);
+            stk.push(node);
+        }
+
+        //otherwise, if the current character in the serialized string is B, indicating a branch node
+        else if (token == 'B')
+        {
+            if (stk.size() < 2) break;
+            
+            HuffmanNode *right = stk.top(); 
+            stk.pop();
+            HuffmanNode *left  = stk.top(); 
+            stk.pop();
+
+            //create the parent node with the two children pointer nodes from above
+            HuffmanNode *parent = new HuffmanNode('\0', 0);
+            parent->left = left;
+            parent->right = right;
+
+            left->parent = parent;
+            right->parent = parent;
+
+            stk.push(parent);
+        }
     }
 
-    //otherwise, if the current character in the serialized string is B, indicating a branch node
-    else if (serialized[index] == 'B')
-    {
-        index++;
-        
-        //then create a new Huffman node pointer pointing to the current character in the string at index index
-        HuffmanNode *right = this->deserialize(serialized, index);
-        //then create a new Huffman node pointer pointing to the current character in the string at index index
-        HuffmanNode *left = this->deserialize(serialized, index);
+    index = serialized.size();  
 
-        //create the parent node with the two children pointer nodes from above
-        HuffmanNode *parent = new HuffmanNode('\0', 0);
-        parent->left = left;
-        parent->right = right;
-
-        return parent;
-    }
-
-    return nullptr;
+    return stk.empty() ? nullptr : stk.top();
 }
