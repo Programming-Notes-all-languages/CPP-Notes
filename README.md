@@ -84,7 +84,14 @@
 <details>
   <summary>Data Structures and Algorithms</summary>
 
+- [Analysis of Algorithms](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/Analysis%20of%20Algorithms)
+- [Lists, Vectors, and Sequences](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/Lists%2C%20Vectors%2C%20and%20Sequences)
 - [Stacks, Queues, and Deques](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/Stacks%2C%20Queues%2C%20and%20Deque)
+- [Iterators](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/Iterators)
+- [Maps and Hashes](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/Maps%20and%20Hashes)
+- [General Trees](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/General%20Trees)
+- [Graphs](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/Graphs)
+- [Functional Programming](https://github.com/Programming-Notes-all-languages/CPP-Notes/tree/main/Data%20Structures/Functional%20Programming)
 
 </details>
 
