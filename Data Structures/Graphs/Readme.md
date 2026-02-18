@@ -244,18 +244,13 @@ An undirected graph $T$ such that it is connected and acyclic
 The number of vertices in a tree graph with n vertices has n - 1 edges 
 
 #### Forests
-<<<<<<< HEAD
-Is a collection of disconnected trees. An undirected graph with no cycles and each connected component of a <em>forest</em> is a tree
-=======
 An undirected graph with no cycles and each connected component of a forest is a tree
->>>>>>> c664a4c (update)
 
 ### Spanning Trees and Spanning Forests
 #### Spanning Trees
 A spanning subgraph that is a tree:
 <ul>
 <li>Contains all vertices</li>
-<<<<<<< HEAD
 <li>Is connected</li>
 <li>Has no cycles</li>
 <li>n vertices --> n-1 edges</li>
@@ -387,10 +382,8 @@ O(V + E)
 ### Prim's and Kruskal's Algorithm Comparisons
 Both algorithms produce the same total weight minimum spanning tree; however, they do not always produce the same exact set of edges
 
-=======
 <li>n vertices --> n-1 edges</li>
 </ul>
 
 ### Depth-First Search
 A DFS traversal visits all vertices and edges; determines if $G$ is connected; computes connected components; computes a spanning forest
->>>>>>> c664a4c (update)
