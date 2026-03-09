@@ -1,4 +1,4 @@
-<a href="https://www.linkedin.com/in/garrett-ellis-740b202a6/">
+<a href="https://www.linkedin.com/in/garrett--ellis/">
     <img src="https://github.com/user-attachments/assets/157c558a-4187-4996-b5d6-74983ef8a0f2" title="Go to my LinkedIn" alt="GitHub Header Image">
 </a>
 
@@ -99,5 +99,5 @@
   <p>📫 How to reach me: egarrett021@gmail.com</p>
   <p>
     <a href="https://github.com/garrettbovo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" alt="GitHub" height="40"></a>
-    <a href="https://www.linkedin.com/in/garrett-ellis-740b202a6/"><img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="LinkedIn" height="40"></a>
+    <a href="https://www.linkedin.com/in/garrett--ellis/"><img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="LinkedIn" height="40"></a>
   </p>
