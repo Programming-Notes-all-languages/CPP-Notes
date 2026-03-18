@@ -1,5 +1,5 @@
 <a href="https://www.linkedin.com/in/garrett--ellis/">
-    <img src="https://github.com/user-attachments/assets/157c558a-4187-4996-b5d6-74983ef8a0f2" title="Go to my LinkedIn" alt="GitHub Header Image">
+    <img src="https://github.com/user-attachments/assets/465e2832-e162-405d-965b-6298fbffda6b" title="Go to my LinkedIn" alt="GitHub Header Image">
 </a>
 
 <p><h3><a href="https://github.com/garrettbovo">GitHub Homepage Link: <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg" title="Go to my GitHub Homepage" alt="GitHub" height="30"></a></h3></p>
