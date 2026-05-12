@@ -198,11 +198,18 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode *final = new ListNode(0), *curr = final;
+
+        while (list1 != nullptr && list2 != nullptr)
+        {
+            if (list1->val < list2->val)
+        }
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
