@@ -201,12 +201,42 @@ public:
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        //creating a new linked list called final, which will store the merged linked list, and creating a dummy pointer curr to point to the head of this new linked list
         ListNode *final = new ListNode(0), *curr = final;
 
+        //moving through both linked lists until either list1 or list2 reaches nullptr
         while (list1 != nullptr && list2 != nullptr)
         {
-            if (list1->val < list2->val)
+            //instantiating a new linked list node for the linked list to be return from this function
+            ListNode *newNode = new ListNode();
+
+            //if the current node in the first list has a lower val attribute than the other node in the second list, we are going to copy this new node's value into our newly created node, then move list1 to point to the next element
+            if (list1->val <= list2->val)
+            {
+                newNode->val = list1->val;
+                list1 = list1->next;
+            }
+
+            //if the current node in the second list has a lower val attribute than the other node in the list list, we are going to copy this new node's value into our newly created node, then move list2 to point to the next element
+            else
+            {
+                newNode->val = list2->val;
+                list2 = list2->next;
+            }
+
+            //now we need have the curr pointer's next attribute point to this new list element, then set current to point to its next element, also known as newNode
+            curr->next = newNode;
+            curr = curr->next;
         }
+
+        //now there is a chance that the number of elements in each list is different. what this means for us is when the shorter linked list reaches nullptr first, the while loop above will terminate; however, there are still element(s) in the other list that need to be merged to our newly created list. the two conditions below evaluate which list still has remaining elements, and sets the next pointer after curr to point to the remaining list elements from either list1 or list2
+        if (list1 == nullptr && list2 != nullptr)
+            curr->next = list2;
+        else if (list2 == nullptr && list1 != nullptr)
+            curr->next = list1;
+
+        //we return the second node in the linked list since the first node we instantiated at the start of this method is a dummy value containing just zero. the head of the node being return is this second node, our first valid node for our merged linked list
+        return final->next;
     }
 };
 ```
@@ -218,11 +248,28 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        //creating a set to store each unique list element
+        unordered_set<ListNode *> seen;
+
+        //traversing the linked list until either we stumble upon a node that has already been visited or we reach the end of the linked list successfully
+        for (ListNode *ptr = head; ptr != nullptr; ptr = ptr->next)
+        {
+            //the count method is used to determine if an element in a set already exists. it returns a boolean value indicating that and if the element has been seen, we are going to return true and say the linked list is cyclical
+            if (seen.count(ptr))
+                return true;
+            
+            //if the current list node has not been seen yet, we are going to add it to the set
+            seen.insert(ptr);
+        }
+
+        //if we get to this line in the method, then no cycle was found in the for loop above and hence we will return false
+        return false;
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -231,13 +278,30 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        //creating a dummy pointer to traverse through the linked list and a variable for storing the number of nodes in the linked list
+        ListNode *ptr = head;
+        int size = 0;
+
+        //traversing through the linked list and counting the number of nodes incrementally
+        for (ListNode *ptr = head; ptr != nullptr; size++, ptr = ptr->next);
+
+        //this is just to remove the first node in the list, where we can just have head point to the second node and return that
+        if (size == n)
+            return head->next;
+        
+        //traversing through the linked list until we are at the node just before the one that we want to remove
+        for (int i = 0; i < size - n - 1; i++, ptr = ptr->next);
+
+        //now we just skip the node we want to skip with the node just after that one
+        ptr->next = ptr->next->next;
+
+        return head;
+    }
+};
 ```
-
-**Explanation:**
-
-
----
 
 ## Stacks & Queues (3 problems)
 
@@ -248,9 +312,6 @@ public:
 ```cpp
 // Add your solution here
 ```
-
-**Explanation:**
-
 
 ---
 
