@@ -310,7 +310,38 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    bool isValid(string s) {
+        //stack variable declaration to store the opening characters in s
+        stack<char> characters;
+
+        //iterating through each character of parameter s to check if the parentheses have matching opening and closing parts
+        for (int i = 0; i < s.size(); i++)
+        {
+            //we are going to add each open parenthesis to our stack, which will then be compared with closed parentheses in the else condition
+            if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+                characters.push(s[i]);
+
+            //for closed parentheses, we need to make sure the prior opening parenthesis matches the current character at index i in s
+            else
+            {
+                //to avoid accessing an element that does not exist, we check to see if the stack is empty; if the stack is empty, then there is not an open parenthesis to be paired with the current character, so the string is not valid
+                if (characters.empty()) return false;
+
+                //since we are looking at an end parenthesis, we need to make sure that the most recent open parenthesis, the one on top of the stack, matches the closed parenthesis type: if it does, then great and we move on; otherwise, we say the string is not valid by returning false
+                if (s[i] == ')' && characters.top() != '(' || s[i] == '}' && characters.top() != '{' || s[i] == ']' && characters.top() != '[')
+                    return false;
+            
+                //since the pair of parentheses matches, we can pop the top of the stack so the next parenthesis can be evaluated
+                characters.pop();
+            }
+        }
+
+        //by returning whether the stack is empty, we are verifying that each open parenthesis has a matching closed parenthesis; if there are still items left in the stack, then there are missing closed parentheses and therefore the string is invalid
+        return characters.empty();
+    }
+};
 ```
 
 ---
@@ -320,7 +351,30 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class MinStack 
+{
+    private:
+        vector<int> stack, minStack;
+
+    public:
+        MinStack() {}
+        
+        void push (int val)
+        {
+            stack.push_back(val);
+
+            if (minStack.empty() || minStack.back() >= val)
+                minStack.push_back(val)
+            else
+                minStack.push_back(minStack.back());
+        }
+        
+        void pop() { stack.pop_back(); minStack.pop_back(); }
+        
+        int top() { return stack.back(); }
+        
+        int getMin() { return minStack.back(); }
+};
 ```
 
 **Explanation:**
