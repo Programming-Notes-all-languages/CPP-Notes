@@ -354,31 +354,36 @@ public:
 class MinStack 
 {
     private:
+        //we need two vectors: one that stores each element of the stack and then a stack to store the current minimum value in the stack
         vector<int> stack, minStack;
 
     public:
         MinStack() {}
         
+        //method for adding a new item to the stack
         void push (int val)
         {
+            //we add each new element to the back of the stack
             stack.push_back(val);
 
+            //if the stack is empty or this is a new minimum value, lower than the prior minimum value that has been seen, we will add this value to the minStack vector
             if (minStack.empty() || minStack.back() >= val)
                 minStack.push_back(val)
+            //otherwise, we will just copy the prior minimum value and push that to the back of the minStack vector
             else
                 minStack.push_back(minStack.back());
         }
         
+        //method for removing the top value on the stack. we need to remove the last item from both vectors to maintain the minStack functionality
         void pop() { stack.pop_back(); minStack.pop_back(); }
         
+        //method for returning the element on the top of the stack
         int top() { return stack.back(); }
         
+        //method for returning the minimum element in the stack
         int getMin() { return minStack.back(); }
 };
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -387,11 +392,15 @@ class MinStack
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) 
+    {
+        stack<int> days;
+        int 
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -545,27 +554,3 @@ class MinStack
 
 
 ---
-
-## Progress Tracker
-
-- [ ] Two Sum
-- [ ] Best Time to Buy and Sell Stock
-- [ ] Valid Palindrome
-- [ ] Reverse Linked List
-- [ ] Merge Two Sorted Lists
-- [ ] Linked List Cycle
-- [ ] Remove Nth Node From End of List
-- [ ] Valid Parentheses
-- [ ] Min Stack
-- [ ] Daily Temperatures
-- [ ] Invert Binary Tree
-- [ ] Maximum Depth of Binary Tree
-- [ ] Binary Tree Level Order Traversal
-- [ ] Lowest Common Ancestor of a Binary Search Tree
-- [ ] Path Sum
-- [ ] Number of Islands
-- [ ] Clone Graph
-- [ ] Contains Duplicate
-- [ ] Group Anagrams
-- [ ] Climbing Stairs
-- [ ] House Robber
