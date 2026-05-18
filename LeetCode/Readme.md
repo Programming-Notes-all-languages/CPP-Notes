@@ -411,11 +411,25 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        //checking if we have reached a node with no children, if so, do not do recursion on this node
+        if (root == nullptr)
+            return root;
+        
+        //swapping the left and right children of node root
+        swap(root->left, root->right);
+
+        //now we are going to move to the nodes' children. first go to the left child and continue the swapping, then go to the right node and swap it's children
+        root->left = invertTree(root->left);
+        root->right = invertTree(root->right);
+
+        //eventually the last node to be returned recursively is the original root of the tree
+        return root;
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -424,11 +438,28 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        //checking if we have reached a node with no children, if so, do not do recursion on this node
+        if (root == nullptr)
+            return 0;
+        
+        //variables for storing the depths of the left and right children
+        int leftDepth, rightDepth;
+
+        //traversing the left and right children and incrementing the total depth of that node by one
+        leftDepth = 1 + maxDepth(root->left);
+        rightDepth = 1 + maxDepth(root->right);
+        
+        //when returning the maximum depth of the root node, we at the last step of the recursive return either the depth of the left child or the right child; the node we return is the larger one since we are trying to find the maximum depth
+        if (leftDepth >= rightDepth) 
+            return leftDepth;
+        
+        return rightDepth;
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -437,11 +468,57 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        //variables for storing the vector to be returned, a queue to implement this task, and a size variable to store the queue's size, a TreeNode pointer to point to the current element in the node, and a storage vector to store each level of node values derived from BFS
+        vector<vector<int>> result;
+        vector<int> level;
+        queue<TreeNode *> queue;
+        TreeNode *node;
+        int size;
+
+        //checking to make sure we are given a tree that is not empty
+        if (root == nullptr)
+            return result;
+        
+        //adding the root of the tree to the queue
+        queue.push(root);
+        
+        //looping through the queue until it is empty
+        while (!queue.empty())
+        {
+            //storing the number of nodes in the queue at the moment
+            size = queue.size();
+
+            //looping through the number of current elements in the queue
+            for (int i = 0; i < size; i++)
+            {
+                //copying the node at the front of queue to be added to our vector
+                node = q.front();
+                //popping the front element from the queue, hence why we just copied it above
+                q.pop();
+
+                //adding the front prior front node in the queue to the temporary vector, index i[j] of the final vector
+                level.push_back(node->val);
+
+                //if the current node has a left or right child, we are going to add that to the queue; it will be evaluated once the elements added first are evaluated
+                if (node->left != nullptr)
+                    q.push(node->left);
+                if (node->right != nullptr)
+                    q.push(node->right);
+            }
+
+            //adding index i of the result vector, the current BFS level, to our final
+            result.push_back(level);
+            //clearing our temporary storage vector since it was declared outside of the loop's scope
+            level.clear();
+        }
+
+        return result;
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -453,9 +530,6 @@ public:
 // Add your solution here
 ```
 
-**Explanation:**
-
-
 ---
 
 ### 15. Path Sum
@@ -463,11 +537,28 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        //checking if the tree is empty; if so, target will never be met
+        if (root == nullptr)
+            return false;
+
+        //we need to update the target that we are looking for because now we are looking for a target underneath the root subtree
+        targetSum -= root->val;
+
+        //we need to check to see if the leaf node has a target value of zero; if this is true, then this root to leaf path's total is equal to the initial targetSum parameter
+        if (root->left == nullptr && root->right == nullptr)
+            return (targetSum == 0);
+
+        //we now need to evaluate if the left child's node gets us to our target, so we will recursively call the method moving down in the tree; then we do the same with the root's right child node
+        if (hasPathSum(root->left, targetSum))
+            return true;
+
+        return hasPathSum(root->right, targetSum);
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -506,11 +597,24 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int, int> results;
+
+        for (int i = 0; i < nums.size(); i++)
+            results[nums[i]]++;
+        
+        auto it = results.begin();
+
+        for (; it != results.end(); it++)
+            if (it->second > 1)
+                return true;
+        
+        return false;
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -534,11 +638,31 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    int climbStairs(int n) {
+        //prev2 is the number of ways to reach stair 1, prev2 is the number of ways to reach stair 2, and current is the number of ways to reach stair x where x > 2
+        int prev2 = 1, prev2 = 2, current;
+        
+        //base checks where if n is equal to one or two, we can simply just return the number of steps to reach either one of those steps
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+
+        //counting the number of different ways to climb n stairs in this loop where n is greater than 2
+        for (int i = 3; i <= n; i++)
+        {
+            //the number of ways to climb i number of steps is found by adding the total number of ways to climb i - 1 and i - 2 steps
+            current = prev1 + prev2;
+            //we now update i - 2 steps to be i - 1
+            prev2 = prev1;
+            //we also need to update i - 1 steps to be i for our next iteration of the loop
+            prev1 = current;
+        }
+
+        return prev1;
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
