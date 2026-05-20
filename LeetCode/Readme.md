@@ -600,13 +600,17 @@ public:
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
+        //creating a map that will be used to store the values in the vectors as keys and the values will store the number of times a certain key appears in nums
         unordered_map<int, int> results;
 
+        //looping through the vector and adding each element to the map
         for (int i = 0; i < nums.size(); i++)
             results[nums[i]]++;
         
+        //instantiating an iterator to traverse the keys of the map; needed to check if any duplicates were found in the loop above
         auto it = results.begin();
 
+        //iterating through the map and if any key has a value greater than one, then we will say that the vector contains a duplicate value; otherwise, each item in the vector is unique
         for (; it != results.end(); it++)
             if (it->second > 1)
                 return true;
@@ -623,11 +627,20 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string> &strs) {
+        unordered_map<string, vector<string>> anagram;
+        string sorted;
+
+        for (int i = 0; i < strs.size(); i++)
+        {
+            sorted = str;
+            sort(sorted.begin(), sorted.end());
+        }
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
 
