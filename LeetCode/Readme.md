@@ -527,7 +527,32 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+/*
+BST is where each left child is less than root and each right child is greater than root
+        6
+       / \
+      2   8
+     / \ / \
+    0  4 7  9
+      / \
+     3   5
+*/
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        //so what we need to do is the find the node where the p is less than the root, but where q is greater than the root. in this instance, we will have found the most common ancestor
+
+        //if the value attribute for p and q is lees than the current root node, we need to move to the left child since the left child is a lower value than the root. then we can evaluate again on the next root
+        if (p->val < root->val && q->val < root->val)
+            return lowestCommonAncestor(root->left, p, q);
+
+        //if the value attribute for p and q is greater than the current root node, we need to move to the right child since the right child is a greater value than the root. then we can evaluate gain on the next root
+        if (p->val > root->val && q->val > root->val)
+            return lowestCommonAncestor(root->right, p, q);
+            
+        return root;
+    }
+};
 ```
 
 ---
@@ -569,11 +594,8 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+
 ```
-
-**Explanation:**
-
 
 ---
 
@@ -630,14 +652,27 @@ public:
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string> &strs) {
+        //creating a map to store all the strings in the vector, a vector storing vectors of strings, which are the anagrams, and a temporary string storage
         unordered_map<string, vector<string>> anagram;
+        vector<vector<string>> result;
         string sorted;
 
+        //to find the anagrams, we first need to loop through the vector and sort each element of the vector in alphabetical order. by doing this to each string, all the alike characters follow the same sequential order which allows us to push back multiple elements to the map's keys (which are the anagrams)
         for (int i = 0; i < strs.size(); i++)
         {
             sorted = str;
             sort(sorted.begin(), sorted.end());
+            anagram[sorted].push_back(str);
         }
+
+        //creating an iterator to move through the map to see if we found any anagrams
+        auto it = anagram.begin();
+
+        //we are now going to add each group of anagrams to our vector. this is what we will return
+        for (; it != anagram.end(); it++)
+            result.push_back(it->second);
+
+        return result;
     }
 };
 ```
@@ -684,10 +719,24 @@ public:
 
 **Solution:**
 ```cpp
-// Add your solution here
+class Solution {
+public: 1 3 1 5 4
+    int rob(vector<int>& nums) {
+        if (nums.empty()) return 0;
+        if (nums.size() == 1) return nums[0];
+
+        int prev2 = nums[0], prev1 = max(nums[0], nums1[1]), current;
+
+        for (int i = 2; i < nums.size(); i++)
+        {
+            current = max(nums[i] + prev2, prev1);
+            prev2 = prev1;
+            prev1 = current;
+        }
+
+        return prev1
+    }
+};
 ```
-
-**Explanation:**
-
 
 ---
